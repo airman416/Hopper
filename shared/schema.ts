@@ -1,18 +1,37 @@
-import { sql } from "drizzle-orm";
-import { pgTable, text, varchar } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const users = pgTable("users", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  username: text("username").notNull().unique(),
-  password: text("password").notNull(),
+export const sourcePostSchema = z.object({
+  id: z.number().optional(),
+  platform: z.enum(["twitter", "linkedin", "instagram"]),
+  content: z.string(),
+  author: z.string(),
+  timestamp: z.string(),
+  url: z.string().optional(),
+  metrics: z
+    .object({
+      likes: z.number().optional(),
+      comments: z.number().optional(),
+      shares: z.number().optional(),
+    })
+    .optional(),
 });
 
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
+export const draftSchema = z.object({
+  id: z.number().optional(),
+  sourcePostId: z.number(),
+  platform: z.enum(["linkedin", "twitter", "instagram", "newsletter"]),
+  content: z.string(),
+  status: z.enum(["draft", "approved", "rejected"]),
+  createdAt: z.string(),
+  updatedAt: z.string(),
 });
 
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = typeof users.$inferSelect;
+export const aiRequestSchema = z.object({
+  content: z.string(),
+  platform: z.string().optional(),
+  sourceContent: z.string().optional(),
+});
+
+export type SourcePost = z.infer<typeof sourcePostSchema>;
+export type Draft = z.infer<typeof draftSchema>;
+export type AiRequest = z.infer<typeof aiRequestSchema>;
