@@ -209,6 +209,17 @@ export async function loadLiveFeed(platform?: "twitter" | "linkedin" | "instagra
             if (!profilePhoto && post.ownerProfilePicUrl) {
               profilePhoto = post.ownerProfilePicUrl;
             }
+            // Extract media URLs: carousel uses images[] or childPosts[].displayUrl, single uses displayUrl
+            let mediaUrls: string[] = [];
+            if (Array.isArray(post.images) && post.images.length > 0) {
+              mediaUrls = post.images;
+            } else if (Array.isArray(post.childPosts) && post.childPosts.length > 0) {
+              mediaUrls = post.childPosts
+                .map((c: any) => c.displayUrl)
+                .filter(Boolean);
+            } else if (post.displayUrl) {
+              mediaUrls = [post.displayUrl];
+            }
             allPosts.push({
               platform: "instagram",
               content: text,
@@ -217,6 +228,7 @@ export async function loadLiveFeed(platform?: "twitter" | "linkedin" | "instagra
               profilePhoto: post.ownerProfilePicUrl || undefined,
               timestamp: post.timestamp || new Date().toISOString(),
               url: post.url || undefined,
+              mediaUrls: mediaUrls.length > 0 ? mediaUrls : undefined,
               metrics: {
                 likes: post.likesCount || 0,
                 comments: post.commentsCount || 0,

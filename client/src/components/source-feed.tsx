@@ -46,7 +46,7 @@ function PostCard({
         <div className="flex items-center gap-1.5">
           {post.profilePhoto ? (
             <img
-              src={post.profilePhoto}
+              src={post.profilePhoto.startsWith("/") ? post.profilePhoto : `/api/proxy/image?url=${encodeURIComponent(post.profilePhoto)}`}
               alt={post.author}
               className="w-4 h-4 rounded-full object-cover flex-shrink-0"
             />

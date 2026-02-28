@@ -158,6 +158,8 @@ async function drawSlideToBlob(
 
 function proxyPhotoUrl(url: string | null): string | null {
   if (!url) return null;
+  // Relative paths (e.g. /ig-profile.jpg) are served by the app; don't proxy them
+  if (url.startsWith("/")) return url;
   return `/api/proxy/image?url=${encodeURIComponent(url)}`;
 }
 
@@ -763,8 +765,10 @@ export default function Preview() {
 
   const isAssetMode = activeTab === "quote" || activeTab === "instagram";
 
-  // For same-to-same mockups, prefer the selected post's author photo so the X/LinkedIn mockup shows the right profile picture
-  const effectivePhoto = selectedPost?.profilePhoto || profilePhoto || null;
+  // For same-to-same mockups, use ONLY the selected post's author photo so the mockup matches the source (no cross-platform fallback)
+  const effectivePhoto = isSameToSame
+    ? (selectedPost?.profilePhoto ?? null)
+    : (selectedPost?.profilePhoto || profilePhoto || null);
 
   useEffect(() => {
     if (isSameToSame && effectivePhoto && effectivePhoto !== lastConvertedPhoto) {
@@ -813,7 +817,8 @@ export default function Preview() {
     setIsExporting(true);
 
     try {
-      if (activeTab === "instagram" && content.includes("---")) {
+      const hasSourceImages = (selectedPost?.mediaUrls ?? []).length > 0;
+      if (activeTab === "instagram" && content.includes("---") && !hasSourceImages) {
         const slides = content.split("---").map((s) => s.trim()).filter(Boolean);
         const zip = new JSZip();
         const dimConfig = DIMENSIONS.find((d) => d.key === assetDimension)!;
@@ -843,7 +848,13 @@ export default function Preview() {
         const node = previewRef.current;
         if (!node) return;
 
-        if (isSameToSame) {
+        if (activeTab === "instagram" && hasSourceImages) {
+          const dataUrl = await toPng(node, { pixelRatio: 2 });
+          const link = document.createElement("a");
+          link.download = getExportFilename("instagram-preview", "png");
+          link.href = dataUrl;
+          link.click();
+        } else if (isSameToSame) {
           // Canvas has a fixed pixel width (CANVAS_W), so pixelRatio: 3 always
           // produces a consistent 1560px-wide output regardless of screen size.
           const exportOpts: Parameters<typeof toPng>[1] = { pixelRatio: 3, quality: 1.0 };
@@ -890,7 +901,7 @@ export default function Preview() {
     } finally {
       setIsExporting(false);
     }
-  }, [content, activeTab, isSameToSame, isAssetMode, assetDimension, assetFont, assetBgColor, assetTextColor, assetAlign, isExporting]);
+  }, [content, activeTab, isSameToSame, isAssetMode, assetDimension, assetFont, assetBgColor, assetTextColor, assetAlign, isExporting, selectedPost?.mediaUrls]);
 
   useEffect(() => {
     setTriggerExport(handleDownloadImage);
@@ -1116,12 +1127,17 @@ export default function Preview() {
     }
 
     if (activeTab === "instagram") {
+      const mediaUrls = selectedPost?.mediaUrls ?? [];
+      const hasSourceImages = mediaUrls.length > 0;
       const slides = content.split("---").map((s) => s.trim()).filter(Boolean);
       slideRefs.current = [];
-      const instagramPhoto = selectedPost?.profilePhoto || profilePhoto;
-      const instagramPhotoUrl = instagramPhoto ? proxyPhotoUrl(instagramPhoto) : null;
+      // Use source profile picture, fall back to store profilePhoto, then saved default (same as LinkedIn/X)
+      const instagramPhoto = selectedPost?.profilePhoto || profilePhoto || "/ig-profile.jpg";
+      const instagramPhotoUrl = proxyPhotoUrl(instagramPhoto);
+      const authorName = selectedPost?.author ?? "Sam Parr";
+      const authorHandle = selectedPost?.authorHandle ?? "thesamparr";
       return (
-        <div className="space-y-3">
+        <div ref={previewRef} className="space-y-3">
           <div className="flex items-center gap-3 pb-2">
             {instagramPhotoUrl ? (
               <img
@@ -1135,24 +1151,65 @@ export default function Preview() {
               </div>
             )}
             <div>
-              <p className="text-[13px] font-semibold text-[#111827]">Sam Parr</p>
-              <p className="text-[11px] text-[#666]">@thesamparr</p>
+              <p className="text-[13px] font-semibold text-[#111827]">{authorName}</p>
+              <p className="text-[11px] text-[#666]">@{authorHandle}</p>
             </div>
           </div>
-          {slides.map((slide, i) => (
-            <CarouselSlideCard
-              key={i}
-              slide={slide}
-              index={i}
-              total={slides.length}
-              nodeRef={(el: HTMLDivElement | null) => { slideRefs.current[i] = el; }}
-              bgColor={assetBgColor}
-              textColor={assetTextColor}
-              font={assetFont}
-              align={assetAlign}
-              dimension={assetDimension}
-            />
-          ))}
+          {hasSourceImages ? (
+            <>
+              <div className="rounded-lg overflow-hidden border border-[#E5E5E5]">
+                {mediaUrls.length === 1 ? (
+                  <img
+                    src={`/api/proxy/image?url=${encodeURIComponent(mediaUrls[0])}`}
+                    alt=""
+                    className="w-full block object-cover max-h-[400px]"
+                  />
+                ) : (
+                  <div
+                    className="grid gap-0.5"
+                    style={{
+                      gridTemplateColumns: mediaUrls.length === 2 ? "1fr 1fr" : mediaUrls.length === 3 ? "2fr 1fr" : "1fr 1fr",
+                      gridTemplateRows: mediaUrls.length >= 3 ? "1fr 1fr" : "1fr",
+                      height: "280px",
+                    }}
+                  >
+                    {mediaUrls.slice(0, 4).map((url, i) => (
+                      <img
+                        key={i}
+                        src={`/api/proxy/image?url=${encodeURIComponent(url)}`}
+                        alt=""
+                        className="w-full h-full object-cover block"
+                        style={{
+                          gridColumn: mediaUrls.length === 3 && i === 0 ? "1" : "auto",
+                          gridRow: mediaUrls.length === 3 && i === 0 ? "1 / 3" : "auto",
+                        }}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+              {content && (
+                <p className="text-[13px] leading-[1.5] text-[#111827] whitespace-pre-wrap">{content}</p>
+              )}
+            </>
+          ) : (
+            <>
+              {slides.map((slide, i) => (
+                <CarouselSlideCard
+                  key={i}
+                  slide={slide}
+                  index={i}
+                  total={slides.length}
+                  nodeRef={(el: HTMLDivElement | null) => { slideRefs.current[i] = el; }}
+                  bgColor={assetBgColor}
+                  textColor={assetTextColor}
+                  font={assetFont}
+                  align={assetAlign}
+                  dimension={assetDimension}
+                />
+              ))}
+            </>
+          )}
         </div>
       );
     }
