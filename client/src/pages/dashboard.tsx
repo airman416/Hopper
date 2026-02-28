@@ -6,8 +6,9 @@ import SourceFeed from "@/components/source-feed";
 import Workshop from "@/components/workshop";
 import Preview from "@/components/preview";
 import Trash from "@/components/trash";
+import Settings from "@/components/settings";
 import { playApproveSound, playRejectSound } from "@/lib/sounds";
-import { Trash2, Volume2, VolumeX, Keyboard, Undo2, Redo2 } from "lucide-react";
+import { Trash2, Volume2, VolumeX, Keyboard, Undo2, Redo2, Settings as SettingsIcon } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
@@ -23,6 +24,7 @@ export default function Dashboard() {
     soundEnabled,
     toggleSound,
     setShowTrash,
+    setShowSettings,
     setAiLoading,
     isAiLoading,
     setProfilePhoto,
@@ -317,11 +319,8 @@ export default function Dashboard() {
       <header className="flex items-center justify-between h-[49px] px-5 border-b border-[#E5E5E5] bg-white flex-shrink-0">
         <div className="flex items-center gap-3">
           <h1 className="text-[15px] font-bold text-[#111827] tracking-tight">
-            The Hopper
+            Content Engine
           </h1>
-          <span className="text-[11px] font-mono text-[#999] bg-[#F5F5F5] px-2 py-0.5 border border-[#E5E5E5]" style={{ borderRadius: "2px" }}>
-            v2.0
-          </span>
         </div>
         <div className="flex items-center gap-2">
           <div className="flex items-center">
@@ -376,6 +375,15 @@ export default function Dashboard() {
               <VolumeX className="w-3.5 h-3.5" />
             )}
           </button>
+          <button
+            data-testid="button-settings"
+            onClick={() => setShowSettings(true)}
+            className="inline-flex items-center justify-center h-7 w-7 text-[#999] bg-[#FAFAFA] border border-[#E5E5E5] transition-colors hover-elevate"
+            style={{ borderRadius: "3px" }}
+            title="Settings"
+          >
+            <SettingsIcon className="w-3.5 h-3.5" />
+          </button>
         </div>
       </header>
 
@@ -394,6 +402,7 @@ export default function Dashboard() {
       </ResizablePanelGroup>
 
       <Trash />
+      <Settings />
     </div>
   );
 }

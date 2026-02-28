@@ -43,6 +43,9 @@ interface HopperState {
   showTrash: boolean;
   setShowTrash: (show: boolean) => void;
 
+  showSettings: boolean;
+  setShowSettings: (show: boolean) => void;
+
   profilePhoto: string | null;
   setProfilePhoto: (url: string | null) => void;
 
@@ -166,6 +169,9 @@ export const useHopperStore = create<HopperState>((set, get) => ({
 
   showTrash: false,
   setShowTrash: (show) => set({ showTrash: show }),
+
+  showSettings: false,
+  setShowSettings: (show) => set({ showSettings: show }),
 
   profilePhoto: null,
   setProfilePhoto: (url) => set({ profilePhoto: url }),

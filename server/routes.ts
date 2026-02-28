@@ -1,10 +1,12 @@
-import type { Express } from "express";
+import type { Express, Request } from "express";
 import { createServer, type Server } from "http";
 import Anthropic from "@anthropic-ai/sdk";
 
-const anthropic = new Anthropic({
-  apiKey: process.env.CLAUDE_API_KEY,
-});
+function getClaudeApiKey(req: Request): string | undefined {
+  const headerKey = req.headers["x-claude-api-key"];
+  if (typeof headerKey === "string" && headerKey.trim()) return headerKey.trim();
+  return process.env.CLAUDE_API_KEY;
+}
 
 export async function registerRoutes(
   httpServer: Server,
@@ -165,6 +167,9 @@ export async function registerRoutes(
 
   app.post("/api/ai/generate", async (req, res) => {
     try {
+      const apiKey = getClaudeApiKey(req);
+      if (!apiKey) return res.status(400).json({ error: "Claude API key required. Add one in Settings." });
+
       const { content, platform, sourceContent } = req.body;
 
       const platformInstructions: Record<string, string> = {
@@ -175,6 +180,7 @@ export async function registerRoutes(
         quote: `Extract the single most powerful, quotable sentence or idea from this post. If there isn't one clear sentence, distill the core idea into one punchy, standalone quote. Keep it under 30 words. Return ONLY the quote text, nothing else.`,
       };
 
+      const anthropic = new Anthropic({ apiKey });
       const message = await anthropic.messages.create({
         model: "claude-3-haiku-20240307",
         max_tokens: 2048,
@@ -197,8 +203,12 @@ export async function registerRoutes(
 
   app.post("/api/ai/punchier", async (req, res) => {
     try {
+      const apiKey = getClaudeApiKey(req);
+      if (!apiKey) return res.status(400).json({ error: "Claude API key required. Add one in Settings." });
+
       const { content } = req.body;
 
+      const anthropic = new Anthropic({ apiKey });
       const message = await anthropic.messages.create({
         model: "claude-3-haiku-20240307",
         max_tokens: 2048,
@@ -221,8 +231,12 @@ export async function registerRoutes(
 
   app.post("/api/ai/hater", async (req, res) => {
     try {
+      const apiKey = getClaudeApiKey(req);
+      if (!apiKey) return res.status(400).json({ error: "Claude API key required. Add one in Settings." });
+
       const { content } = req.body;
 
+      const anthropic = new Anthropic({ apiKey });
       const message = await anthropic.messages.create({
         model: "claude-3-haiku-20240307",
         max_tokens: 1024,
@@ -245,8 +259,12 @@ export async function registerRoutes(
 
   app.post("/api/ai/shaan", async (req, res) => {
     try {
+      const apiKey = getClaudeApiKey(req);
+      if (!apiKey) return res.status(400).json({ error: "Claude API key required. Add one in Settings." });
+
       const { content } = req.body;
 
+      const anthropic = new Anthropic({ apiKey });
       const message = await anthropic.messages.create({
         model: "claude-3-haiku-20240307",
         max_tokens: 2048,

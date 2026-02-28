@@ -339,7 +339,7 @@ export default function Workshop() {
             data-testid="badge-flesch-kincaid"
           >
             <span className="text-[#999] font-sans text-[10px] uppercase tracking-wider">
-              Grade
+              F-K Score
             </span>
             <span className={`font-bold ${getReadabilityColor(fkScore)}`}>
               {fkScore.toFixed(1)}
