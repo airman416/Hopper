@@ -31,53 +31,56 @@ export default function Dashboard() {
 
   const { toast } = useToast();
 
-  useEffect(() => {
-    async function init() {
-      setFeedLoading(true);
+  const refreshFeed = useCallback(async () => {
+    setFeedLoading(true);
 
-      try {
-        const { posts: livePosts, profilePhoto } = await loadLiveFeed();
+    try {
+      const { posts: livePosts, profilePhoto } = await loadLiveFeed();
 
-        if (livePosts.length > 0) {
-          const existingPosts = await db.sourcePosts.toArray();
-          const existingContentSet = new Set(existingPosts.map((p) => p.content.slice(0, 100)));
+      if (livePosts.length > 0) {
+        const existingPosts = await db.sourcePosts.toArray();
+        const existingContentSet = new Set(existingPosts.map((p) => p.content.slice(0, 100)));
 
-          const newPosts = livePosts.filter(
-            (p) => !existingContentSet.has(p.content.slice(0, 100)),
-          );
+        const newPosts = livePosts.filter(
+          (p) => !existingContentSet.has(p.content.slice(0, 100)),
+        );
 
-          if (newPosts.length > 0) {
-            await db.sourcePosts.bulkAdd(newPosts);
-          }
-
-          if (profilePhoto) {
-            setProfilePhoto(profilePhoto);
-          }
+        if (newPosts.length > 0) {
+          await db.sourcePosts.bulkAdd(newPosts);
         }
 
-        const existingCount = await db.sourcePosts.count();
-        if (existingCount === 0) {
-          await seedMockData();
-        }
-      } catch (e) {
-        console.error("Live feed failed, using mock data:", e);
-        const existingCount = await db.sourcePosts.count();
-        if (existingCount === 0) {
-          await seedMockData();
+        if (profilePhoto) {
+          setProfilePhoto(profilePhoto);
         }
       }
 
-      const posts = await db.sourcePosts
-        .orderBy("timestamp")
-        .reverse()
-        .toArray();
-      setSourcePosts(posts);
-      const allDrafts = await db.drafts.toArray();
-      setDrafts(allDrafts);
-      setFeedLoading(false);
+      const existingCount = await db.sourcePosts.count();
+      if (existingCount === 0) {
+        await seedMockData();
+      }
+    } catch (e) {
+      console.error("Live feed failed, using mock data:", e);
+      const existingCount = await db.sourcePosts.count();
+      if (existingCount === 0) {
+        await seedMockData();
+      }
     }
-    init();
-  }, []);
+
+    const posts = await db.sourcePosts
+      .orderBy("timestamp")
+      .reverse()
+      .toArray();
+    setSourcePosts(posts);
+    const allDrafts = await db.drafts.toArray();
+    setDrafts(allDrafts);
+    setFeedLoading(false);
+  }, [setFeedLoading, setProfilePhoto, setSourcePosts, setDrafts]);
+
+  useEffect(() => {
+    refreshFeed();
+  }, [refreshFeed]);
+
+  useHotkeys("shift+r", refreshFeed, { preventDefault: true });
 
   const selectedPost = sourcePosts[selectedPostIndex];
   const activeDraft = drafts.find(
@@ -272,7 +275,7 @@ export default function Dashboard() {
 
       <div className="flex-1 flex min-h-0">
         <div className="w-[280px] border-r border-[#E5E5E5] flex-shrink-0">
-          <SourceFeed />
+          <SourceFeed onRefresh={refreshFeed} />
         </div>
         <div className="flex-1 min-w-0">
           <Workshop />
