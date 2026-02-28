@@ -44,7 +44,15 @@ function PostCard({
     >
       <div className="flex items-center justify-between gap-2 mb-2">
         <div className="flex items-center gap-1.5">
-          <BrandIcon className="w-3 h-3 text-[#666]" />
+          {post.profilePhoto ? (
+            <img
+              src={post.profilePhoto}
+              alt={post.author}
+              className="w-4 h-4 rounded-full object-cover flex-shrink-0"
+            />
+          ) : (
+            <BrandIcon className="w-3 h-3 text-[#666]" />
+          )}
           <span className="text-[11px] font-mono text-[#666] uppercase tracking-wider">
             {post.platform}
           </span>
@@ -209,6 +217,12 @@ export default function SourceFeed({ onRefresh }: { onRefresh?: (platform?: "twi
       }
       groups[post.platform].push({ post, index });
     });
+    for (const platform of Object.keys(groups)) {
+      groups[platform].sort(
+        (a, b) =>
+          new Date(b.post.timestamp).getTime() - new Date(a.post.timestamp).getTime()
+      );
+    }
     return groups;
   }, [sourcePosts]);
 

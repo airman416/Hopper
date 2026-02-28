@@ -14,6 +14,8 @@ export interface SourcePost {
     comments?: number;
     shares?: number;
   };
+  isThread?: boolean;
+  threadContent?: string[];
 }
 
 export interface Draft {
@@ -57,6 +59,27 @@ class HopperDB extends Dexie {
       const oldEntries = await tx.table("swipeFile").toArray();
       if (oldEntries.length > 0) {
         await tx.table("trash").bulkAdd(oldEntries);
+      }
+    });
+
+    const platformPhotos: Record<string, string> = {
+      twitter: "/x-profile.jpg",
+      linkedin: "/linkedin-profile.jpeg",
+      instagram: "/ig-profile.jpg",
+    };
+
+    this.version(3).stores({
+      sourcePosts: "++id, platform, timestamp",
+      drafts: "++id, sourcePostId, platform, status, createdAt",
+      trash: "++id, draftId, sourcePostId, platform, rejectedAt",
+    }).upgrade(async (tx) => {
+      const posts = await tx.table("sourcePosts").toArray();
+      for (const post of posts) {
+        if (!post.profilePhoto && platformPhotos[post.platform]) {
+          await tx.table("sourcePosts").update(post.id, {
+            profilePhoto: platformPhotos[post.platform],
+          });
+        }
       }
     });
   }
@@ -203,6 +226,7 @@ export async function seedMockData(platforms?: Array<"twitter" | "linkedin" | "i
       content: "The best founders I know don't pitch their product.\n\nThey describe the problem so clearly that the listener sells themselves on the solution.\n\nStop selling. Start storytelling.",
       author: "Sam Parr",
       authorHandle: "thesamparr",
+      profilePhoto: "/x-profile.jpg",
       timestamp: new Date(now.getTime() - 1000 * 60 * 60 * 2).toISOString(),
       metrics: { likes: 2847, comments: 143, shares: 892 },
     },
@@ -211,6 +235,7 @@ export async function seedMockData(platforms?: Array<"twitter" | "linkedin" | "i
       content: "I spent 6 months building a feature nobody asked for.\n\nThe result? Zero adoption.\n\nThen I spent 2 weeks talking to customers. Built exactly what they described in their own words.\n\nResult: 40% adoption in the first week.\n\nThe lesson isn't \"talk to customers.\" Everyone says that.\n\nThe real lesson: Your job isn't to be creative. Your job is to be a translator.\n\nTranslate pain into product. That's it.",
       author: "Sam Parr",
       authorHandle: "thesamparr",
+      profilePhoto: "/linkedin-profile.jpeg",
       timestamp: new Date(now.getTime() - 1000 * 60 * 60 * 24).toISOString(),
       metrics: { likes: 12840, comments: 567, shares: 2100 },
     },
@@ -219,6 +244,7 @@ export async function seedMockData(platforms?: Array<"twitter" | "linkedin" | "i
       content: "Unpopular opinion: Most SaaS pricing pages are optimized for the company, not the customer.\n\nIf I have to schedule a call to learn your price, I'm already looking at your competitor.",
       author: "Sam Parr",
       authorHandle: "thesamparr",
+      profilePhoto: "/x-profile.jpg",
       timestamp: new Date(now.getTime() - 1000 * 60 * 60 * 24 * 2).toISOString(),
       metrics: { likes: 5621, comments: 387, shares: 1243 },
     },
@@ -227,6 +253,7 @@ export async function seedMockData(platforms?: Array<"twitter" | "linkedin" | "i
       content: "The 3 skills that made me a better leader than any MBA:\n\n1. Writing clearly - if you can't write it, you can't think it\n2. Saying no - the best strategy is knowing what you won't do\n3. Hiring slow - one great person beats three good ones\n\nNone of these were taught in school. All of them were learned through expensive mistakes.",
       author: "Sam Parr",
       authorHandle: "thesamparr",
+      profilePhoto: "/linkedin-profile.jpeg",
       timestamp: new Date(now.getTime() - 1000 * 60 * 60 * 24 * 3).toISOString(),
       metrics: { likes: 8934, comments: 423, shares: 1567 },
     },
@@ -235,6 +262,7 @@ export async function seedMockData(platforms?: Array<"twitter" | "linkedin" | "i
       content: "Your startup doesn't have a marketing problem.\n\nIt has a clarity problem.\n\nIf a 12-year-old can't explain what you do after visiting your homepage, rewrite it.",
       author: "Sam Parr",
       authorHandle: "thesamparr",
+      profilePhoto: "/x-profile.jpg",
       timestamp: new Date(now.getTime() - 1000 * 60 * 60 * 24 * 5).toISOString(),
       metrics: { likes: 9102, comments: 412, shares: 2890 },
     },
@@ -243,6 +271,7 @@ export async function seedMockData(platforms?: Array<"twitter" | "linkedin" | "i
       content: "Build in public they said.\n\nSo I shared my revenue numbers, my failures, my process.\n\nThe result wasn't more customers. It was better customers.\n\nPeople who already trusted the way I think before they ever bought.",
       author: "Sam Parr",
       authorHandle: "thesamparr",
+      profilePhoto: "/ig-profile.jpg",
       timestamp: new Date(now.getTime() - 1000 * 60 * 60 * 24 * 7).toISOString(),
       metrics: { likes: 4231, comments: 198, shares: 876 },
     },
