@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { useHopperStore, type PlatformTab } from "@/lib/store";
 import { db, type Draft } from "@/lib/db";
 import {
@@ -7,7 +7,7 @@ import {
   getReadabilityColor,
   getReadabilityBg,
 } from "@/lib/readability";
-import { playApproveSound, playRejectSound, playExportSound } from "@/lib/sounds";
+import { playRejectSound } from "@/lib/sounds";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { AnimatePresence, motion } from "framer-motion";
@@ -16,9 +16,8 @@ import {
   Skull,
   ToggleLeft,
   ToggleRight,
-  Check,
   X,
-  Copy,
+  Download,
   Loader2,
   Sparkles,
   RefreshCw,
@@ -48,10 +47,13 @@ export default function Workshop() {
     shaanMode,
     toggleShaanMode,
     soundEnabled,
+    pushHistory,
+    triggerExport,
   } = useHopperStore();
 
   const { toast } = useToast();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const shouldPushHistoryRef = useRef(false);
   const [rejectedId, setRejectedId] = useState<number | null>(null);
 
   const selectedPost = sourcePosts[selectedPostIndex];
@@ -62,6 +64,12 @@ export default function Workshop() {
       (d.status === "draft" || d.status === "approved"),
   );
 
+  const isSameToSame = !!(
+    selectedPost &&
+    activeDraft &&
+    selectedPost.platform === activeTab
+  );
+
   const draftContent = activeDraft?.content || "";
   const fkScore = calculateFleschKincaid(draftContent);
   const vibeCheck = calculateHumanScore(draftContent);
@@ -69,8 +77,36 @@ export default function Workshop() {
     ? draftContent.trim().split(/\s+/).length
     : 0;
 
+  // When the source post's platform matches the active tab, auto-populate a draft
+  // with the raw content — no AI needed, just display it immediately.
+  useEffect(() => {
+    if (!selectedPost || activeDraft || isAiLoading) return;
+
+    const platformMatch =
+      (selectedPost.platform === "twitter" && activeTab === "twitter") ||
+      (selectedPost.platform === "linkedin" && activeTab === "linkedin") ||
+      (selectedPost.platform === "instagram" && activeTab === "instagram");
+
+    if (!platformMatch) return;
+
+    const newDraft: Draft = {
+      sourcePostId: selectedPost.id!,
+      platform: activeTab,
+      content: selectedPost.content,
+      status: "draft",
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    db.drafts.add(newDraft).then(async () => {
+      const allDrafts = await db.drafts.toArray();
+      setDrafts(allDrafts);
+    });
+  }, [selectedPost?.id, activeTab, !!activeDraft]);
+
   const handleGenerateDraft = useCallback(async () => {
     if (!selectedPost || isAiLoading) return;
+    pushHistory();
     setAiLoading(true);
 
     try {
@@ -110,10 +146,11 @@ export default function Workshop() {
     } finally {
       setAiLoading(false);
     }
-  }, [selectedPost, activeTab, activeDraft, draftContent, isAiLoading]);
+  }, [selectedPost, activeTab, activeDraft, draftContent, isAiLoading, pushHistory]);
 
   const handlePunchier = useCallback(async () => {
     if (!draftContent || isAiLoading) return;
+    pushHistory();
     setAiLoading(true);
     try {
       const res = await apiRequest("POST", "/api/ai/punchier", {
@@ -136,7 +173,7 @@ export default function Workshop() {
     } finally {
       setAiLoading(false);
     }
-  }, [draftContent, activeDraft, isAiLoading]);
+  }, [draftContent, activeDraft, isAiLoading, pushHistory]);
 
   const handleHater = useCallback(async () => {
     if (!draftContent || isAiLoading) return;
@@ -161,6 +198,7 @@ export default function Workshop() {
 
   const handleShaanRewrite = useCallback(async () => {
     if (!draftContent || isAiLoading) return;
+    pushHistory();
     toggleShaanMode();
     setAiLoading(true);
     try {
@@ -184,19 +222,11 @@ export default function Workshop() {
     } finally {
       setAiLoading(false);
     }
-  }, [draftContent, activeDraft, isAiLoading]);
-
-  const handleApprove = useCallback(async () => {
-    if (!activeDraft?.id) return;
-    await db.drafts.update(activeDraft.id, { status: "approved" });
-    if (soundEnabled) playApproveSound();
-    toast({ title: "Draft approved", description: "Ready for export." });
-    const allDrafts = await db.drafts.toArray();
-    setDrafts(allDrafts);
-  }, [activeDraft, soundEnabled]);
+  }, [draftContent, activeDraft, isAiLoading, pushHistory]);
 
   const handleReject = useCallback(async () => {
     if (!activeDraft?.id) return;
+    pushHistory();
     setRejectedId(activeDraft.id);
 
     await db.trash.add({
@@ -218,60 +248,29 @@ export default function Workshop() {
       const allDrafts = await db.drafts.toArray();
       setDrafts(allDrafts);
     }, 300);
-  }, [activeDraft, soundEnabled, sourcePosts]);
-
-  const handlePublish = useCallback(async () => {
-    if (!activeDraft) return;
-    const content = activeDraft.content;
-
-    if (activeTab === "linkedin") {
-      const formatted = content.replace(/\n\n/g, "\n\u200B\n");
-      await navigator.clipboard.writeText(formatted);
-      if (soundEnabled) playExportSound();
-      toast({
-        title: "Copied to clipboard",
-        description: "LinkedIn-formatted with zero-width spaces for line breaks.",
-      });
-    } else if (activeTab === "twitter") {
-      await navigator.clipboard.writeText(content);
-      if (soundEnabled) playExportSound();
-      toast({
-        title: "Copied to clipboard",
-        description: "Ready to paste into X.",
-      });
-    } else if (activeTab === "instagram") {
-      await navigator.clipboard.writeText(content);
-      if (soundEnabled) playExportSound();
-      toast({
-        title: "Copied to clipboard",
-        description: "Carousel text copied. Use Preview to export images.",
-      });
-    } else {
-      await navigator.clipboard.writeText(content);
-      if (soundEnabled) playExportSound();
-      toast({
-        title: "Copied to clipboard",
-        description: `${activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} text copied.`,
-      });
-    }
-  }, [activeDraft, activeTab, soundEnabled]);
+  }, [activeDraft, soundEnabled, sourcePosts, pushHistory]);
 
   const handleContentChange = useCallback(
-    async (value: string) => {
+    (value: string) => {
       if (!activeDraft?.id) return;
-      await db.drafts.update(activeDraft.id, {
+      if (shouldPushHistoryRef.current) {
+        pushHistory();
+        shouldPushHistoryRef.current = false;
+      }
+      // Update store synchronously so the textarea re-renders immediately.
+      // Delaying until after DB persist caused cursor to jump and duplicate typing.
+      updateDraft(activeDraft.id, value);
+      db.drafts.update(activeDraft.id, {
         content: value,
         updatedAt: new Date().toISOString(),
       });
-      updateDraft(activeDraft.id, value);
     },
-    [activeDraft],
+    [activeDraft, pushHistory],
   );
-
-  const isApproved = activeDraft?.status === "approved";
 
   return (
     <div className="h-full flex flex-col bg-white">
+      {selectedPost && (
       <div className="flex items-center justify-between h-[49px] border-b border-[#E5E5E5] px-1">
         <div className="flex items-center h-full overflow-x-auto no-scrollbar flex-1 min-w-0 mr-2 group">
           {TABS.map((tab) => (
@@ -297,7 +296,7 @@ export default function Workshop() {
           ))}
         </div>
         <div className="flex items-center gap-2 pr-3">
-          {!activeDraft && selectedPost && (
+          {!activeDraft && (
             <button
               data-testid="button-generate"
               onClick={handleGenerateDraft}
@@ -330,6 +329,7 @@ export default function Workshop() {
           )}
         </div>
       </div>
+      )}
 
       {activeDraft && (
         <div className="flex items-center gap-3 px-4 py-2 border-b border-[#E5E5E5] bg-[#FAFAFA]">
@@ -380,15 +380,6 @@ export default function Workshop() {
             <span className="font-bold text-[#111827]">{wordCount}</span>
           </div>
 
-          {isApproved && (
-            <div
-              className="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-green-700 text-[11px] font-medium"
-              style={{ borderRadius: "3px" }}
-            >
-              <Check className="w-3 h-3" />
-              Approved
-            </div>
-          )}
         </div>
       )}
 
@@ -401,7 +392,7 @@ export default function Workshop() {
               animate={{ opacity: 1 }}
               className="flex items-center justify-center h-full text-[#999] text-[14px]"
             >
-              Select a source post to begin
+              Select a source post
             </motion.div>
           ) : !activeDraft ? (
             <motion.div
@@ -454,6 +445,7 @@ export default function Workshop() {
                 ref={textareaRef}
                 data-testid="textarea-draft"
                 value={draftContent}
+                onFocus={() => { shouldPushHistoryRef.current = true; }}
                 onChange={(e) => handleContentChange(e.target.value)}
                 className="w-full flex-1 resize-none bg-transparent text-[14px] leading-[1.7] text-[#111827] focus:outline-none font-sans placeholder:text-[#CCC]"
                 placeholder="Start writing..."
@@ -495,13 +487,13 @@ export default function Workshop() {
       </div>
 
       {activeDraft && (
-        <div className="flex items-center justify-between px-4 py-2.5 border-t border-[#E5E5E5] bg-[#FAFAFA]">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-between gap-y-2 px-4 py-2.5 border-t border-[#E5E5E5] bg-[#FAFAFA]">
+          <div className="flex flex-wrap items-center gap-2">
             <button
               data-testid="button-punchier"
               onClick={handlePunchier}
               disabled={isAiLoading || !draftContent}
-              className="inline-flex items-center gap-1.5 h-7 px-3 text-[12px] font-medium text-[#111827] bg-white border border-[#E5E5E5] transition-colors disabled:opacity-40 hover-elevate"
+              className="inline-flex items-center justify-center gap-1.5 w-24 h-7 px-3 text-[12px] font-medium text-[#111827] bg-white border border-[#E5E5E5] transition-colors disabled:opacity-40 hover-elevate"
               style={{ borderRadius: "3px" }}
             >
               <Zap className="w-3 h-3" />
@@ -516,7 +508,7 @@ export default function Workshop() {
                 data-testid="button-hater"
                 onClick={handleHater}
                 disabled={isAiLoading || !draftContent}
-                className="inline-flex items-center gap-1.5 h-7 px-3 text-[12px] font-medium text-[#111827] bg-white border border-[#E5E5E5] transition-colors disabled:opacity-40 hover-elevate"
+                className="inline-flex items-center justify-center gap-1.5 w-24 h-7 px-3 text-[12px] font-medium text-[#111827] bg-white border border-[#E5E5E5] transition-colors disabled:opacity-40 hover-elevate"
                 style={{ borderRadius: "3px" }}
               >
                 <Skull className="w-3 h-3" />
@@ -531,7 +523,7 @@ export default function Workshop() {
               data-testid="button-shaan"
               onClick={handleShaanRewrite}
               disabled={isAiLoading || !draftContent}
-              className={`inline-flex items-center gap-1.5 h-7 px-3 text-[12px] font-medium border transition-colors disabled:opacity-40 ${
+              className={`inline-flex items-center justify-center gap-1.5 w-24 h-7 px-3 text-[12px] font-medium border transition-colors disabled:opacity-40 ${
                 shaanMode
                   ? "text-[#FF4F00] bg-orange-50 border-orange-200"
                   : "text-[#111827] bg-white border-[#E5E5E5] hover-elevate"
@@ -558,49 +550,32 @@ export default function Workshop() {
           </div>
 
           <div className="flex items-center gap-2">
-            <button
-              data-testid="button-reject"
-              onClick={handleReject}
-              className="inline-flex items-center gap-1.5 h-7 px-3 text-[12px] font-medium text-[#999] bg-white border border-[#E5E5E5] transition-colors hover-elevate"
-              style={{ borderRadius: "3px" }}
-            >
-              <X className="w-3 h-3" />
-              Reject
-              <kbd className="ml-1 text-[9px] font-mono text-[#999] bg-[#F5F5F5] px-1 py-0.5 border border-[#E5E5E5] rounded-sm">
-                R
-              </kbd>
-            </button>
-
-            <button
-              data-testid="button-approve"
-              onClick={handleApprove}
-              disabled={isApproved}
-              className={`inline-flex items-center gap-1.5 h-7 px-3 text-[12px] font-medium border transition-colors ${
-                isApproved
-                  ? "text-green-600 bg-green-50 border-green-200"
-                  : "text-[#111827] bg-white border-[#E5E5E5] hover-elevate"
-              }`}
-              style={{ borderRadius: "3px" }}
-            >
-              <Check className="w-3 h-3" />
-              Approve
-              <kbd className="ml-1 text-[9px] font-mono text-[#999] bg-[#F5F5F5] px-1 py-0.5 border border-[#E5E5E5] rounded-sm">
-                A
-              </kbd>
-            </button>
+            {!isSameToSame && (
+              <button
+                data-testid="button-reject"
+                onClick={handleReject}
+                className="inline-flex items-center justify-center gap-1.5 w-24 h-7 px-3 text-[12px] font-medium text-[#999] bg-white border border-[#E5E5E5] transition-colors hover-elevate"
+                style={{ borderRadius: "3px" }}
+              >
+                <X className="w-3 h-3" />
+                Reject
+                <kbd className="ml-1 text-[9px] font-mono text-[#999] bg-[#F5F5F5] px-1 py-0.5 border border-[#E5E5E5] rounded-sm">
+                  R
+                </kbd>
+              </button>
+            )}
 
             <button
               data-testid="button-publish"
-              onClick={handlePublish}
-              disabled={!isApproved}
-              className="inline-flex items-center gap-1.5 h-7 px-4 text-[12px] font-semibold text-white border transition-colors disabled:opacity-30"
+              onClick={() => triggerExport?.()}
+              className="inline-flex items-center gap-1.5 h-7 px-4 text-[12px] font-semibold text-white border transition-colors"
               style={{
                 borderRadius: "3px",
                 backgroundColor: "#FF4F00",
                 borderColor: "#FF4F00",
               }}
             >
-              <Copy className="w-3 h-3" />
+              <Download className="w-3 h-3" />
               Export
               <kbd className="ml-1 text-[9px] font-mono text-white/70 bg-white/20 px-1 py-0.5 border border-white/20 rounded-sm">
                 ⌘↵

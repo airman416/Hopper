@@ -3,6 +3,8 @@ import type { SourcePost, Draft } from "./db";
 
 export type PlatformTab = "linkedin" | "twitter" | "instagram" | "newsletter" | "quote";
 
+const MAX_HISTORY = 50;
+
 interface HopperState {
   sourcePosts: SourcePost[];
   setSourcePosts: (posts: SourcePost[]) => void;
@@ -14,6 +16,14 @@ interface HopperState {
   drafts: Draft[];
   setDrafts: (drafts: Draft[]) => void;
   updateDraft: (id: number, content: string) => void;
+
+  _past: Draft[][];
+  _future: Draft[][];
+  canUndo: boolean;
+  canRedo: boolean;
+  pushHistory: () => void;
+  undo: () => void;
+  redo: () => void;
 
   activeTab: PlatformTab;
   setActiveTab: (tab: PlatformTab) => void;
@@ -57,19 +67,22 @@ interface HopperState {
   setMockupGradient: (gradient: string) => void;
   mockupPadding: "sm" | "md" | "lg" | "xl";
   setMockupPadding: (padding: "sm" | "md" | "lg" | "xl") => void;
-  mockupAspectRatio: "auto" | "1:1" | "16:9";
-  setMockupAspectRatio: (ratio: "auto" | "1:1" | "16:9") => void;
+  mockupAspectRatio: "auto" | "1:1" | "9:16";
+  setMockupAspectRatio: (ratio: "auto" | "1:1" | "9:16") => void;
   mockupShowMetrics: boolean;
   setMockupShowMetrics: (show: boolean) => void;
   mockupProfileBase64: string | null;
   setMockupProfileBase64: (base64: string | null) => void;
+
+  triggerExport: (() => void) | null;
+  setTriggerExport: (fn: (() => void) | null) => void;
 }
 
 export const useHopperStore = create<HopperState>((set, get) => ({
   sourcePosts: [],
   setSourcePosts: (posts) => set({ sourcePosts: posts }),
 
-  selectedPostIndex: 0,
+  selectedPostIndex: -1,
   setSelectedPostIndex: (index) => set({ selectedPostIndex: index }),
   moveSelection: (direction) => {
     const { selectedPostIndex, sourcePosts } = get();
@@ -91,6 +104,48 @@ export const useHopperStore = create<HopperState>((set, get) => ({
       drafts: drafts.map((d) =>
         d.id === id ? { ...d, content, updatedAt: new Date().toISOString() } : d,
       ),
+    });
+  },
+
+  _past: [],
+  _future: [],
+  canUndo: false,
+  canRedo: false,
+  pushHistory: () => {
+    const { drafts, _past } = get();
+    set({
+      _past: [..._past.slice(-(MAX_HISTORY - 1)), drafts],
+      _future: [],
+      canUndo: true,
+      canRedo: false,
+    });
+  },
+  undo: () => {
+    const { drafts, _past, _future } = get();
+    if (_past.length === 0) return;
+    const previous = _past[_past.length - 1];
+    const newPast = _past.slice(0, -1);
+    const newFuture = [drafts, ..._future.slice(0, MAX_HISTORY - 1)];
+    set({
+      drafts: previous,
+      _past: newPast,
+      _future: newFuture,
+      canUndo: newPast.length > 0,
+      canRedo: true,
+    });
+  },
+  redo: () => {
+    const { drafts, _past, _future } = get();
+    if (_future.length === 0) return;
+    const next = _future[0];
+    const newFuture = _future.slice(1);
+    const newPast = [..._past.slice(-(MAX_HISTORY - 1)), drafts];
+    set({
+      drafts: next,
+      _past: newPast,
+      _future: newFuture,
+      canUndo: true,
+      canRedo: newFuture.length > 0,
     });
   },
 
@@ -148,4 +203,7 @@ export const useHopperStore = create<HopperState>((set, get) => ({
   setMockupShowMetrics: (show) => set({ mockupShowMetrics: show }),
   mockupProfileBase64: null,
   setMockupProfileBase64: (base64) => set({ mockupProfileBase64: base64 }),
+
+  triggerExport: null,
+  setTriggerExport: (fn) => set({ triggerExport: fn }),
 }));

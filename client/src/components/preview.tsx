@@ -55,6 +55,13 @@ const GRADIENTS = [
   { label: "Midnight", value: "linear-gradient(135deg, #0c0c1d 0%, #1a1a3e 50%, #2d2d5e 100%)" },
 ];
 
+function getExportFilename(outputType: string, ext: string): string {
+  const now = new Date();
+  const date = now.toISOString().slice(0, 10); // YYYY-MM-DD
+  const time = now.toTimeString().slice(0, 8).replace(/:/g, "-"); // HH-mm-ss
+  return `${outputType}-${date}-${time}.${ext}`;
+}
+
 function loadGoogleFont(font: string) {
   const id = `gfont-${font.replace(/\s/g, "-")}`;
   if (document.getElementById(id)) return;
@@ -63,6 +70,90 @@ function loadGoogleFont(font: string) {
   link.rel = "stylesheet";
   link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(font)}:wght@400;600;700&display=swap`;
   document.head.appendChild(link);
+}
+
+/** Draw a carousel slide to canvas and return PNG blob. Uses Canvas API directly to avoid html-to-image font rendering issues. */
+async function drawSlideToBlob(
+  slide: string,
+  index: number,
+  total: number,
+  opts: {
+    width: number;
+    height: number;
+    bgColor: string;
+    textColor: string;
+    font: string;
+    align: "left" | "center" | "right";
+  }
+): Promise<Blob> {
+  const { width, height, bgColor, textColor, font, align } = opts;
+  const padding = Math.round(40 * (width / 340));
+  const contentWidth = width - padding * 2;
+  const contentHeight = height - padding * 2;
+
+  const slideLength = slide.length;
+  let fontSize = 22;
+  if (slideLength > 200) fontSize = 16;
+  else if (slideLength > 100) fontSize = 18;
+  fontSize = Math.round(fontSize * (width / 340));
+  const lineHeight = 1.6;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d")!;
+
+  ctx.fillStyle = bgColor;
+  ctx.fillRect(0, 0, width, height);
+
+  ctx.fillStyle = textColor;
+  ctx.font = `${fontSize}px "${font}", sans-serif`;
+  ctx.textBaseline = "top";
+
+  const words = slide.split(/\s+/);
+  const lines: string[] = [];
+  let currentLine = "";
+
+  for (const word of words) {
+    const testLine = currentLine ? `${currentLine} ${word}` : word;
+    const metrics = ctx.measureText(testLine);
+    if (metrics.width > contentWidth && currentLine) {
+      lines.push(currentLine);
+      currentLine = word;
+    } else {
+      currentLine = testLine;
+    }
+  }
+  if (currentLine) lines.push(currentLine);
+
+  const totalTextHeight = lines.length * fontSize * lineHeight;
+  let y = padding + (contentHeight - totalTextHeight) / 2;
+
+  for (const line of lines) {
+    let x = padding;
+    if (align === "center") {
+      x = padding + (contentWidth - ctx.measureText(line).width) / 2;
+    } else if (align === "right") {
+      x = width - padding - ctx.measureText(line).width;
+    }
+    ctx.fillText(line, x, y);
+    y += fontSize * lineHeight;
+  }
+
+  ctx.font = `${Math.round(11 * (width / 340))}px monospace`;
+  ctx.fillStyle = textColor;
+  ctx.globalAlpha = 0.5;
+  const badge = `${index + 1}/${total}`;
+  ctx.fillText(badge, width - padding - ctx.measureText(badge).width, padding);
+  ctx.globalAlpha = 1;
+
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(
+      (blob) => (blob ? resolve(blob) : reject(new Error("Canvas toBlob failed"))),
+      "image/png",
+      1
+    );
+  });
 }
 
 function proxyPhotoUrl(url: string | null): string | null {
@@ -111,19 +202,25 @@ function MockTwitterCard({
   content,
   profileBase64,
   showMetrics,
+  metrics,
+  mediaUrls,
 }: {
   content: string;
   profileBase64: string | null;
   showMetrics: boolean;
+  metrics?: { likes?: number; comments?: number; shares?: number; bookmarks?: number; views?: number };
+  mediaUrls?: string[];
 }) {
   const now = new Date();
   const timeStr = now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true });
   const dateStr = now.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 
-  const randomLikes = 1247 + Math.floor(Math.random() * 100);
-  const randomReposts = 312 + Math.floor(Math.random() * 50);
-  const randomBookmarks = 89 + Math.floor(Math.random() * 30);
-  const randomViews = "45.2K";
+  const displayReposts = metrics?.shares ?? 0;
+  const displayLikes = metrics?.likes ?? 0;
+  const displayBookmarks = metrics?.bookmarks ?? 0;
+  const displayViews = metrics?.views != null
+    ? metrics.views >= 1000 ? `${(metrics.views / 1000).toFixed(1)}K` : String(metrics.views)
+    : null;
 
   return (
     <div
@@ -132,9 +229,7 @@ function MockTwitterCard({
         borderRadius: "16px",
         boxShadow: "0 20px 40px -10px rgba(0,0,0,0.1)",
         overflow: "hidden",
-        maxWidth: "500px",
         width: "100%",
-        margin: "0 auto",
         fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
       }}
     >
@@ -184,6 +279,51 @@ function MockTwitterCard({
         >
           {formatContentWithLinks(content, "#1DA1F2")}
         </div>
+        {mediaUrls && mediaUrls.length > 0 && (
+          <div style={{ marginTop: "12px" }}>
+            {mediaUrls.length === 1 ? (
+              <img
+                src={`/api/proxy/image?url=${encodeURIComponent(mediaUrls[0])}`}
+                alt=""
+                style={{
+                  width: "100%",
+                  borderRadius: "12px",
+                  display: "block",
+                  objectFit: "cover",
+                  maxHeight: "400px",
+                }}
+              />
+            ) : (
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: mediaUrls.length === 2 ? "1fr 1fr" : mediaUrls.length === 3 ? "2fr 1fr" : "1fr 1fr",
+                  gridTemplateRows: mediaUrls.length >= 3 ? "1fr 1fr" : "1fr",
+                  gap: "2px",
+                  borderRadius: "12px",
+                  overflow: "hidden",
+                  height: "280px",
+                }}
+              >
+                {mediaUrls.slice(0, 4).map((url, i) => (
+                  <img
+                    key={i}
+                    src={`/api/proxy/image?url=${encodeURIComponent(url)}`}
+                    alt=""
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      display: "block",
+                      gridColumn: mediaUrls.length === 3 && i === 0 ? "1" : "auto",
+                      gridRow: mediaUrls.length === 3 && i === 0 ? "1 / 3" : "auto",
+                    }}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        )}
         <div style={{ marginTop: "16px", fontSize: "15px", color: "#536471" }}>
           {timeStr} · {dateStr}
         </div>
@@ -201,10 +341,10 @@ function MockTwitterCard({
               fontSize: "14px",
             }}
           >
-            <span><strong style={{ color: "#0F1419" }}>{randomReposts.toLocaleString()}</strong> <span style={{ color: "#536471" }}>Reposts</span></span>
-            <span><strong style={{ color: "#0F1419" }}>{randomLikes.toLocaleString()}</strong> <span style={{ color: "#536471" }}>Likes</span></span>
-            <span><strong style={{ color: "#0F1419" }}>{randomBookmarks}</strong> <span style={{ color: "#536471" }}>Bookmarks</span></span>
-            <span><strong style={{ color: "#0F1419" }}>{randomViews}</strong> <span style={{ color: "#536471" }}>Views</span></span>
+            <span><strong style={{ color: "#0F1419" }}>{displayReposts.toLocaleString()}</strong> <span style={{ color: "#536471" }}>Reposts</span></span>
+            <span><strong style={{ color: "#0F1419" }}>{displayLikes.toLocaleString()}</strong> <span style={{ color: "#536471" }}>Likes</span></span>
+            {displayBookmarks > 0 && <span><strong style={{ color: "#0F1419" }}>{displayBookmarks.toLocaleString()}</strong> <span style={{ color: "#536471" }}>Bookmarks</span></span>}
+            {displayViews != null && <span><strong style={{ color: "#0F1419" }}>{displayViews}</strong> <span style={{ color: "#536471" }}>Views</span></span>}
           </div>
           <div
             style={{
@@ -231,16 +371,20 @@ function MockLinkedInCard({
   content,
   profileBase64,
   showMetrics,
+  metrics,
+  mediaUrls,
 }: {
   content: string;
   profileBase64: string | null;
   showMetrics: boolean;
+  metrics?: { likes?: number; comments?: number; shares?: number };
+  mediaUrls?: string[];
 }) {
   const paragraphs = content.split("\n");
 
-  const randomLikes = 847 + Math.floor(Math.random() * 200);
-  const randomComments = 42 + Math.floor(Math.random() * 30);
-  const randomReposts = 18 + Math.floor(Math.random() * 20);
+  const displayLikes = metrics?.likes ?? 0;
+  const displayComments = metrics?.comments ?? 0;
+  const displayReposts = metrics?.shares ?? 0;
 
   return (
     <div
@@ -249,9 +393,7 @@ function MockLinkedInCard({
         borderRadius: "12px",
         boxShadow: "0 20px 40px -10px rgba(0,0,0,0.1)",
         overflow: "hidden",
-        maxWidth: "500px",
         width: "100%",
-        margin: "0 auto",
         fontFamily: "system-ui, 'Segoe UI', sans-serif",
       }}
     >
@@ -284,7 +426,7 @@ function MockLinkedInCard({
               <span style={{ fontSize: "14px", fontWeight: 600, color: "#000000" }}>Sam Parr</span>
               <span style={{ fontSize: "14px", color: "#00000099" }}>• 1st</span>
             </div>
-            <p style={{ fontSize: "12px", color: "#00000099", margin: "2px 0" }}>Founder & CEO · Building Hampton</p>
+            <p style={{ fontSize: "12px", color: "#00000099", margin: "2px 0" }}>Founder of Hampton</p>
             <p style={{ fontSize: "12px", color: "#00000099", display: "flex", alignItems: "center", gap: "4px" }}>
               {new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" })} •{" "}
               <svg viewBox="0 0 16 16" width="12" height="12" fill="#00000099">
@@ -308,6 +450,51 @@ function MockLinkedInCard({
           </span>
         ))}
       </div>
+      {mediaUrls && mediaUrls.length > 0 && (
+        <div style={{ padding: "0 16px 12px" }}>
+          {mediaUrls.length === 1 ? (
+            <img
+              src={`/api/proxy/image?url=${encodeURIComponent(mediaUrls[0])}`}
+              alt=""
+              style={{
+                width: "100%",
+                borderRadius: "8px",
+                display: "block",
+                objectFit: "cover",
+                maxHeight: "400px",
+              }}
+            />
+          ) : (
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: mediaUrls.length === 2 ? "1fr 1fr" : mediaUrls.length === 3 ? "2fr 1fr" : "1fr 1fr",
+                gridTemplateRows: mediaUrls.length >= 3 ? "1fr 1fr" : "1fr",
+                gap: "2px",
+                borderRadius: "8px",
+                overflow: "hidden",
+                height: "280px",
+              }}
+            >
+              {mediaUrls.slice(0, 4).map((url, i) => (
+                <img
+                  key={i}
+                  src={`/api/proxy/image?url=${encodeURIComponent(url)}`}
+                  alt=""
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                    gridColumn: mediaUrls.length === 3 && i === 0 ? "1" : "auto",
+                    gridRow: mediaUrls.length === 3 && i === 0 ? "1 / 3" : "auto",
+                  }}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {showMetrics && (
         <>
@@ -328,9 +515,9 @@ function MockLinkedInCard({
               <span style={{ display: "inline-flex", alignItems: "center", marginLeft: "-4px" }}>
                 <svg viewBox="0 0 16 16" width="16" height="16"><circle cx="8" cy="8" r="8" fill="#E7483D" /><path d="M5 6.5C5 5.67 5.67 5 6.5 5S8 5.67 8 6.5C8 5.67 8.67 5 9.5 5S11 5.67 11 6.5C11 8.5 8 11 8 11S5 8.5 5 6.5Z" fill="white" /></svg>
               </span>
-              <span style={{ marginLeft: "4px" }}>{randomLikes.toLocaleString()}</span>
+              <span style={{ marginLeft: "4px" }}>{displayLikes.toLocaleString()}</span>
             </div>
-            <span>{randomComments} comments · {randomReposts} reposts</span>
+            <span>{displayComments} comments · {displayReposts} reposts</span>
           </div>
           <div
             style={{
@@ -545,6 +732,7 @@ export default function Preview() {
     setMockupShowMetrics,
     mockupProfileBase64,
     setMockupProfileBase64,
+    setTriggerExport,
   } = useHopperStore();
 
   const { toast } = useToast();
@@ -575,7 +763,8 @@ export default function Preview() {
 
   const isAssetMode = activeTab === "quote" || activeTab === "instagram";
 
-  const effectivePhoto = profilePhoto || selectedPost?.profilePhoto || null;
+  // For same-to-same mockups, prefer the selected post's author photo so the X/LinkedIn mockup shows the right profile picture
+  const effectivePhoto = selectedPost?.profilePhoto || profilePhoto || null;
 
   useEffect(() => {
     if (isSameToSame && effectivePhoto && effectivePhoto !== lastConvertedPhoto) {
@@ -603,14 +792,19 @@ export default function Preview() {
 
   const handleCopyText = useCallback(async () => {
     if (!content) return;
-    let textToCopy = content;
-    if (activeTab === "linkedin") {
-      textToCopy = content.replace(/\n\n/g, "\n\u200B\n");
+    let textToCopy = content
+      .replace(/\r\n/g, "\n")
+      .replace(/\r/g, "\n");
+    // LinkedIn, Twitter/X, and Instagram collapse line breaks when pasting.
+    // Insert zero-width space (U+200B) before each newline so formatting is preserved.
+    const needsFormatting = ["linkedin", "twitter", "instagram", "newsletter", "quote"].includes(activeTab);
+    if (needsFormatting) {
+      textToCopy = textToCopy.replace(/\n/g, "\u200B\n");
     }
     await navigator.clipboard.writeText(textToCopy);
     toast({
       title: "Copied to clipboard",
-      description: activeTab === "linkedin" ? "Formatted with zero-width spaces." : "Text copied.",
+      description: needsFormatting ? "Formatted for paste (line breaks preserved)." : "Text copied.",
     });
   }, [content, activeTab]);
 
@@ -622,40 +816,47 @@ export default function Preview() {
       if (activeTab === "instagram" && content.includes("---")) {
         const slides = content.split("---").map((s) => s.trim()).filter(Boolean);
         const zip = new JSZip();
+        const dimConfig = DIMENSIONS.find((d) => d.key === assetDimension)!;
+        const fontFamily = assetFont || "Inter";
 
-        for (let i = 0; i < slideRefs.current.length; i++) {
-          const node = slideRefs.current[i];
-          if (!node) continue;
-          const dimConfig = DIMENSIONS.find((d) => d.key === assetDimension)!;
-          const dataUrl = await toPng(node, {
+        if ("fonts" in document) {
+          await document.fonts.ready;
+          await document.fonts.load(`16px "${fontFamily}"`);
+        }
+
+        for (let i = 0; i < slides.length; i++) {
+          const blob = await drawSlideToBlob(slides[i], i, slides.length, {
             width: dimConfig.w,
             height: dimConfig.h,
-            style: {
-              transform: `scale(${dimConfig.w / 340})`,
-              transformOrigin: "top left",
-            },
-            pixelRatio: 1,
+            bgColor: assetBgColor,
+            textColor: assetTextColor,
+            font: fontFamily,
+            align: assetAlign,
           });
-          const response = await fetch(dataUrl);
-          const blob = await response.blob();
           zip.file(`slide-${i + 1}.png`, blob);
         }
 
         const zipBlob = await zip.generateAsync({ type: "blob" });
-        saveAs(zipBlob, "carousel-slides.zip");
-        toast({ title: "Downloaded", description: `${slideRefs.current.length} slides saved as ZIP.` });
+        saveAs(zipBlob, getExportFilename("instagram-carousel", "zip"));
+        toast({ title: "Downloaded", description: `${slides.length} slides saved as ZIP.` });
       } else {
         const node = previewRef.current;
         if (!node) return;
 
         if (isSameToSame) {
-          const dataUrl = await toPng(node, {
-            pixelRatio: 3,
-            quality: 1.0,
-            skipFonts: false,
-          });
+          // Canvas has a fixed pixel width (CANVAS_W), so pixelRatio: 3 always
+          // produces a consistent 1560px-wide output regardless of screen size.
+          const exportOpts: Parameters<typeof toPng>[1] = { pixelRatio: 3, quality: 1.0 };
+          if (mockupAspectRatio === "1:1") {
+            exportOpts.width = CANVAS_W * 3;
+            exportOpts.height = CANVAS_W * 3;
+          } else if (mockupAspectRatio === "9:16") {
+            exportOpts.width = CANVAS_W * 3;
+            exportOpts.height = Math.round(CANVAS_W * 16 / 9) * 3;
+          }
+          const dataUrl = await toPng(node, exportOpts);
           const link = document.createElement("a");
-          link.download = `${activeTab}-mockup.png`;
+          link.download = getExportFilename(`${activeTab}-mockup`, "png");
           link.href = dataUrl;
           link.click();
         } else if (isAssetMode) {
@@ -670,13 +871,13 @@ export default function Preview() {
             pixelRatio: 1,
           });
           const link = document.createElement("a");
-          link.download = `${activeTab}-asset.png`;
+          link.download = getExportFilename(`${activeTab}-asset`, "png");
           link.href = dataUrl;
           link.click();
         } else {
           const dataUrl = await toPng(node, { pixelRatio: 2 });
           const link = document.createElement("a");
-          link.download = `${activeTab}-preview.png`;
+          link.download = getExportFilename(`${activeTab}-preview`, "png");
           link.href = dataUrl;
           link.click();
         }
@@ -689,17 +890,26 @@ export default function Preview() {
     } finally {
       setIsExporting(false);
     }
-  }, [content, activeTab, isSameToSame, isAssetMode, assetDimension, isExporting]);
+  }, [content, activeTab, isSameToSame, isAssetMode, assetDimension, assetFont, assetBgColor, assetTextColor, assetAlign, isExporting]);
+
+  useEffect(() => {
+    setTriggerExport(handleDownloadImage);
+    return () => setTriggerExport(null);
+  }, [handleDownloadImage, setTriggerExport]);
 
   const showControls = isAssetMode || isSameToSame;
 
   const canvasBg = mockupBgType === "gradient" ? mockupGradient : mockupBgColor;
   const canvasPadding = PADDING_PREVIEW_MAP[mockupPadding];
 
-  const getAspectStyle = (): Record<string, string | number> => {
-    if (mockupAspectRatio === "1:1") return { aspectRatio: "1 / 1" };
-    if (mockupAspectRatio === "16:9") return { aspectRatio: "16 / 9" };
-    return {};
+  // Fixed canvas width so layout never depends on panel width.
+  // Height is fixed for square/portrait modes, auto for content-fit.
+  const CANVAS_W = 520;
+  const getCanvasStyle = (): Record<string, string | number> => {
+    const base: Record<string, string | number> = { width: `${CANVAS_W}px`, flexShrink: 0 };
+    if (mockupAspectRatio === "1:1") return { ...base, height: `${CANVAS_W}px`, overflow: "hidden" };
+    if (mockupAspectRatio === "9:16") return { ...base, height: `${Math.round(CANVAS_W * 16 / 9)}px`, overflow: "hidden" };
+    return base;
   };
 
   const renderMockupControls = () => (
@@ -800,7 +1010,7 @@ export default function Preview() {
       <div className="flex items-center gap-2 flex-wrap">
         <label className="text-[10px] font-mono text-[#999] uppercase tracking-wider w-[50px]">Ratio</label>
         <div className="flex gap-1">
-          {(["auto", "1:1", "16:9"] as const).map((r) => (
+          {(["auto", "1:1", "9:16"] as const).map((r) => (
             <button
               key={r}
               data-testid={`button-ratio-${r}`}
@@ -838,6 +1048,13 @@ export default function Preview() {
   );
 
   const renderPreview = () => {
+    if (!selectedPost) {
+      return (
+        <div className="flex items-center justify-center flex-1 text-[14px] text-[#999]" data-testid="text-no-source">
+          Select a source post
+        </div>
+      );
+    }
     if (!content) {
       return (
         <div className="flex items-center justify-center h-32 text-[13px] text-[#999]" data-testid="text-empty-preview">
@@ -848,6 +1065,7 @@ export default function Preview() {
 
     if (isSameToSame) {
       return (
+        <div style={{ display: "flex", justifyContent: "center" }}>
         <div
           ref={previewRef}
           data-testid="mockup-canvas"
@@ -857,7 +1075,7 @@ export default function Preview() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            ...getAspectStyle(),
+            ...getCanvasStyle(),
           }}
         >
           {activeTab === "twitter" && (
@@ -865,6 +1083,8 @@ export default function Preview() {
               content={content}
               profileBase64={mockupProfileBase64}
               showMetrics={mockupShowMetrics}
+              metrics={selectedPost?.metrics}
+              mediaUrls={selectedPost?.mediaUrls}
             />
           )}
           {activeTab === "linkedin" && (
@@ -872,8 +1092,11 @@ export default function Preview() {
               content={content}
               profileBase64={mockupProfileBase64}
               showMetrics={mockupShowMetrics}
+              metrics={selectedPost?.metrics}
+              mediaUrls={selectedPost?.mediaUrls}
             />
           )}
+        </div>
         </div>
       );
     }
@@ -895,8 +1118,27 @@ export default function Preview() {
     if (activeTab === "instagram") {
       const slides = content.split("---").map((s) => s.trim()).filter(Boolean);
       slideRefs.current = [];
+      const instagramPhoto = selectedPost?.profilePhoto || profilePhoto;
+      const instagramPhotoUrl = instagramPhoto ? proxyPhotoUrl(instagramPhoto) : null;
       return (
         <div className="space-y-3">
+          <div className="flex items-center gap-3 pb-2">
+            {instagramPhotoUrl ? (
+              <img
+                src={instagramPhotoUrl}
+                alt=""
+                className="w-8 h-8 rounded-full object-cover flex-shrink-0"
+              />
+            ) : (
+              <div className="w-8 h-8 bg-[#111827] rounded-full flex items-center justify-center flex-shrink-0">
+                <User className="w-4 h-4 text-white" />
+              </div>
+            )}
+            <div>
+              <p className="text-[13px] font-semibold text-[#111827]">Sam Parr</p>
+              <p className="text-[11px] text-[#666]">@thesamparr</p>
+            </div>
+          </div>
           {slides.map((slide, i) => (
             <CarouselSlideCard
               key={i}
@@ -917,7 +1159,7 @@ export default function Preview() {
 
     if (activeTab === "linkedin") {
       const paragraphs = content.split("\n").filter((l) => l.trim());
-      const proxiedPhoto = proxyPhotoUrl(profilePhoto);
+      const proxiedPhoto = proxyPhotoUrl(selectedPost?.profilePhoto || profilePhoto || null);
       return (
         <div ref={previewRef} className="bg-white border border-[#E5E5E5] p-0" style={{ borderRadius: "3px" }}>
           <div className="flex items-center gap-3 p-4 pb-3">
@@ -930,7 +1172,7 @@ export default function Preview() {
             )}
             <div>
               <p className="text-[14px] font-semibold text-[#111827]">Sam Parr</p>
-              <p className="text-[12px] text-[#666]">Building in public</p>
+              <p className="text-[12px] text-[#666]">Founder of Hampton</p>
             </div>
           </div>
           <div className="px-4 pb-4">
@@ -951,7 +1193,7 @@ export default function Preview() {
     if (activeTab === "twitter") {
       const charCount = content.length;
       const isOverLimit = charCount > 280;
-      const proxiedPhoto = proxyPhotoUrl(profilePhoto);
+      const proxiedPhoto = proxyPhotoUrl(effectivePhoto);
       return (
         <div ref={previewRef} className="bg-white border border-[#E5E5E5] p-0" style={{ borderRadius: "3px" }}>
           <div className="flex items-start gap-3 p-4">
@@ -1017,6 +1259,7 @@ export default function Preview() {
 
   return (
     <div className="h-full flex flex-col bg-[#FAFAFA]">
+      {selectedPost && (
       <div className="flex items-center justify-between px-4 h-[49px] border-b border-[#E5E5E5]">
         <div className="flex items-center gap-2">
           <PlatformIcon className="w-3.5 h-3.5 text-[#666]" />
@@ -1029,11 +1272,12 @@ export default function Preview() {
             <button
               data-testid="button-copy-text"
               onClick={handleCopyText}
-              className="inline-flex items-center gap-1.5 h-7 px-2.5 text-[11px] font-medium text-[#666] bg-white border border-[#E5E5E5] transition-colors hover-elevate"
+              className="inline-flex items-center gap-1.5 h-7 px-2.5 text-[11px] font-medium text-[#111827] bg-white border border-[#E5E5E5] transition-colors hover-elevate"
               style={{ borderRadius: "3px" }}
+              title="Copy text"
             >
               <Copy className="w-3 h-3" />
-              Copy Text
+              Copy
             </button>
             <button
               data-testid="button-download-image"
@@ -1043,11 +1287,15 @@ export default function Preview() {
               style={{ borderRadius: "3px", backgroundColor: "#FF4F00", borderColor: "#FF4F00" }}
             >
               {isExporting ? <Loader2 className="w-3 h-3 animate-spin" /> : <Download className="w-3 h-3" />}
-              Download Image
+              Export
+              <kbd className="ml-1 text-[9px] font-mono text-white/70 bg-white/20 px-1 py-0.5 border border-white/20 rounded-sm">
+                ⌘↵
+              </kbd>
             </button>
           </div>
         )}
       </div>
+      )}
 
       {showControls && content && (
         <div className="px-4 py-3 border-b border-[#E5E5E5] bg-white">
@@ -1140,7 +1388,7 @@ export default function Preview() {
         </div>
       )}
 
-      <div className="flex-1 overflow-y-auto p-4">
+      <div className="flex-1 overflow-auto p-4">
         {renderPreview()}
       </div>
     </div>

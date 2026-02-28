@@ -13,7 +13,10 @@ export interface SourcePost {
     likes?: number;
     comments?: number;
     shares?: number;
+    bookmarks?: number;
+    views?: number;
   };
+  mediaUrls?: string[];
   isThread?: boolean;
   threadContent?: string[];
 }
@@ -101,12 +104,31 @@ export async function loadLiveFeed(platform?: "twitter" | "linkedin" | "instagra
         const tweets = await twitterRes.json();
         if (Array.isArray(tweets)) {
           for (const tweet of tweets.slice(0, 10)) {
-            const text = tweet.text || tweet.full_text || tweet.tweet_text || "";
-            if (!text) continue;
+            const rawText = tweet.full_text || tweet.text || tweet.tweet_text || "";
+            if (!rawText) continue;
             const photo = tweet.author?.profilePicture || tweet.author_profile_image_url || tweet.profile_image_url || tweet.user?.profile_image_url_https;
             if (!profilePhoto && photo) {
               profilePhoto = photo;
             }
+
+            // Extract image/video-thumbnail URLs from extended entities.
+            // Each media item's `url` field is the t.co short link embedded in the
+            // tweet text — strip those so the displayed text ends cleanly.
+            const mediaItems: any[] = tweet.extendedEntities?.media ?? tweet.extended_entities?.media ?? [];
+            const mediaUrls: string[] = mediaItems
+              .map((m: any) => m.media_url_https || m.media_url)
+              .filter(Boolean);
+
+            // Remove t.co media URLs from the displayed text
+            const mediaTcoUrls: string[] = mediaItems
+              .map((m: any) => m.url)
+              .filter(Boolean);
+            let text = rawText;
+            for (const tco of mediaTcoUrls) {
+              text = text.replace(tco, "");
+            }
+            text = text.trimEnd();
+
             allPosts.push({
               platform: "twitter",
               content: text,
@@ -119,7 +141,10 @@ export async function loadLiveFeed(platform?: "twitter" | "linkedin" | "instagra
                 likes: tweet.likeCount ?? tweet.favorite_count ?? tweet.likes ?? 0,
                 comments: tweet.replyCount ?? tweet.reply_count ?? tweet.replies ?? 0,
                 shares: tweet.retweetCount ?? tweet.retweet_count ?? tweet.retweets ?? 0,
+                bookmarks: tweet.bookmarkCount ?? tweet.bookmark_count ?? undefined,
+                views: tweet.viewCount ?? tweet.view_count ?? undefined,
               },
+              mediaUrls: mediaUrls.length > 0 ? mediaUrls : undefined,
             });
           }
         }
@@ -146,6 +171,10 @@ export async function loadLiveFeed(platform?: "twitter" | "linkedin" | "instagra
           const ts = post.postedAt?.timestamp
             ? new Date(post.postedAt.timestamp).toISOString()
             : post.postedDate || post.created_at || new Date().toISOString();
+          const mediaItems: any[] = Array.isArray(post.mediaContent) ? post.mediaContent : [];
+          const mediaUrls: string[] = mediaItems
+            .filter((m: any) => m?.type === "image" && m?.url)
+            .map((m: any) => m.url);
           allPosts.push({
             platform: "linkedin",
             content: text,
@@ -159,6 +188,7 @@ export async function loadLiveFeed(platform?: "twitter" | "linkedin" | "instagra
               comments: post.engagements?.commentsCount ?? post.numComments ?? post.comments ?? 0,
               shares: post.engagements?.repostsCount ?? post.numShares ?? post.shares ?? 0,
             },
+            mediaUrls: mediaUrls.length > 0 ? mediaUrls : undefined,
           });
         }
       }

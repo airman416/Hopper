@@ -1,0 +1,5798 @@
+[
+    {
+      "type": "tweet",
+      "id": "2021913344903418251",
+      "url": "https://x.com/thesamparr/status/2021913344903418251",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2021913344903418251",
+      "text": "In her 50s, after being a stay at home mom, a few years ago my mother in law started an online pillow store. \n\nIt makes over $1,000,000 a year and very profitable. \n\nShe didn’t know anything about computers. Came to America in her teens, learned English, raised a family then said she still had a fire in her…so she started a business. \n\nShe knew nothing about the internet. \n\nShe only works on it a few days a week as she babysits her grandkids. \n\nI did a podcast on my first million with her. \n\nI’m honor we are family!\n\nHer story is so inspiring. \n\nTech bro. Stay at home mom. Ambitious college kid. Trust me. Listen to it. It will change you.",
+      "source": "",
+      "retweetCount": 42,
+      "replyCount": 28,
+      "likeCount": 558,
+      "quoteCount": 2,
+      "viewCount": 49665,
+      "createdAt": "Thu Feb 12 11:44:41 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 434,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2021913344903418251",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.twitter.com/CI87jMjnGX",
+            "expanded_url": "https://twitter.com/thesamparr/status/2021913344903418251/video/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "id_str": "2021912577576468480",
+            "indices": [
+              281,
+              304
+            ],
+            "media_key": "13_2021912577576468480",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARwPRsbZVwAAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHA9GxtlXAAAAAA==",
+                "media_key": "13_2021912577576468480"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2021912577576468480/img/2z-PvxvDRm_mvWLc.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1206,
+              "width": 2622
+            },
+            "sizes": {
+              "large": {
+                "h": 942,
+                "w": 2048
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/CI87jMjnGX",
+            "video_info": {
+              "aspect_ratio": [
+                437,
+                201
+              ],
+              "duration_millis": 71328,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video-s.twimg.com/amplify_video/2021912577576468480/pl/foXfX-t824gKCb1x.m3u8?tag=21&v=be8"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2021912577576468480/vid/avc1/586x270/aeMRIphjV2wlI7NQ.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2021912577576468480/vid/avc1/782x360/U4bUydDP0tPY0wdh.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2021912577576468480/vid/avc1/1564x720/xYuIIpsLDDPtpM8g.mp4?tag=21"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2021912577576468480/vid/avc1/2622x1206/N6pxgg5_EGupvPYI.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": null,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isConversationControlled": false
+    },
+    {
+      "type": "tweet",
+      "id": "2013290475558416613",
+      "url": "https://x.com/thesamparr/status/2013290475558416613",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2013290475558416613",
+      "text": "\"I will not stop in any case.\"\n\nStories like this make me feel dumb for complaining about small stuff. \n\n@AlonaMysko is a member of our SF chapter. And that makes me proud. https://t.co/4ISx4Q6aIU",
+      "source": "",
+      "retweetCount": 5,
+      "replyCount": 14,
+      "likeCount": 141,
+      "quoteCount": 1,
+      "viewCount": 21583,
+      "createdAt": "Mon Jan 19 16:40:29 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 57,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2013290475558416613",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.twitter.com/4ISx4Q6aIU",
+            "expanded_url": "https://twitter.com/thesamparr/status/2013290475558416613/video/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "id_str": "2013290124096712709",
+            "indices": [
+              173,
+              196
+            ],
+            "media_key": "13_2013290124096712709",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARvwpLN0ljAFAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG/Cks3SWMAUAAA==",
+                "media_key": "13_2013290124096712709"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2013290124096712709/img/Wyo8dG6EPpmUXiHI.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1280,
+              "width": 720
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 720
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/4ISx4Q6aIU",
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 95766,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video-s.twimg.com/amplify_video/2013290124096712709/pl/UyYQECEQYZnc_Tm-.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2013290124096712709/vid/avc1/320x568/67GNe29abVQcIg_l.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2013290124096712709/vid/avc1/480x852/uEqvvUVXP749j_mK.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2013290124096712709/vid/avc1/720x1280/WgKpsM5cE2wOehA8.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "1373619602224259072",
+            "indices": [
+              105,
+              116
+            ],
+            "name": "Alona Mysko",
+            "screen_name": "AlonaMysko"
+          }
+        ]
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": null,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isConversationControlled": false
+    },
+    {
+      "type": "tweet",
+      "id": "2027834147742290338",
+      "url": "https://x.com/thesamparr/status/2027834147742290338",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2027834147742290338",
+      "text": "In ~2012 @noahkagan and @nevmed made a janky YouTube video on copywriting and business. \n\nIt changed my life. I wanted to start an internet company and be a copywriter. \n\nI loved how they lived and talked and acted. I wanted to be their friend! So I cold emailed them. \n\nNow 14 years later, I had an internet company, know copywriting, and we are family+our wives and kids are close. \n\nThese guys helped me in business, helped me mature, and inspired me more than anyone!\n\nVery lucky to have this friendship!",
+      "source": "",
+      "retweetCount": 0,
+      "replyCount": 3,
+      "likeCount": 50,
+      "quoteCount": 0,
+      "viewCount": 2754,
+      "createdAt": "Sat Feb 28 19:51:50 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 6,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2027834147742290338",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.twitter.com/gO5uR7IdSG",
+            "expanded_url": "https://twitter.com/thesamparr/status/2027834147742290338/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 176,
+                    "w": 176,
+                    "x": 1188,
+                    "y": 184
+                  },
+                  {
+                    "h": 212,
+                    "w": 212,
+                    "x": 492,
+                    "y": 186
+                  },
+                  {
+                    "h": 210,
+                    "w": 210,
+                    "x": 1620,
+                    "y": 714
+                  },
+                  {
+                    "h": 222,
+                    "w": 222,
+                    "x": 838,
+                    "y": 96
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 176,
+                    "w": 176,
+                    "x": 1188,
+                    "y": 184
+                  },
+                  {
+                    "h": 212,
+                    "w": 212,
+                    "x": 492,
+                    "y": 186
+                  },
+                  {
+                    "h": 210,
+                    "w": 210,
+                    "x": 1620,
+                    "y": 714
+                  },
+                  {
+                    "h": 222,
+                    "w": 222,
+                    "x": 838,
+                    "y": 96
+                  }
+                ]
+              }
+            },
+            "id_str": "2027833304247111680",
+            "indices": [
+              278,
+              301
+            ],
+            "media_key": "3_2027833304247111680",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwkT6VzWxAACgACHCRQadeWEaIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHCRPpXNbEAAKAAIcJFBp15YRogAA",
+                "media_key": "3_2027833304247111680"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HCRPpXNbEAAKkWs.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1147,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 1347,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 768,
+                  "x": 179,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1536,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 1536,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/gO5uR7IdSG"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "13737",
+            "indices": [
+              9,
+              19
+            ],
+            "name": "Noah Kagan",
+            "screen_name": "noahkagan"
+          },
+          {
+            "id_str": "24286463",
+            "indices": [
+              24,
+              31
+            ],
+            "name": "Neville Medhora",
+            "screen_name": "nevmed"
+          }
+        ]
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": null,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isConversationControlled": false
+    },
+    {
+      "type": "tweet",
+      "id": "2013425877263028242",
+      "url": "https://x.com/thesamparr/status/2013425877263028242",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2013425877263028242",
+      "text": "Weather articles. Dig it. Give this fucker the $1m.",
+      "source": "",
+      "retweetCount": 7,
+      "replyCount": 29,
+      "likeCount": 726,
+      "quoteCount": 0,
+      "viewCount": 623431,
+      "createdAt": "Tue Jan 20 01:38:31 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 192,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2013425877263028242",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": {
+        "rest_id": "2013329612994998484",
+        "result": {
+          "__typename": "Tweet",
+          "article": {
+            "article_results": {
+              "id": "QXJ0aWNsZUVudGl0eVJlc3VsdHM6MjAxMzMyOTA1NzkyNDk2ODQ0OA==",
+              "rest_id": "2013329057924968448",
+              "result": {
+                "__typename": "ArticleEntity",
+                "cover_media_results": {
+                  "id": "QXBpTWVkaWFSZXN1bHRzOgwABQoAARvwyD4W1nABCgACAAAAAAEj9YkAAA==",
+                  "result": {
+                    "__typename": "ApiMedia",
+                    "id": "QXBpTWVkaWE6DAAFCgABG/DIPhbWcAEKAAIAAAAAASP1iQAA",
+                    "media_availability": {
+                      "status": "Available"
+                    },
+                    "media_id": "2013329202431291393",
+                    "media_info": {
+                      "__typename": "ApiImage",
+                      "color_info": {
+                        "palette": [
+                          {
+                            "percentage": 32.32,
+                            "rgb": {
+                              "blue": 220,
+                              "green": 220,
+                              "red": 220
+                            }
+                          },
+                          {
+                            "percentage": 18.31,
+                            "rgb": {
+                              "blue": 110,
+                              "green": 110,
+                              "red": 110
+                            }
+                          },
+                          {
+                            "percentage": 13.91,
+                            "rgb": {
+                              "blue": 229,
+                              "green": 127,
+                              "red": 68
+                            }
+                          },
+                          {
+                            "percentage": 9.64,
+                            "rgb": {
+                              "blue": 127,
+                              "green": 57,
+                              "red": 218
+                            }
+                          },
+                          {
+                            "percentage": 7.83,
+                            "rgb": {
+                              "blue": 137,
+                              "green": 25,
+                              "red": 67
+                            }
+                          }
+                        ]
+                      },
+                      "original_img_height": 331,
+                      "original_img_url": "https://pbs.twimg.com/media/G_DIPhbWcAEqVCj.jpg",
+                      "original_img_width": 828
+                    },
+                    "media_key": "3_2013329202431291393"
+                  }
+                },
+                "preview_text": "There are winter storms, and then there are storms that come from a real pattern shift. The kind that don’t just brush one region, but impact a big chunk of the country.\nThis upcoming setup is",
+                "rest_id": "2013329057924968448",
+                "title": "This Could Be the Big One"
+              }
+            }
+          },
+          "core": {
+            "user_results": {
+              "rest_id": "19133833",
+              "result": {
+                "__typename": "User",
+                "action_counts": {
+                  "favorites_count": 19426
+                },
+                "avatar": {
+                  "image_url": "https://pbs.twimg.com/profile_images/1649791293990502404/g9AjOXbE_normal.jpg"
+                },
+                "banner": {
+                  "image_url": "https://pbs.twimg.com/profile_banners/19133833/1613674801"
+                },
+                "core": {
+                  "created_at": "Sun Jan 18 02:47:48 +0000 2009",
+                  "name": "Ryan Hall, Y’all",
+                  "screen_name": "ryanhallyall"
+                },
+                "dm_permissions": {
+                  "can_dm": true
+                },
+                "exclusive_tweet_following": false,
+                "follow_request_sent": false,
+                "identity_profile_labels_highlighted_label": {},
+                "location": {
+                  "location": "Kentucky, USA"
+                },
+                "media_permissions": {
+                  "can_media_tag": true
+                },
+                "notifications_settings": {
+                  "notifications_enabled": false
+                },
+                "pinned_items": {
+                  "tweet_ids_str": []
+                },
+                "privacy": {
+                  "protected": false,
+                  "suspended": false
+                },
+                "private_super_following": false,
+                "profile_bio": {
+                  "description": "Digital Meteorologist | Creative Technologist | The Internet's Weather Man |",
+                  "entities": {
+                    "description": {
+                      "hashtags": [],
+                      "symbols": [],
+                      "urls": [],
+                      "user_mentions": []
+                    },
+                    "url": {
+                      "urls": [
+                        {
+                          "display_url": "ryanhallyall.com",
+                          "expanded_url": "http://www.ryanhallyall.com",
+                          "indices": [
+                            0,
+                            23
+                          ],
+                          "url": "https://t.co/yrUoRBF6xv"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "profile_image_shape": "Circle",
+                "profile_metadata": {
+                  "profile_interstitial_type": "",
+                  "profile_link_color": "ABB8C2"
+                },
+                "profile_translation": {
+                  "translator_type_enum": "None"
+                },
+                "properties": {
+                  "has_extended_profile": true
+                },
+                "relationship_counts": {
+                  "followers": 475289,
+                  "following": 1295
+                },
+                "relationship_perspectives": {
+                  "blocked_by": false,
+                  "blocking": false,
+                  "followed_by": false,
+                  "following": false,
+                  "live_following": false,
+                  "muting": false
+                },
+                "rest_id": "19133833",
+                "smart_blocked_by": false,
+                "smart_blocking": false,
+                "super_follow_eligible": true,
+                "super_followed_by": false,
+                "super_following": false,
+                "tweet_counts": {
+                  "media_tweets": 3695,
+                  "tweets": 13618
+                },
+                "verification": {
+                  "is_blue_verified": true,
+                  "verified": false
+                },
+                "website": {
+                  "url": "https://t.co/yrUoRBF6xv"
+                }
+              }
+            }
+          },
+          "edit_control": {
+            "__typename": "EditControlInitial",
+            "edit_tweet_ids": [
+              "2013329612994998484"
+            ],
+            "editable_until_msecs": "1768853760000",
+            "edits_remaining": "5",
+            "is_edit_eligible": false
+          },
+          "is_translatable": false,
+          "legacy": {
+            "bookmark_count": 2139,
+            "bookmarked": false,
+            "conversation_id_str": "2013329612994998484",
+            "created_at": "Mon Jan 19 19:16:00 +0000 2026",
+            "display_text_range": [
+              0,
+              23
+            ],
+            "entities": {
+              "hashtags": [],
+              "symbols": [],
+              "timestamps": [],
+              "urls": [
+                {
+                  "display_url": "x.com/i/article/2013…",
+                  "expanded_url": "http://x.com/i/article/2013329057924968448",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/n57Bm8zBVZ"
+                }
+              ],
+              "user_mentions": []
+            },
+            "favorite_count": 10550,
+            "favorited": false,
+            "full_text": "https://t.co/n57Bm8zBVZ",
+            "is_quote_status": false,
+            "lang": "zxx",
+            "possibly_sensitive": false,
+            "possibly_sensitive_editable": true,
+            "quote_count": 151,
+            "reply_count": 560,
+            "retweet_count": 773,
+            "retweeted": false,
+            "user_id_str": "19133833"
+          },
+          "rest_id": "2013329612994998484",
+          "unmention_data": {
+            "id": "VW5tZW50aW9uczoKAAEb8Midrldw1A8AAgoAAAAAAA=="
+          },
+          "view_count_info": {
+            "count": "4318980",
+            "state": "EnabledWithCount"
+          }
+        }
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "2013329612994998484",
+        "url": "https://x.com/ryanhallyall/status/2013329612994998484",
+        "twitterUrl": "https://twitter.com/ryanhallyall/status/2013329612994998484",
+        "text": "https://t.co/n57Bm8zBVZ",
+        "source": "",
+        "retweetCount": 773,
+        "replyCount": 560,
+        "likeCount": 10550,
+        "quoteCount": 151,
+        "viewCount": 4318980,
+        "createdAt": "Mon Jan 19 19:16:00 +0000 2026",
+        "lang": "zxx",
+        "bookmarkCount": 2139,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "2013329612994998484",
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "isPinned": false,
+        "author": {
+          "type": "user",
+          "userName": "ryanhallyall",
+          "url": "https://x.com/ryanhallyall",
+          "twitterUrl": "https://twitter.com/ryanhallyall",
+          "id": "19133833",
+          "name": "Ryan Hall, Y’all",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "profilePicture": "https://pbs.twimg.com/profile_images/1649791293990502404/g9AjOXbE_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/19133833/1613674801",
+          "description": "",
+          "location": "Kentucky, USA",
+          "followers": 475289,
+          "following": 1295,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": true,
+          "createdAt": "Sun Jan 18 02:47:48 +0000 2009",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 19426,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 3695,
+          "statusesCount": 13618,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [],
+          "profile_bio": {
+            "description": "Digital Meteorologist | Creative Technologist | The Internet's Weather Man |",
+            "entities": {
+              "description": {
+                "hashtags": [],
+                "symbols": [],
+                "urls": [],
+                "user_mentions": []
+              },
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "ryanhallyall.com",
+                    "expanded_url": "http://www.ryanhallyall.com",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/yrUoRBF6xv"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {},
+        "card": null,
+        "place": {},
+        "entities": {
+          "hashtags": [],
+          "symbols": [],
+          "timestamps": [],
+          "urls": [
+            {
+              "display_url": "x.com/i/article/2013…",
+              "expanded_url": "http://x.com/i/article/2013329057924968448",
+              "indices": [
+                0,
+                23
+              ],
+              "url": "https://t.co/n57Bm8zBVZ"
+            }
+          ],
+          "user_mentions": []
+        },
+        "reply_to_user_results": null,
+        "quoted_tweet_results": null,
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isConversationControlled": false
+      },
+      "retweeted_tweet": null,
+      "isConversationControlled": false,
+      "isQuote": true
+    },
+    {
+      "type": "tweet",
+      "id": "2026850594263122183",
+      "url": "https://x.com/thesamparr/status/2026850594263122183",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2026850594263122183",
+      "text": "Most people have no idea how pretty the lobby of this building is.\n\nIts a bank on the Upper West Side (near my house).\n\nFunny story: Its prolly worth $100-150m.\n\nRoughly 5-10% of the entire bank's value (just the building...(these numbers are guesses).\n\nIt was built in 1928. Modeled after an Italian Renaissance palazzo. Lobby has 65-foot ceilings. Taller than most churches.\n\nIts one of the few grand banking halls still operating as an actual bank. \n\nMost people walk past it every day and have no idea what's inside.\n\nIf you're ever on the Upper West Side, walk in. It's free and open during business hours.",
+      "source": "",
+      "retweetCount": 42,
+      "replyCount": 43,
+      "likeCount": 1414,
+      "quoteCount": 10,
+      "viewCount": 339082,
+      "createdAt": "Thu Feb 26 02:43:33 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 228,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2026850594263122183",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.twitter.com/YDTd3VGimq",
+            "expanded_url": "https://twitter.com/thesamparr/status/2026850594263122183/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 57,
+                    "w": 57,
+                    "x": 186,
+                    "y": 135
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 57,
+                    "w": 57,
+                    "x": 186,
+                    "y": 135
+                  }
+                ]
+              }
+            },
+            "id_str": "2026850454005518336",
+            "indices": [
+              276,
+              299
+            ],
+            "media_key": "3_2026850454005518336",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwg0b/L1pAACgACHCDR4HPXwQcAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHCDRv8vWkAAKAAIcINHgc9fBBwAA",
+                "media_key": "3_2026850454005518336"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HCDRv8vWkAAJVNG.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 445,
+                  "w": 794,
+                  "x": 0,
+                  "y": 322
+                },
+                {
+                  "h": 794,
+                  "w": 794,
+                  "x": 0,
+                  "y": 147
+                },
+                {
+                  "h": 905,
+                  "w": 794,
+                  "x": 0,
+                  "y": 92
+                },
+                {
+                  "h": 1038,
+                  "w": 519,
+                  "x": 129,
+                  "y": 0
+                },
+                {
+                  "h": 1038,
+                  "w": 794,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1038,
+              "width": 794
+            },
+            "sizes": {
+              "large": {
+                "h": 1038,
+                "w": 794
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/YDTd3VGimq"
+          },
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.twitter.com/YDTd3VGimq",
+            "expanded_url": "https://twitter.com/thesamparr/status/2026850594263122183/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 70,
+                    "w": 70,
+                    "x": 351,
+                    "y": 587
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 70,
+                    "w": 70,
+                    "x": 351,
+                    "y": 587
+                  }
+                ]
+              }
+            },
+            "id_str": "2026850527787511808",
+            "indices": [
+              276,
+              299
+            ],
+            "media_key": "3_2026850527787511808",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwg0dD5lnAACgACHCDR4HPXwQcAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHCDR0PmWcAAKAAIcINHgc9fBBwAA",
+                "media_key": "3_2026850527787511808"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HCDR0PmWcAAAgIR.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 442,
+                  "w": 790,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 790,
+                  "w": 790,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 901,
+                  "w": 790,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1056,
+                  "w": 528,
+                  "x": 262,
+                  "y": 0
+                },
+                {
+                  "h": 1056,
+                  "w": 790,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1056,
+              "width": 790
+            },
+            "sizes": {
+              "large": {
+                "h": 1056,
+                "w": 790
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/YDTd3VGimq"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": null,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isConversationControlled": false
+    },
+    {
+      "type": "tweet",
+      "id": "2021715329185906922",
+      "url": "https://x.com/thesamparr/status/2021715329185906922",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2021715329185906922",
+      "text": "My mother in law started an ecom pillow business...it makes over $1,000,000 a year now!\n\nWhen she started it she didn't know anything about the internet, let alone ecom. \n\nNow it makes 7 figures a year and is super profitable.\n\nI had her on MFM.\n\nhttps://t.co/b5ZkCSXh86",
+      "source": "",
+      "retweetCount": 4,
+      "replyCount": 17,
+      "likeCount": 130,
+      "quoteCount": 0,
+      "viewCount": 28874,
+      "createdAt": "Wed Feb 11 22:37:50 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 71,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2021715329185906922",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "player_url",
+            "value": {
+              "string_value": "https://www.youtube.com/embed/WR4vSnnlLew"
+            }
+          },
+          {
+            "key": "player_image_large",
+            "value": {
+              "image_value": {
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2025624658679042049/5IhuImLp?format=jpg&name=800x320_1",
+                "width": 569
+              }
+            }
+          },
+          {
+            "key": "player_image",
+            "value": {
+              "image_value": {
+                "height": 158,
+                "url": "https://pbs.twimg.com/card_img/2025624658679042049/5IhuImLp?format=jpg&name=280x280",
+                "width": 280
+              }
+            }
+          },
+          {
+            "key": "app_star_rating",
+            "value": {
+              "string_value": "4.67668"
+            }
+          },
+          {
+            "key": "description",
+            "value": {
+              "string_value": "*Get 100 more business ideas to make your first $1M:* https://clickhubspot.com/smtEpisode 794: Sam Parr ( https://x.com/theSamParr ) talks to his mother-in-l..."
+            }
+          },
+          {
+            "key": "player_width",
+            "value": {
+              "string_value": "1280"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.youtube.com"
+            }
+          },
+          {
+            "key": "app_is_free",
+            "value": {
+              "string_value": "true"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "10228272",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "player_image_original",
+            "value": {
+              "image_value": {
+                "height": 720,
+                "url": "https://pbs.twimg.com/card_img/2025624658679042049/5IhuImLp?format=jpg&name=orig",
+                "width": 1280
+              }
+            }
+          },
+          {
+            "key": "app_url_resolved",
+            "value": {
+              "string_value": "vnd.youtube://www.youtube.com/watch?v=WR4vSnnlLew&feature=applinks"
+            }
+          },
+          {
+            "key": "app_num_ratings",
+            "value": {
+              "string_value": "46,109,918"
+            }
+          },
+          {
+            "key": "app_price_amount",
+            "value": {
+              "string_value": "0.0"
+            }
+          },
+          {
+            "key": "player_height",
+            "value": {
+              "string_value": "720"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "youtube.com"
+            }
+          },
+          {
+            "key": "app_name",
+            "value": {
+              "string_value": "YouTube"
+            }
+          },
+          {
+            "key": "app_id",
+            "value": {
+              "scribe_key": "publisher_app_id",
+              "string_value": "544007664"
+            }
+          },
+          {
+            "key": "player_image_small",
+            "value": {
+              "image_value": {
+                "height": 81,
+                "url": "https://pbs.twimg.com/card_img/2025624658679042049/5IhuImLp?format=jpg&name=144x144",
+                "width": 144
+              }
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "My 50-Year-Old Mother-in-Law Makes $1M/Year. The Product? You'd Never..."
+            }
+          },
+          {
+            "key": "app_price_currency",
+            "value": {
+              "string_value": "USD"
+            }
+          },
+          {
+            "key": "app_url",
+            "value": {
+              "string_value": "https://t.co/redirect?url=vnd.youtube%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DWR4vSnnlLew%26feature%3Dapplinks&sig=0ebde85fa8d29adc093cf4d89b17974eb3dc707e&ssr=true&slug=b5ZkCSXh86"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/b5ZkCSXh86"
+            }
+          },
+          {
+            "key": "player_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 44.49,
+                    "rgb": {
+                      "blue": 18,
+                      "green": 19,
+                      "red": 19
+                    }
+                  },
+                  {
+                    "percentage": 18.47,
+                    "rgb": {
+                      "blue": 138,
+                      "green": 151,
+                      "red": 225
+                    }
+                  },
+                  {
+                    "percentage": 5.59,
+                    "rgb": {
+                      "blue": 3,
+                      "green": 236,
+                      "red": 233
+                    }
+                  },
+                  {
+                    "percentage": 4.67,
+                    "rgb": {
+                      "blue": 196,
+                      "green": 200,
+                      "red": 203
+                    }
+                  },
+                  {
+                    "percentage": 3.15,
+                    "rgb": {
+                      "blue": 10,
+                      "green": 126,
+                      "red": 125
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "player_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 720,
+                "url": "https://pbs.twimg.com/card_img/2025624658679042049/5IhuImLp?format=png&name=2048x2048_2_exp",
+                "width": 1280
+              }
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "player",
+        "url": "https://t.co/b5ZkCSXh86",
+        "user_refs_results": [
+          {
+            "rest_id": "10228272",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 6017
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1984471345854566400/5pd8GpgC_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/10228272/1771017216"
+              },
+              "core": {
+                "created_at": "Tue Nov 13 21:43:46 +0000 2007",
+                "name": "YouTube",
+                "screen_name": "YouTube"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "San Bruno, CA"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": []
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "like & subscribe",
+                "entities": {
+                  "description": {
+                    "hashtags": [],
+                    "symbols": [],
+                    "urls": [],
+                    "user_mentions": []
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "youtube.com/recap",
+                        "expanded_url": "http://youtube.com/recap",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/URnyVVv35T"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "C9191D"
+              },
+              "profile_translation": {
+                "translator_type_enum": "Regular"
+              },
+              "properties": {
+                "has_extended_profile": false
+              },
+              "relationship_counts": {
+                "followers": 68109316,
+                "following": 1142
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "10228272",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 16082,
+                "tweets": 60719
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": "https://t.co/URnyVVv35T"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [
+          {
+            "display_url": "youtube.com/watch?v=WR4vSn…",
+            "expanded_url": "https://www.youtube.com/watch?v=WR4vSnnlLew",
+            "indices": [
+              247,
+              270
+            ],
+            "url": "https://t.co/b5ZkCSXh86"
+          }
+        ],
+        "user_mentions": []
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": null,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isConversationControlled": false
+    },
+    {
+      "type": "tweet",
+      "id": "2019810093076717885",
+      "url": "https://x.com/thesamparr/status/2019810093076717885",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2019810093076717885",
+      "text": "How my buddy Adam's media company grew to $25m/year:\n\n- @FOSAdam founded Front Office Sports (@FOS). its like WSJ for sports\n\n- operationally, he's super savy. did a screenshare where he broke down his weekly meetings. this sounds boring, but i'm telling you every CEO should do this.\n\n- he explained how he's gonna grow to $100m/year\n\nFull video on Youtube. \n\nHampton's doing weekly videos on our member's companys.\n\nHow they operate, are becoming better leaders, and are growing to $100m/year in revenue.",
+      "source": "",
+      "retweetCount": 4,
+      "replyCount": 18,
+      "likeCount": 139,
+      "quoteCount": 1,
+      "viewCount": 14151,
+      "createdAt": "Fri Feb 06 16:27:07 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 127,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019810093076717885",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.twitter.com/G7KjIfTytm",
+            "expanded_url": "https://twitter.com/thesamparr/status/2019810093076717885/video/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "id_str": "2019809857478467593",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "13_2019809857478467593",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARwHzl0s1iAJAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHAfOXSzWIAkAAA==",
+                "media_key": "13_2019809857478467593"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2019809857478467593/img/jAJP4aN3rOe4AT1K.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 720,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1280
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/G7KjIfTytm",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 27374,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video-s.twimg.com/amplify_video/2019809857478467593/pl/btZN87gn_RfQ67aK.m3u8?tag=21&v=723"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2019809857478467593/vid/avc1/480x270/Z6eOJ5AghI7mDbXB.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2019809857478467593/vid/avc1/640x360/-8SHt12Ue0aICJu1.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2019809857478467593/vid/avc1/1280x720/fafgVPKTarfkYkgA.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "1315438898",
+            "indices": [
+              56,
+              64
+            ],
+            "name": "Adam White",
+            "screen_name": "FOSAdam"
+          },
+          {
+            "id_str": "2710946063",
+            "indices": [
+              94,
+              98
+            ],
+            "name": "Front Office Sports",
+            "screen_name": "FOS"
+          }
+        ]
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": null,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isConversationControlled": false
+    },
+    {
+      "type": "tweet",
+      "id": "2019871050025328800",
+      "url": "https://x.com/thesamparr/status/2019871050025328800",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2019871050025328800",
+      "text": "This is a Hampton Core group.\n\n1. One guy sold his ad agency for ~$70m\n2. One sold his saas for $40m\n3. Another has a cabinet ecom business that does over $100m\n4. One has a vape business called Planet of the Vapes that just crushes it and has a hilarious name\n5. (the other 3 weren't in the photo ha).\n\nThey meet monthly to discuss business + life. \n\nI crashed the dinner part of the meeting and said what up!\n\nI was talking to the guy who owns the cabinet business. He told he owns a company that sells garage cabinets. \n\n\"Have you heard of NewAge? I LOVE their cabindet and have spent so much money there,\" I said. \"Yes, I have. That's me,\" he replied. HA!\n\nAnyway, I'm happy to see these guys change one another's lives.",
+      "source": "",
+      "retweetCount": 3,
+      "replyCount": 27,
+      "likeCount": 166,
+      "quoteCount": 0,
+      "viewCount": 28930,
+      "createdAt": "Fri Feb 06 20:29:20 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 36,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019871050025328800",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.twitter.com/f7Joweqb37",
+            "expanded_url": "https://twitter.com/thesamparr/status/2019871050025328800/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 88,
+                    "w": 88,
+                    "x": 319,
+                    "y": 162
+                  },
+                  {
+                    "h": 91,
+                    "w": 91,
+                    "x": 467,
+                    "y": 180
+                  },
+                  {
+                    "h": 94,
+                    "w": 94,
+                    "x": 596,
+                    "y": 182
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 88,
+                    "w": 88,
+                    "x": 319,
+                    "y": 162
+                  },
+                  {
+                    "h": 91,
+                    "w": 91,
+                    "x": 467,
+                    "y": 180
+                  },
+                  {
+                    "h": 94,
+                    "w": 94,
+                    "x": 596,
+                    "y": 182
+                  }
+                ]
+              }
+            },
+            "id_str": "2019871041116413952",
+            "indices": [
+              277,
+              300
+            ],
+            "media_key": "3_2019871041116413952",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwIBgKZ16AACgACHAgGBKza4KAAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHAgGApnXoAAKAAIcCAYErNrgoAAA",
+                "media_key": "3_2019871041116413952"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HAgGApnXoAAXM0x.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 545,
+                  "w": 974,
+                  "x": 0,
+                  "y": 11
+                },
+                {
+                  "h": 974,
+                  "w": 974,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1032,
+                  "w": 905,
+                  "x": 69,
+                  "y": 0
+                },
+                {
+                  "h": 1032,
+                  "w": 516,
+                  "x": 283,
+                  "y": 0
+                },
+                {
+                  "h": 1032,
+                  "w": 974,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1032,
+              "width": 974
+            },
+            "sizes": {
+              "large": {
+                "h": 1032,
+                "w": 974
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/f7Joweqb37"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": null,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isConversationControlled": false
+    },
+    {
+      "type": "tweet",
+      "id": "2023845382753497389",
+      "url": "https://x.com/thesamparr/status/2023845382753497389",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2023845382753497389",
+      "text": "This is a Hampton Core group in NYC.\n\n- One is 25 and has $10m ARR business\n- One built an animal health marketplace that's done +$100m in sales\n- One runs a digital fashion company on Roblox doing high 7 figures \n- One is a doctor-turned-founder with a YC-backed health tech company and 300K followers\n- One built a street interview ad agency to 46 people and $3M+ run rate at 22 years old\n- One runs a voice AI edtech company doing 7 figures in revenue\n- One runs fashion retail stores in NYC and Paris with runway shows at Fashion Week doing high 7 figures\n\nThey meet monthly to discuss business + life.\n\nThis group has been together for a few months. Already sharing stuff: exits, equity, hiring, fear, family. \n\nGet you some.",
+      "source": "",
+      "retweetCount": 4,
+      "replyCount": 53,
+      "likeCount": 147,
+      "quoteCount": 4,
+      "viewCount": 28931,
+      "createdAt": "Tue Feb 17 19:41:55 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 44,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2023845382753497389",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.twitter.com/CEDeunbM5f",
+            "expanded_url": "https://twitter.com/thesamparr/status/2023845382753497389/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 68,
+                    "w": 68,
+                    "x": 779,
+                    "y": 295
+                  },
+                  {
+                    "h": 69,
+                    "w": 69,
+                    "x": 957,
+                    "y": 315
+                  },
+                  {
+                    "h": 74,
+                    "w": 74,
+                    "x": 430,
+                    "y": 315
+                  },
+                  {
+                    "h": 127,
+                    "w": 127,
+                    "x": 128,
+                    "y": 447
+                  },
+                  {
+                    "h": 178,
+                    "w": 178,
+                    "x": 1220,
+                    "y": 411
+                  },
+                  {
+                    "h": 190,
+                    "w": 190,
+                    "x": 467,
+                    "y": 619
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 68,
+                    "w": 68,
+                    "x": 779,
+                    "y": 295
+                  },
+                  {
+                    "h": 69,
+                    "w": 69,
+                    "x": 957,
+                    "y": 315
+                  },
+                  {
+                    "h": 74,
+                    "w": 74,
+                    "x": 430,
+                    "y": 315
+                  },
+                  {
+                    "h": 127,
+                    "w": 127,
+                    "x": 128,
+                    "y": 447
+                  },
+                  {
+                    "h": 178,
+                    "w": 178,
+                    "x": 1220,
+                    "y": 411
+                  },
+                  {
+                    "h": 190,
+                    "w": 190,
+                    "x": 467,
+                    "y": 619
+                  }
+                ]
+              }
+            },
+            "id_str": "2023845354618183680",
+            "indices": [
+              276,
+              299
+            ],
+            "media_key": "3_2023845354618183680",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwWJKCSV2AACgACHBYkpx9WMS0AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHBYkoJJXYAAKAAIcFiSnH1YxLQAA",
+                "media_key": "3_2023845354618183680"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HBYkoJJXYAA6c8z.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 888,
+                  "w": 1586,
+                  "x": 0,
+                  "y": 70
+                },
+                {
+                  "h": 1138,
+                  "w": 1138,
+                  "x": 448,
+                  "y": 0
+                },
+                {
+                  "h": 1138,
+                  "w": 998,
+                  "x": 588,
+                  "y": 0
+                },
+                {
+                  "h": 1138,
+                  "w": 569,
+                  "x": 1017,
+                  "y": 0
+                },
+                {
+                  "h": 1138,
+                  "w": 1586,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1138,
+              "width": 1586
+            },
+            "sizes": {
+              "large": {
+                "h": 1138,
+                "w": 1586
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/CEDeunbM5f"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": null,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isConversationControlled": false
+    },
+    {
+      "type": "tweet",
+      "id": "2027747124708778108",
+      "url": "https://x.com/thesamparr/status/2027747124708778108",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2027747124708778108",
+      "text": "I have a simple rule: \n\nI'll only speak at conferences if my best friends @nickgraynews  and @nevmed come with me. \n\nTurns a work thing into a buds trip. \n\nGet you some buddies and do\nlife with em. https://t.co/IsSQW1gpqE",
+      "source": "",
+      "retweetCount": 2,
+      "replyCount": 12,
+      "likeCount": 106,
+      "quoteCount": 0,
+      "viewCount": 11565,
+      "createdAt": "Sat Feb 28 14:06:02 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 7,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2027747124708778108",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.twitter.com/IsSQW1gpqE",
+            "expanded_url": "https://twitter.com/thesamparr/status/2027747124708778108/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 250,
+                    "w": 250,
+                    "x": 872,
+                    "y": 744
+                  },
+                  {
+                    "h": 384,
+                    "w": 384,
+                    "x": 222,
+                    "y": 736
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 250,
+                    "w": 250,
+                    "x": 872,
+                    "y": 744
+                  },
+                  {
+                    "h": 384,
+                    "w": 384,
+                    "x": 222,
+                    "y": 736
+                  }
+                ]
+              }
+            },
+            "id_str": "2027746967724474368",
+            "indices": [
+              198,
+              221
+            ],
+            "media_key": "3_2027746967724474368",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwkAR+pl8AACgACHCQBRDaWIHwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHCQBH6mXwAAKAAIcJAFENpYgfAAA",
+                "media_key": "3_2027746967724474368"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HCQBH6mXwAANOwK.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 860,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 440
+                },
+                {
+                  "h": 1536,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 102
+                },
+                {
+                  "h": 1751,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1024,
+                  "x": 460,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 1536
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 1536
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/IsSQW1gpqE"
+          },
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.twitter.com/IsSQW1gpqE",
+            "expanded_url": "https://twitter.com/thesamparr/status/2027747124708778108/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 82,
+                    "w": 82,
+                    "x": 408,
+                    "y": 1102
+                  },
+                  {
+                    "h": 82,
+                    "w": 82,
+                    "x": 682,
+                    "y": 1560
+                  },
+                  {
+                    "h": 222,
+                    "w": 222,
+                    "x": 692,
+                    "y": 442
+                  },
+                  {
+                    "h": 228,
+                    "w": 228,
+                    "x": 276,
+                    "y": 458
+                  },
+                  {
+                    "h": 242,
+                    "w": 242,
+                    "x": 1044,
+                    "y": 572
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 82,
+                    "w": 82,
+                    "x": 408,
+                    "y": 1102
+                  },
+                  {
+                    "h": 82,
+                    "w": 82,
+                    "x": 682,
+                    "y": 1560
+                  },
+                  {
+                    "h": 222,
+                    "w": 222,
+                    "x": 692,
+                    "y": 442
+                  },
+                  {
+                    "h": 228,
+                    "w": 228,
+                    "x": 276,
+                    "y": 458
+                  },
+                  {
+                    "h": 242,
+                    "w": 242,
+                    "x": 1044,
+                    "y": 572
+                  }
+                ]
+              }
+            },
+            "id_str": "2027746967728652288",
+            "indices": [
+              198,
+              221
+            ],
+            "media_key": "3_2027746967728652288",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwkAR+p14AACgACHCQBRDaWIHwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHCQBH6nXgAAKAAIcJAFENpYgfAAA",
+                "media_key": "3_2027746967728652288"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HCQBH6nXgAA7In6.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 860,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 338
+                },
+                {
+                  "h": 1536,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1751,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1024,
+                  "x": 512,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 1536
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 1536
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/IsSQW1gpqE"
+          },
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.twitter.com/IsSQW1gpqE",
+            "expanded_url": "https://twitter.com/thesamparr/status/2027747124708778108/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 108,
+                    "w": 108,
+                    "x": 711,
+                    "y": 28
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 108,
+                    "w": 108,
+                    "x": 711,
+                    "y": 28
+                  }
+                ]
+              }
+            },
+            "id_str": "2027746967900852229",
+            "indices": [
+              198,
+              221
+            ],
+            "media_key": "3_2027746967900852229",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwkAR+0GxAFCgACHCQBRDaWIHwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHCQBH7QbEAUKAAIcJAFENpYgfAAA",
+                "media_key": "3_2027746967900852229"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HCQBH7QbEAUCnRL.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 675,
+                  "w": 1206,
+                  "x": 0,
+                  "y": 132
+                },
+                {
+                  "h": 1206,
+                  "w": 1206,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1251,
+                  "w": 1097,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1251,
+                  "w": 626,
+                  "x": 218,
+                  "y": 0
+                },
+                {
+                  "h": 1251,
+                  "w": 1206,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1251,
+              "width": 1206
+            },
+            "sizes": {
+              "large": {
+                "h": 1251,
+                "w": 1206
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/IsSQW1gpqE"
+          },
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.twitter.com/IsSQW1gpqE",
+            "expanded_url": "https://twitter.com/thesamparr/status/2027747124708778108/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 99,
+                    "w": 99,
+                    "x": 610,
+                    "y": 271
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 99,
+                    "w": 99,
+                    "x": 610,
+                    "y": 271
+                  }
+                ]
+              }
+            },
+            "id_str": "2027746967884075009",
+            "indices": [
+              198,
+              221
+            ],
+            "media_key": "3_2027746967884075009",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwkAR+zGxABCgACHCQBRDaWIHwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHCQBH7MbEAEKAAIcJAFENpYgfAAA",
+                "media_key": "3_2027746967884075009"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HCQBH7MbEAEO6HK.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 630,
+                  "w": 1125,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 811,
+                  "w": 811,
+                  "x": 314,
+                  "y": 0
+                },
+                {
+                  "h": 811,
+                  "w": 711,
+                  "x": 414,
+                  "y": 0
+                },
+                {
+                  "h": 811,
+                  "w": 406,
+                  "x": 719,
+                  "y": 0
+                },
+                {
+                  "h": 811,
+                  "w": 1125,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 811,
+              "width": 1125
+            },
+            "sizes": {
+              "large": {
+                "h": 811,
+                "w": 1125
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/IsSQW1gpqE"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "50279361",
+            "indices": [
+              74,
+              87
+            ],
+            "name": "Nick Gray",
+            "screen_name": "nickgraynews"
+          },
+          {
+            "id_str": "24286463",
+            "indices": [
+              93,
+              100
+            ],
+            "name": "Neville Medhora",
+            "screen_name": "nevmed"
+          }
+        ]
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": null,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isConversationControlled": false
+    },
+    {
+      "type": "tweet",
+      "id": "2019109879886041270",
+      "url": "https://x.com/thesamparr/status/2019109879886041270",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2019109879886041270",
+      "text": "George Washington is one of my favorite presidents to read about because he was nearly a perfect leader and an amazing leader.\n\nHe was also nearly incorruptible.\n\nWhen leading the army during the revolution, he tried to quit not once, but twice as he said he didn't think he was good enough to get the job done.\n\n“I am fully sensible of the many difficulties under which I labor, and of my own deficiencies. I cannot promise myself success.”\n\nYet, he was exactly what we needed. The war likely could not have been won without him. \n\nHe spent nearly 7 years away from home, fighting. Normally, generals always spent summers away.\n\nThen when it came time to elect a our first president, he didn't even want to run.\n\nSomeone nominated him, he didn't run. Then he received every single electoral vote.\n\nBut after two terms, he retired, when there were no term limits. This shocked people because they wanted him to stay in power. \n\nHe said: The power under the Constitution will always be in the people. It is entrusted for certain defined purposes, and for a certain limited period, to representatives of their own choosing.\n\nThat's a damn servant leader. A stark contrast to what we have now.",
+      "source": "",
+      "retweetCount": 121,
+      "replyCount": 84,
+      "likeCount": 1947,
+      "quoteCount": 8,
+      "viewCount": 96681,
+      "createdAt": "Wed Feb 04 18:04:43 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 209,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019109879886041270",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": null,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isConversationControlled": false
+    },
+    {
+      "type": "tweet",
+      "id": "2023834762797084706",
+      "url": "https://x.com/thesamparr/status/2023834762797084706",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2023834762797084706",
+      "text": "Sam Parr, World Renowned Pick Up Artist, As Seen On The Mel Robbins Podcast. @melrobbins\n\n\"Sup ladies, wanna go to a denim meetup?\" https://t.co/8wKOJNTjFT",
+      "source": "",
+      "retweetCount": 2,
+      "replyCount": 15,
+      "likeCount": 103,
+      "quoteCount": 0,
+      "viewCount": 14966,
+      "createdAt": "Tue Feb 17 18:59:43 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 20,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2023834762797084706",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.twitter.com/8wKOJNTjFT",
+            "expanded_url": "https://twitter.com/thesamparr/status/2023834762797084706/video/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "id_str": "2023834263360335875",
+            "indices": [
+              132,
+              155
+            ],
+            "media_key": "13_2023834263360335875",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARwWGoov23ADAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHBYaii/bcAMAAA==",
+                "media_key": "13_2023834263360335875"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2023834263360335875/img/iFOWdY6N_Fm2Thsf.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1920,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1920,
+                "w": 1080
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/8wKOJNTjFT",
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 62383,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video-s.twimg.com/amplify_video/2023834263360335875/pl/6PloA8m4eqIH_v1d.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2023834263360335875/vid/avc1/320x568/30EKe-vEt2VgsSdv.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2023834263360335875/vid/avc1/480x852/lW4u1k_xBd5bY0qG.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2023834263360335875/vid/avc1/720x1280/xb3JgWwzQMLqEAnT.mp4?tag=21"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2023834263360335875/vid/avc1/1080x1920/XapjSX0n4TIwFPL8.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "18066665",
+            "indices": [
+              77,
+              88
+            ],
+            "name": "Mel Robbins",
+            "screen_name": "melrobbins"
+          }
+        ]
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": null,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isConversationControlled": false
+    },
+    {
+      "type": "tweet",
+      "id": "2022407685917077970",
+      "url": "https://x.com/thesamparr/status/2022407685917077970",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2022407685917077970",
+      "text": "My buddy Mario founded a company worth $4b. \n\nBut the more unique thing about him: he track his emotions by 15 minutes and has been doing so for 15 years. \n\nhttps://t.co/4TmdvLFb0q",
+      "source": "",
+      "retweetCount": 5,
+      "replyCount": 14,
+      "likeCount": 68,
+      "quoteCount": 0,
+      "viewCount": 17504,
+      "createdAt": "Fri Feb 13 20:29:01 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 67,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2022407685917077970",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "player_url",
+            "value": {
+              "string_value": "https://www.youtube.com/embed/0VfIuh9Up6A"
+            }
+          },
+          {
+            "key": "player_image_large",
+            "value": {
+              "image_value": {
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2024945375099191297/DZLkq4gX?format=jpg&name=800x320_1",
+                "width": 569
+              }
+            }
+          },
+          {
+            "key": "player_image",
+            "value": {
+              "image_value": {
+                "height": 158,
+                "url": "https://pbs.twimg.com/card_img/2024945375099191297/DZLkq4gX?format=jpg&name=280x280",
+                "width": 280
+              }
+            }
+          },
+          {
+            "key": "app_star_rating",
+            "value": {
+              "string_value": "4.67668"
+            }
+          },
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Mario Schlosser co-founded Oscar Health with Josh Kushner in 2012. He’s tracked every minute of his life in a spreadsheet since. We sat down with Mario last ..."
+            }
+          },
+          {
+            "key": "player_width",
+            "value": {
+              "string_value": "1280"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.youtube.com"
+            }
+          },
+          {
+            "key": "app_is_free",
+            "value": {
+              "string_value": "true"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "10228272",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "player_image_original",
+            "value": {
+              "image_value": {
+                "height": 720,
+                "url": "https://pbs.twimg.com/card_img/2024945375099191297/DZLkq4gX?format=jpg&name=orig",
+                "width": 1280
+              }
+            }
+          },
+          {
+            "key": "app_url_resolved",
+            "value": {
+              "string_value": "vnd.youtube://www.youtube.com/watch?si=dtlUT397UZ_IQG1k&v=0VfIuh9Up6A&feature=youtu.be&feature=applinks"
+            }
+          },
+          {
+            "key": "app_num_ratings",
+            "value": {
+              "string_value": "46,109,918"
+            }
+          },
+          {
+            "key": "app_price_amount",
+            "value": {
+              "string_value": "0.0"
+            }
+          },
+          {
+            "key": "player_height",
+            "value": {
+              "string_value": "720"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "youtube.com"
+            }
+          },
+          {
+            "key": "app_name",
+            "value": {
+              "string_value": "YouTube"
+            }
+          },
+          {
+            "key": "app_id",
+            "value": {
+              "scribe_key": "publisher_app_id",
+              "string_value": "544007664"
+            }
+          },
+          {
+            "key": "player_image_small",
+            "value": {
+              "image_value": {
+                "height": 81,
+                "url": "https://pbs.twimg.com/card_img/2024945375099191297/DZLkq4gX?format=jpg&name=144x144",
+                "width": 144
+              }
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Why the Founder of a $4B Company Tracks Every Minute of His Life"
+            }
+          },
+          {
+            "key": "app_price_currency",
+            "value": {
+              "string_value": "USD"
+            }
+          },
+          {
+            "key": "app_url",
+            "value": {
+              "string_value": "https://t.co/redirect?url=vnd.youtube%3A%2F%2Fwww.youtube.com%2Fwatch%3Fsi%3DdtlUT397UZ_IQG1k%26v%3D0VfIuh9Up6A%26feature%3Dyoutu.be%26feature%3Dapplinks&sig=6a2f26623165961f1e074da41fa115a363a75fe3&ssr=true&slug=4TmdvLFb0q"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/4TmdvLFb0q"
+            }
+          },
+          {
+            "key": "player_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 62.22,
+                    "rgb": {
+                      "blue": 17,
+                      "green": 14,
+                      "red": 10
+                    }
+                  },
+                  {
+                    "percentage": 21.85,
+                    "rgb": {
+                      "blue": 231,
+                      "green": 228,
+                      "red": 211
+                    }
+                  },
+                  {
+                    "percentage": 4.49,
+                    "rgb": {
+                      "blue": 105,
+                      "green": 117,
+                      "red": 178
+                    }
+                  },
+                  {
+                    "percentage": 2.56,
+                    "rgb": {
+                      "blue": 42,
+                      "green": 43,
+                      "red": 82
+                    }
+                  },
+                  {
+                    "percentage": 0.93,
+                    "rgb": {
+                      "blue": 98,
+                      "green": 121,
+                      "red": 28
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "player_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 720,
+                "url": "https://pbs.twimg.com/card_img/2024945375099191297/DZLkq4gX?format=png&name=2048x2048_2_exp",
+                "width": 1280
+              }
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "player",
+        "url": "https://t.co/4TmdvLFb0q",
+        "user_refs_results": [
+          {
+            "rest_id": "10228272",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 6017
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1984471345854566400/5pd8GpgC_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/10228272/1771017216"
+              },
+              "core": {
+                "created_at": "Tue Nov 13 21:43:46 +0000 2007",
+                "name": "YouTube",
+                "screen_name": "YouTube"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "San Bruno, CA"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": []
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "like & subscribe",
+                "entities": {
+                  "description": {
+                    "hashtags": [],
+                    "symbols": [],
+                    "urls": [],
+                    "user_mentions": []
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "youtube.com/recap",
+                        "expanded_url": "http://youtube.com/recap",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/URnyVVv35T"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "C9191D"
+              },
+              "profile_translation": {
+                "translator_type_enum": "Regular"
+              },
+              "properties": {
+                "has_extended_profile": false
+              },
+              "relationship_counts": {
+                "followers": 68109316,
+                "following": 1142
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "10228272",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 16082,
+                "tweets": 60719
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": "https://t.co/URnyVVv35T"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [
+          {
+            "display_url": "youtu.be/0VfIuh9Up6A?si…",
+            "expanded_url": "https://youtu.be/0VfIuh9Up6A?si=Btw85nPIFuLHBPY5",
+            "indices": [
+              157,
+              180
+            ],
+            "url": "https://t.co/4TmdvLFb0q"
+          }
+        ],
+        "user_mentions": []
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": null,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isConversationControlled": false
+    },
+    {
+      "type": "tweet",
+      "id": "2019022626165850235",
+      "url": "https://x.com/thesamparr/status/2019022626165850235",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2019022626165850235",
+      "text": "What's the difference between a $10m, $100m, $1 billion lifestyle?\n\nWe interviewed 50 founders with net worths between $7 million and $3 billion.\n\nThey broke down their monthly expenses, income, portfolio and investing habits.\n\nTook so much time to make this. \n\nIt's the only document on the internet that reveals the money numbers, psychology, and patterns of wildly successful founders. \n\nIts free...but goal was to make it so good we could one day charge for it.\n\nLet me know what you think.\n\nhttps://t.co/KG9S5nZKdv",
+      "source": "",
+      "retweetCount": 10,
+      "replyCount": 26,
+      "likeCount": 242,
+      "quoteCount": 2,
+      "viewCount": 181024,
+      "createdAt": "Wed Feb 04 12:18:00 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 458,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019022626165850235",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2026440248931078144/US2iJmcP?format=png&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 147,
+                "url": "https://pbs.twimg.com/card_img/2026440248931078144/US2iJmcP?format=png&name=280x150",
+                "width": 280
+              }
+            }
+          },
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Get a rare look at the monthly expenses, income, and investing habits of 50 founders with net worths from $7M to $3B. Download the 65+ page report for free."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "joinhampton.com"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 315,
+                "url": "https://pbs.twimg.com/card_img/2026440248931078144/US2iJmcP?format=png&name=600x600",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2026440248931078144/US2iJmcP?format=png&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2026440248931078144/US2iJmcP?format=png&name=orig",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2026440248931078144/US2iJmcP?format=png&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2026440248931078144/US2iJmcP?format=png&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 76,
+                "url": "https://pbs.twimg.com/card_img/2026440248931078144/US2iJmcP?format=png&name=144x144",
+                "width": 144
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2026440248931078144/US2iJmcP?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2026440248931078144/US2iJmcP?format=png&name=orig",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "joinhampton.com"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2026440248931078144/US2iJmcP?format=png&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 98.43,
+                    "rgb": {
+                      "blue": 28,
+                      "green": 26,
+                      "red": 3
+                    }
+                  },
+                  {
+                    "percentage": 1.57,
+                    "rgb": {
+                      "blue": 134,
+                      "green": 146,
+                      "red": 153
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Founder Net Worth Reveal"
+            }
+          },
+          {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 98.43,
+                    "rgb": {
+                      "blue": 28,
+                      "green": 26,
+                      "red": 3
+                    }
+                  },
+                  {
+                    "percentage": 1.57,
+                    "rgb": {
+                      "blue": 134,
+                      "green": 146,
+                      "red": 153
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2026440248931078144/US2iJmcP?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2026440248931078144/US2iJmcP?format=png&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 98.43,
+                    "rgb": {
+                      "blue": 28,
+                      "green": 26,
+                      "red": 3
+                    }
+                  },
+                  {
+                    "percentage": 1.57,
+                    "rgb": {
+                      "blue": 134,
+                      "green": 146,
+                      "red": 153
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2026440248931078144/US2iJmcP?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/KG9S5nZKdv"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2026440248931078144/US2iJmcP?format=png&name=orig",
+                "width": 1200
+              }
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/KG9S5nZKdv",
+        "user_refs_results": []
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [
+          {
+            "display_url": "joinhampton.com/founder-wealth…",
+            "expanded_url": "https://joinhampton.com/founder-wealth-reveal",
+            "indices": [
+              496,
+              519
+            ],
+            "url": "https://t.co/KG9S5nZKdv"
+          }
+        ],
+        "user_mentions": []
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": null,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isConversationControlled": false
+    },
+    {
+      "type": "tweet",
+      "id": "2019132409451626848",
+      "url": "https://x.com/thesamparr/status/2019132409451626848",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2019132409451626848",
+      "text": "I've got a buddy who sold his company for ~$70m.\n\nSo, it was a massive financial success. \n\nHowever, he HATED the life he made for himself while running it.\n\nHis company felt like a prison:\n\n- 16-hour days. Skipped his honeymoon. \n- Micromanaged everything. \n- Built his entire identity around the selling.\n\nAfter selling, like all of us idiots, he started his second company.\n\nMy buddy, btw, is @jnpayne.\n\nBut for his next company, he made a bunch of rules. Rules so that he'd be happier during the build process.\n\n- The hours were 8 to 5. \n- No weekends. \n- Fully remote. \n- No meetings where he wasn't essential.\n- And a month-long family trip to Europe every summer with his wife and three kids.\n\nRecently, he did something super cool: moved his entire family of five to Spain.\n\nOther things Josh did that I like:\n\n- he removed himself from operational meetings\n- scaled every 1:1 to monthly\n- muted Slack channels where he wasn't essential\n- assigned owners to projects and stopped poking around. \n\nHis words: \"I frankly just dropped the ball on a lot of things.\"\n\nBut...it seems to be working. \n\nHis new company, its called Onward, and they're very profitable with 20 people.\n\nI LOVE hearing stories like this.\n\nBecause the entire point of this business thing, at least for me, is to put your dent into the world but doing it your way.\n\nOn twitter, podcasts, etc...there are so many rules that we take for granted. So we often just fit into a box of business building. \n\nBut I've done so many interviews with baller founders + see it in Hampton...there are 10,000's ways to kill it.",
+      "source": "",
+      "retweetCount": 8,
+      "replyCount": 40,
+      "likeCount": 349,
+      "quoteCount": 2,
+      "viewCount": 63790,
+      "createdAt": "Wed Feb 04 19:34:14 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 212,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019132409451626848",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "11151452",
+            "indices": [
+              396,
+              404
+            ],
+            "name": "Josh Payne",
+            "screen_name": "jnpayne"
+          }
+        ]
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": null,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isConversationControlled": false
+    },
+    {
+      "type": "tweet",
+      "id": "2025985427870535710",
+      "url": "https://x.com/thesamparr/status/2025985427870535710",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2025985427870535710",
+      "text": "\"This may very well be the most important principle in this book. \n\nOf all the tools available for growth, an engaged peer network might be the most powerful and beneficial. \n\nIt's one of the most under discussed elements in personal and professional development.\" \n\nFrom Bill Gurley's book, Runnin Down a Dream. \n\n@Billgurley95 @HamptonFounders",
+      "source": "",
+      "retweetCount": 1,
+      "replyCount": 21,
+      "likeCount": 74,
+      "quoteCount": 0,
+      "viewCount": 11188,
+      "createdAt": "Mon Feb 23 17:25:41 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 43,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2025985427870535710",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "1706707456712122372",
+            "indices": [
+              315,
+              328
+            ],
+            "name": "Bill Gurley",
+            "screen_name": "Billgurley95"
+          },
+          {
+            "id_str": "1636531874506874881",
+            "indices": [
+              329,
+              345
+            ],
+            "name": "Hampton",
+            "screen_name": "HamptonFounders"
+          }
+        ]
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": null,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isConversationControlled": false
+    },
+    {
+      "type": "tweet",
+      "id": "2020887049964785998",
+      "url": "https://x.com/thesamparr/status/2020887049964785998",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2020887049964785998",
+      "text": "I asked this question in Hampton's Slack: \n\nwho here scaled to $20-$50m+ working 40 hours a week?\n\nReplies (anonymized):\n\nFounder A who crossed $50M:\n\n\"My secret was having 4 kids with intense schedules and a great management team. The family commitment is a great forcing function.\"\n\nHis 40 hours now are less chaotic than his old 60 ever were.\n\nFounder B - crossed $20M, pacing $30M:\n\n\"95% of decisions don't matter, and virtually all can be reversed. Most founders who grind crazy hours associate identity and prestige with being involved in every decision.\n\nLetting go of that need for control gave me back most of my time.\"\n\nFounder C built two companies to $15-20M:\n\nFirst one: worked like a dog. Most of the extra hours were learning and putting out fires he created.\n\nSecond one: under 40 hours once he had a focused strategy and competent leaders.\n\n\"It's your competency at the thing you're doing and the number of things you're doing.\"\n\nFounder D - just crossed $20M:\n\nGot 12 employees onto the cap table as small owners through an internal succession plan.\n\n\"Those employee-owners solve problems before they ever reach me. I'm down to 40 hours, but those hours are also much less chaotic than my previous 60.\"\n\nFounder E - $20M+ agency:\n\nInstead of chasing volume with small clients, they landed a few massive enterprise accounts. Same work unlocks 8 figures of spend.\n\nThen added an exec layer to shift from client focus to business focus. Hours dropped every year.\n\nFounder F - $20M+:\n\n\"Ruthless simplification. Every quarter we cut things.\"\nScariest move: firing their largest client. The client was consuming the entire team and was misaligned with what they were good at.\n\nRevenue went up after.\n\nFounder G:\n\n\"Hire exceptional people. Not every hire needs to be exceptional, but a few will make problems that would normally fall on you disappear.\n\nWhy do others fail? They tell themselves they've hired exceptional people but have never actually worked with one. Their standards are unknowingly low.\"\n\n----\n\nAnyone else done it? Wanna add anything?",
+      "source": "",
+      "retweetCount": 3,
+      "replyCount": 26,
+      "likeCount": 174,
+      "quoteCount": 1,
+      "viewCount": 29995,
+      "createdAt": "Mon Feb 09 15:46:33 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 151,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2020887049964785998",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": null,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isConversationControlled": false
+    },
+    {
+      "type": "tweet",
+      "id": "2014319505099362395",
+      "url": "https://x.com/thesamparr/status/2014319505099362395",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2014319505099362395",
+      "text": "ANNOUNCEMENT. \n\nWe’re opening up 3 new Hampton chapters.  \n\nSan Diego, Philly, DC.\n\nBut first, real quick:\n\nRunning an IRL network  has tons of cool but hard parts about it.\n\nCool parts:\n\nIt benefits our Atlanta chapter if we have a Hong Kong chapter. So when they travel there, they have their people or wanna connect to someone in HK, they have that. \n\nSo, expanding is good.\n\nBut the hard part:\n\nIts VERY EASY to grow these businesses. Just sell the dream. Easy. \n\nThe hard part is doing actual vetting + making the Core so good a member wants to stay for 20+ years. Making sure you're getting the best people who fit our standards (tech, traction, character) you never sacrifice integrity for $$$.\n\nFor example, if we have a 6 person Core group in ATL and they need 2 more ballers...recruiting, vetting, training those new members to be great Core group members...while also having integrity and not coming off salesy/transactional...that's the f*cking hard part.\n\nBut thankfully we're figuring it out.\n\nWhich is why we're coming to philly, san diego, and DC.\n\nSo, get a damn IRL core group: \n\n- monthly irl meeting w 8 other founders like you (ave member does $20m/year)\n- going through the same stuff\n- calling you out\n- helping you learn\n\nWe picked these cities because there's a huge, untapped startup community. \n\nSo if want to be around other people building startups, apply. I review every app.\n\nApply: https://t.co/2SSMOf5dXt",
+      "source": "",
+      "retweetCount": 4,
+      "replyCount": 18,
+      "likeCount": 57,
+      "quoteCount": 1,
+      "viewCount": 9557,
+      "createdAt": "Thu Jan 22 12:49:28 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 9,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2014319505099362395",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [
+          {
+            "display_url": "joinhampton.com",
+            "expanded_url": "https://joinhampton.com/",
+            "indices": [
+              1414,
+              1437
+            ],
+            "url": "https://t.co/2SSMOf5dXt"
+          }
+        ],
+        "user_mentions": []
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": null,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isConversationControlled": false
+    },
+    {
+      "type": "tweet",
+      "id": "2024924549884580097",
+      "url": "https://x.com/thesamparr/status/2024924549884580097",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2024924549884580097",
+      "text": "We met via Hampton nbd",
+      "source": "",
+      "retweetCount": 2,
+      "replyCount": 15,
+      "likeCount": 68,
+      "quoteCount": 1,
+      "viewCount": 20228,
+      "createdAt": "Fri Feb 20 19:10:08 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 6,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2024924549884580097",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": {
+        "rest_id": "2024889972705149195",
+        "result": {
+          "__typename": "Tweet",
+          "core": {
+            "user_results": {
+              "rest_id": "2646428635",
+              "result": {
+                "__typename": "User",
+                "action_counts": {
+                  "favorites_count": 30457
+                },
+                "avatar": {
+                  "image_url": "https://pbs.twimg.com/profile_images/1442604184725901312/tbbsFD4-_normal.jpg"
+                },
+                "banner": {
+                  "image_url": "https://pbs.twimg.com/profile_banners/2646428635/1668436978"
+                },
+                "core": {
+                  "created_at": "Mon Jul 14 21:59:57 +0000 2014",
+                  "name": "Pat Walls",
+                  "screen_name": "thepatwalls"
+                },
+                "dm_permissions": {
+                  "can_dm": true
+                },
+                "exclusive_tweet_following": false,
+                "follow_request_sent": false,
+                "identity_profile_labels_highlighted_label": {},
+                "location": {
+                  "location": "Florida"
+                },
+                "media_permissions": {
+                  "can_media_tag": false
+                },
+                "notifications_settings": {
+                  "notifications_enabled": false
+                },
+                "pinned_items": {
+                  "tweet_ids_str": [
+                    "2025922694332780857"
+                  ]
+                },
+                "privacy": {
+                  "protected": false,
+                  "suspended": false
+                },
+                "private_super_following": false,
+                "profile_bio": {
+                  "description": "https://t.co/zSf5Z2H78P\nhttps://t.co/ryMAyS77qn\nhttps://t.co/Gm6gdHaLgp\n\nOn a mission to inspire 1B people to build stuff!",
+                  "entities": {
+                    "description": {
+                      "hashtags": [],
+                      "symbols": [],
+                      "urls": [
+                        {
+                          "display_url": "starterstory.com",
+                          "expanded_url": "http://starterstory.com",
+                          "indices": [
+                            0,
+                            23
+                          ],
+                          "url": "https://t.co/zSf5Z2H78P"
+                        },
+                        {
+                          "display_url": "build.starterstory.com",
+                          "expanded_url": "http://build.starterstory.com",
+                          "indices": [
+                            24,
+                            47
+                          ],
+                          "url": "https://t.co/ryMAyS77qn"
+                        },
+                        {
+                          "display_url": "moat.starterstory.com",
+                          "expanded_url": "http://moat.starterstory.com",
+                          "indices": [
+                            48,
+                            71
+                          ],
+                          "url": "https://t.co/Gm6gdHaLgp"
+                        }
+                      ],
+                      "user_mentions": []
+                    },
+                    "url": {
+                      "urls": [
+                        {
+                          "display_url": "starterstory.com",
+                          "expanded_url": "https://www.starterstory.com",
+                          "indices": [
+                            0,
+                            23
+                          ],
+                          "url": "https://t.co/iQTioLFhFt"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "profile_image_shape": "Circle",
+                "profile_metadata": {
+                  "profile_interstitial_type": "",
+                  "profile_link_color": "1DA1F2"
+                },
+                "profile_translation": {
+                  "translator_type_enum": "None"
+                },
+                "properties": {
+                  "has_extended_profile": true
+                },
+                "relationship_counts": {
+                  "followers": 136823,
+                  "following": 1344
+                },
+                "relationship_perspectives": {
+                  "blocked_by": false,
+                  "blocking": false,
+                  "followed_by": false,
+                  "following": false,
+                  "live_following": false,
+                  "muting": false
+                },
+                "rest_id": "2646428635",
+                "smart_blocked_by": false,
+                "smart_blocking": false,
+                "super_follow_eligible": false,
+                "super_followed_by": false,
+                "super_following": false,
+                "tweet_counts": {
+                  "media_tweets": 1916,
+                  "tweets": 12896
+                },
+                "verification": {
+                  "is_blue_verified": true,
+                  "verified": false
+                },
+                "website": {
+                  "url": "https://t.co/iQTioLFhFt"
+                }
+              }
+            }
+          },
+          "edit_control": {
+            "__typename": "EditControlInitial",
+            "edit_tweet_ids": [
+              "2024889972705149195"
+            ],
+            "editable_until_msecs": "1771609964000",
+            "edits_remaining": "5",
+            "is_edit_eligible": true
+          },
+          "is_translatable": false,
+          "legacy": {
+            "bookmark_count": 14,
+            "bookmarked": false,
+            "conversation_id_str": "2024889972705149195",
+            "created_at": "Fri Feb 20 16:52:44 +0000 2026",
+            "display_text_range": [
+              0,
+              142
+            ],
+            "entities": {
+              "hashtags": [],
+              "symbols": [],
+              "timestamps": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "625733783",
+                  "indices": [
+                    43,
+                    54
+                  ],
+                  "name": "Sam Parr",
+                  "screen_name": "thesamparr"
+                }
+              ]
+            },
+            "extended_entities": {
+              "media": [
+                {
+                  "allow_download_status": {
+                    "allow_download": true
+                  },
+                  "display_url": "pic.twitter.com/DgGOCu2vAi",
+                  "expanded_url": "https://twitter.com/thepatwalls/status/2024889972705149195/photo/1",
+                  "ext_media_availability": {
+                    "status": "Available"
+                  },
+                  "features": {
+                    "large": {
+                      "faces": [
+                        {
+                          "h": 134,
+                          "w": 134,
+                          "x": 454,
+                          "y": 374
+                        },
+                        {
+                          "h": 148,
+                          "w": 148,
+                          "x": 686,
+                          "y": 394
+                        }
+                      ]
+                    },
+                    "orig": {
+                      "faces": [
+                        {
+                          "h": 268,
+                          "w": 268,
+                          "x": 908,
+                          "y": 748
+                        },
+                        {
+                          "h": 296,
+                          "w": 296,
+                          "x": 1372,
+                          "y": 788
+                        }
+                      ]
+                    }
+                  },
+                  "id_str": "2024889222809759744",
+                  "indices": [
+                    143,
+                    166
+                  ],
+                  "media_key": "3_2024889222809759744",
+                  "media_results": {
+                    "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwZ2gUTF7AACgACHBnas6xXQQsAAA==",
+                    "result": {
+                      "__typename": "ApiMedia",
+                      "id": "QXBpTWVkaWE6DAABCgABHBnaBRMXsAAKAAIcGdqzrFdBCwAA",
+                      "media_key": "3_2024889222809759744"
+                    }
+                  },
+                  "media_url_https": "https://pbs.twimg.com/media/HBnaBRMXsAAW6vB.jpg",
+                  "original_info": {
+                    "focus_rects": [
+                      {
+                        "h": 1481,
+                        "w": 2645,
+                        "x": 0,
+                        "y": 384
+                      },
+                      {
+                        "h": 2645,
+                        "w": 2645,
+                        "x": 0,
+                        "y": 0
+                      },
+                      {
+                        "h": 3015,
+                        "w": 2645,
+                        "x": 0,
+                        "y": 0
+                      },
+                      {
+                        "h": 4096,
+                        "w": 2048,
+                        "x": 509,
+                        "y": 0
+                      },
+                      {
+                        "h": 4096,
+                        "w": 2645,
+                        "x": 0,
+                        "y": 0
+                      }
+                    ],
+                    "height": 4096,
+                    "width": 2645
+                  },
+                  "sizes": {
+                    "large": {
+                      "h": 2048,
+                      "w": 1323
+                    }
+                  },
+                  "type": "photo",
+                  "url": "https://t.co/DgGOCu2vAi"
+                }
+              ]
+            },
+            "favorite_count": 286,
+            "favorited": false,
+            "full_text": "I rarely go on podcasts anymore.\n\nBut when @thesamparr invites you to his house... you make an exception.\n\nCan you guess what we talked about? https://t.co/DgGOCu2vAi",
+            "is_quote_status": false,
+            "lang": "en",
+            "possibly_sensitive": false,
+            "possibly_sensitive_editable": true,
+            "quote_count": 2,
+            "reply_count": 67,
+            "retweet_count": 4,
+            "retweeted": false,
+            "user_id_str": "2646428635"
+          },
+          "rest_id": "2024889972705149195",
+          "unmention_data": {
+            "id": "VW5tZW50aW9uczoKAAEcGdqzrFdBCw8AAgoAAAABAAAAACVL8JcA"
+          },
+          "view_count_info": {
+            "count": "46801",
+            "state": "EnabledWithCount"
+          }
+        }
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "2024889972705149195",
+        "url": "https://x.com/thepatwalls/status/2024889972705149195",
+        "twitterUrl": "https://twitter.com/thepatwalls/status/2024889972705149195",
+        "text": "I rarely go on podcasts anymore.\n\nBut when @thesamparr invites you to his house... you make an exception.\n\nCan you guess what we talked about? https://t.co/DgGOCu2vAi",
+        "source": "",
+        "retweetCount": 4,
+        "replyCount": 67,
+        "likeCount": 286,
+        "quoteCount": 2,
+        "viewCount": 46801,
+        "createdAt": "Fri Feb 20 16:52:44 +0000 2026",
+        "lang": "en",
+        "bookmarkCount": 14,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "2024889972705149195",
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "isPinned": false,
+        "author": {
+          "type": "user",
+          "userName": "thepatwalls",
+          "url": "https://x.com/thepatwalls",
+          "twitterUrl": "https://twitter.com/thepatwalls",
+          "id": "2646428635",
+          "name": "Pat Walls",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "profilePicture": "https://pbs.twimg.com/profile_images/1442604184725901312/tbbsFD4-_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/2646428635/1668436978",
+          "description": "",
+          "location": "Florida",
+          "followers": 136823,
+          "following": 1344,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": false,
+          "createdAt": "Mon Jul 14 21:59:57 +0000 2014",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 30457,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 1916,
+          "statusesCount": 12896,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "2025922694332780857"
+          ],
+          "profile_bio": {
+            "description": "https://t.co/zSf5Z2H78P\nhttps://t.co/ryMAyS77qn\nhttps://t.co/Gm6gdHaLgp\n\nOn a mission to inspire 1B people to build stuff!",
+            "entities": {
+              "description": {
+                "hashtags": [],
+                "symbols": [],
+                "urls": [
+                  {
+                    "display_url": "starterstory.com",
+                    "expanded_url": "http://starterstory.com",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/zSf5Z2H78P"
+                  },
+                  {
+                    "display_url": "build.starterstory.com",
+                    "expanded_url": "http://build.starterstory.com",
+                    "indices": [
+                      24,
+                      47
+                    ],
+                    "url": "https://t.co/ryMAyS77qn"
+                  },
+                  {
+                    "display_url": "moat.starterstory.com",
+                    "expanded_url": "http://moat.starterstory.com",
+                    "indices": [
+                      48,
+                      71
+                    ],
+                    "url": "https://t.co/Gm6gdHaLgp"
+                  }
+                ],
+                "user_mentions": []
+              },
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "starterstory.com",
+                    "expanded_url": "https://www.starterstory.com",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/iQTioLFhFt"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {
+          "media": [
+            {
+              "allow_download_status": {
+                "allow_download": true
+              },
+              "display_url": "pic.twitter.com/DgGOCu2vAi",
+              "expanded_url": "https://twitter.com/thepatwalls/status/2024889972705149195/photo/1",
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "features": {
+                "large": {
+                  "faces": [
+                    {
+                      "h": 134,
+                      "w": 134,
+                      "x": 454,
+                      "y": 374
+                    },
+                    {
+                      "h": 148,
+                      "w": 148,
+                      "x": 686,
+                      "y": 394
+                    }
+                  ]
+                },
+                "orig": {
+                  "faces": [
+                    {
+                      "h": 268,
+                      "w": 268,
+                      "x": 908,
+                      "y": 748
+                    },
+                    {
+                      "h": 296,
+                      "w": 296,
+                      "x": 1372,
+                      "y": 788
+                    }
+                  ]
+                }
+              },
+              "id_str": "2024889222809759744",
+              "indices": [
+                143,
+                166
+              ],
+              "media_key": "3_2024889222809759744",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwZ2gUTF7AACgACHBnas6xXQQsAAA==",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAABCgABHBnaBRMXsAAKAAIcGdqzrFdBCwAA",
+                  "media_key": "3_2024889222809759744"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/media/HBnaBRMXsAAW6vB.jpg",
+              "original_info": {
+                "focus_rects": [
+                  {
+                    "h": 1481,
+                    "w": 2645,
+                    "x": 0,
+                    "y": 384
+                  },
+                  {
+                    "h": 2645,
+                    "w": 2645,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 3015,
+                    "w": 2645,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 4096,
+                    "w": 2048,
+                    "x": 509,
+                    "y": 0
+                  },
+                  {
+                    "h": 4096,
+                    "w": 2645,
+                    "x": 0,
+                    "y": 0
+                  }
+                ],
+                "height": 4096,
+                "width": 2645
+              },
+              "sizes": {
+                "large": {
+                  "h": 2048,
+                  "w": 1323
+                }
+              },
+              "type": "photo",
+              "url": "https://t.co/DgGOCu2vAi"
+            }
+          ]
+        },
+        "card": null,
+        "place": {},
+        "entities": {
+          "hashtags": [],
+          "symbols": [],
+          "timestamps": [],
+          "urls": [],
+          "user_mentions": [
+            {
+              "id_str": "625733783",
+              "indices": [
+                43,
+                54
+              ],
+              "name": "Sam Parr",
+              "screen_name": "thesamparr"
+            }
+          ]
+        },
+        "reply_to_user_results": null,
+        "quoted_tweet_results": null,
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isConversationControlled": false
+      },
+      "retweeted_tweet": null,
+      "isConversationControlled": false,
+      "isQuote": true
+    },
+    {
+      "type": "tweet",
+      "id": "2013657077151863122",
+      "url": "https://x.com/thesamparr/status/2013657077151863122",
+      "twitterUrl": "https://twitter.com/thesamparr/status/2013657077151863122",
+      "text": "Marc sold one of his companies for $1b. Now he's a Hampton moderator.\n\nIf you're in Toronto and want to join a core group that he leads...this will chnge your life.",
+      "source": "",
+      "retweetCount": 2,
+      "replyCount": 10,
+      "likeCount": 126,
+      "quoteCount": 0,
+      "viewCount": 39000,
+      "createdAt": "Tue Jan 20 16:57:13 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 29,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2013657077151863122",
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "thesamparr",
+        "url": "https://x.com/thesamparr",
+        "twitterUrl": "https://twitter.com/thesamparr",
+        "id": "625733783",
+        "name": "Sam Parr",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1474048180908175363/b6PCpGwj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/625733783/1770426364",
+        "description": "",
+        "location": "NYC ",
+        "followers": 363326,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jul 03 17:34:01 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 38662,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2612,
+        "statusesCount": 32310,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Started/sold some startups. Founder + president of Hampton @hamptonfounders. Host My First Million podcast on the side.",
+          "entities": {
+            "description": {
+              "hashtags": [],
+              "symbols": [],
+              "urls": [],
+              "user_mentions": [
+                {
+                  "id_str": "0",
+                  "indices": [
+                    59,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "hamptonfounders"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/thesamparr",
+                  "expanded_url": "https://linktr.ee/thesamparr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YkZCGzi7mB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "reply_to_user_results": null,
+      "quoted_tweet_results": {
+        "rest_id": "2013614845753495703",
+        "result": {
+          "__typename": "Tweet",
+          "core": {
+            "user_results": {
+              "rest_id": "14723405",
+              "result": {
+                "__typename": "User",
+                "action_counts": {
+                  "favorites_count": 8023
+                },
+                "avatar": {
+                  "image_url": "https://pbs.twimg.com/profile_images/1414932073593331712/3BjA3dTX_normal.jpg"
+                },
+                "banner": {},
+                "core": {
+                  "created_at": "Sat May 10 10:05:29 +0000 2008",
+                  "name": "Mark Organ",
+                  "screen_name": "markorgan"
+                },
+                "dm_permissions": {
+                  "can_dm": false
+                },
+                "exclusive_tweet_following": false,
+                "follow_request_sent": false,
+                "identity_profile_labels_highlighted_label": {},
+                "location": {
+                  "location": "Toronto"
+                },
+                "media_permissions": {
+                  "can_media_tag": true
+                },
+                "notifications_settings": {
+                  "notifications_enabled": false
+                },
+                "pinned_items": {
+                  "tweet_ids_str": []
+                },
+                "privacy": {
+                  "protected": false,
+                  "suspended": false
+                },
+                "private_super_following": false,
+                "profile_bio": {
+                  "description": "CEO coach, CEO of Categorynauts, former Founder/CEO of Eloqua and Influitive; former PhD candidate in Neuroscience.",
+                  "entities": {
+                    "description": {
+                      "hashtags": [],
+                      "symbols": [],
+                      "urls": [],
+                      "user_mentions": []
+                    },
+                    "url": {
+                      "urls": [
+                        {
+                          "display_url": "Categorynauts.com",
+                          "expanded_url": "https://Categorynauts.com",
+                          "indices": [
+                            0,
+                            23
+                          ],
+                          "url": "https://t.co/bCGCTJfPjP"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "profile_image_shape": "Circle",
+                "profile_metadata": {
+                  "profile_interstitial_type": "",
+                  "profile_link_color": "1DA1F2"
+                },
+                "profile_translation": {
+                  "translator_type_enum": "None"
+                },
+                "properties": {
+                  "has_extended_profile": true
+                },
+                "relationship_counts": {
+                  "followers": 4362,
+                  "following": 1034
+                },
+                "relationship_perspectives": {
+                  "blocked_by": false,
+                  "blocking": false,
+                  "followed_by": false,
+                  "following": false,
+                  "live_following": false,
+                  "muting": false
+                },
+                "rest_id": "14723405",
+                "smart_blocked_by": false,
+                "smart_blocking": false,
+                "super_follow_eligible": false,
+                "super_followed_by": false,
+                "super_following": false,
+                "tweet_counts": {
+                  "media_tweets": 200,
+                  "tweets": 11077
+                },
+                "verification": {
+                  "is_blue_verified": true,
+                  "verified": false
+                },
+                "website": {
+                  "url": "https://t.co/bCGCTJfPjP"
+                }
+              }
+            }
+          },
+          "edit_control": {
+            "__typename": "EditControlInitial",
+            "edit_tweet_ids": [
+              "2013614845753495703"
+            ],
+            "editable_until_msecs": "1768921765000",
+            "edits_remaining": "5",
+            "is_edit_eligible": true
+          },
+          "is_translatable": false,
+          "legacy": {
+            "bookmark_count": 9,
+            "bookmarked": false,
+            "conversation_id_str": "2013614845753495703",
+            "created_at": "Tue Jan 20 14:09:25 +0000 2026",
+            "display_text_range": [
+              0,
+              176
+            ],
+            "entities": {
+              "hashtags": [],
+              "symbols": [],
+              "timestamps": [],
+              "urls": [],
+              "user_mentions": []
+            },
+            "favorite_count": 28,
+            "favorited": false,
+            "full_text": "I am one of the new facilitators for Hampton Toronto. If you want to join my group, please sign up with Sam! I’ve enjoyed being a member and now ready to lead a fabulous forum.",
+            "is_quote_status": true,
+            "lang": "en",
+            "quote_count": 1,
+            "quoted_status_id_str": "1996787368926306731",
+            "quoted_status_permalink": {
+              "display": "x.com/thesamparr/sta…",
+              "expanded": "https://twitter.com/thesamparr/status/1996787368926306731",
+              "url": "https://t.co/tcFQ5D5A1h"
+            },
+            "reply_count": 3,
+            "retweet_count": 2,
+            "retweeted": false,
+            "user_id_str": "14723405"
+          },
+          "quoted_tweet_results": {
+            "rest_id": "1996787368926306731",
+            "result": {
+              "__typename": "Tweet",
+              "rest_id": "1996787368926306731"
+            }
+          },
+          "rest_id": "2013614845753495703",
+          "unmention_data": {
+            "id": "VW5tZW50aW9uczoKAAEb8cwIm5cQlw8AAgoAAAAAAA=="
+          },
+          "view_count_info": {
+            "count": "45908",
+            "state": "EnabledWithCount"
+          }
+        }
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "2013614845753495703",
+        "url": "https://x.com/markorgan/status/2013614845753495703",
+        "twitterUrl": "https://twitter.com/markorgan/status/2013614845753495703",
+        "text": "I am one of the new facilitators for Hampton Toronto. If you want to join my group, please sign up with Sam! I’ve enjoyed being a member and now ready to lead a fabulous forum.",
+        "source": "",
+        "retweetCount": 2,
+        "replyCount": 3,
+        "likeCount": 28,
+        "quoteCount": 1,
+        "viewCount": 45908,
+        "createdAt": "Tue Jan 20 14:09:25 +0000 2026",
+        "lang": "en",
+        "bookmarkCount": 9,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "2013614845753495703",
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "isPinned": false,
+        "author": {
+          "type": "user",
+          "userName": "markorgan",
+          "url": "https://x.com/markorgan",
+          "twitterUrl": "https://twitter.com/markorgan",
+          "id": "14723405",
+          "name": "Mark Organ",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "profilePicture": "https://pbs.twimg.com/profile_images/1414932073593331712/3BjA3dTX_normal.jpg",
+          "coverPicture": "",
+          "description": "",
+          "location": "Toronto",
+          "followers": 4362,
+          "following": 1034,
+          "status": "",
+          "canDm": false,
+          "canMediaTag": true,
+          "createdAt": "Sat May 10 10:05:29 +0000 2008",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 8023,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 200,
+          "statusesCount": 11077,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [],
+          "profile_bio": {
+            "description": "CEO coach, CEO of Categorynauts, former Founder/CEO of Eloqua and Influitive; former PhD candidate in Neuroscience.",
+            "entities": {
+              "description": {
+                "hashtags": [],
+                "symbols": [],
+                "urls": [],
+                "user_mentions": []
+              },
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "Categorynauts.com",
+                    "expanded_url": "https://Categorynauts.com",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/bCGCTJfPjP"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {},
+        "card": null,
+        "place": {},
+        "entities": {
+          "hashtags": [],
+          "symbols": [],
+          "timestamps": [],
+          "urls": [],
+          "user_mentions": []
+        },
+        "reply_to_user_results": null,
+        "quoted_tweet_results": {
+          "rest_id": "1996787368926306731",
+          "result": {
+            "__typename": "Tweet",
+            "rest_id": "1996787368926306731"
+          }
+        },
+        "quoted_tweet": {
+          "type": "tweet",
+          "id": "1996787368926306731",
+          "url": "",
+          "twitterUrl": "",
+          "text": "",
+          "source": "",
+          "retweetCount": 0,
+          "replyCount": 0,
+          "likeCount": 0,
+          "quoteCount": 0,
+          "viewCount": 0,
+          "createdAt": "",
+          "lang": "",
+          "bookmarkCount": 0,
+          "isReply": false,
+          "inReplyToId": null,
+          "conversationId": "",
+          "inReplyToUserId": null,
+          "inReplyToUsername": null,
+          "isPinned": false,
+          "author": {},
+          "extendedEntities": {},
+          "card": null,
+          "place": {},
+          "entities": {},
+          "reply_to_user_results": null,
+          "quoted_tweet_results": null,
+          "quoted_tweet": null,
+          "retweeted_tweet": null,
+          "isConversationControlled": false
+        },
+        "retweeted_tweet": null,
+        "isConversationControlled": false,
+        "isQuote": true
+      },
+      "retweeted_tweet": null,
+      "isConversationControlled": false,
+      "isQuote": true
+    }
+  ]

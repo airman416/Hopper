@@ -117,7 +117,12 @@ export default function SourceFeed({ onRefresh }: { onRefresh?: (platform?: "twi
       return acc;
     }, []);
 
-  const hotkeyOpts = { preventDefault: true, enableOnFormTags: true } as const;
+  const ignoreWhenTyping = (e: KeyboardEvent) => {
+    const tag = (e.target as HTMLElement)?.tagName;
+    return tag === "TEXTAREA" || tag === "INPUT";
+  };
+
+  const hotkeyOpts = { preventDefault: true, enableOnFormTags: true, ignoreEventWhen: ignoreWhenTyping } as const;
 
   useHotkeys("down", () => {
     const fp = focusedPlatformRef.current;

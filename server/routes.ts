@@ -3,8 +3,7 @@ import { createServer, type Server } from "http";
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic({
-  apiKey: process.env.AI_INTEGRATIONS_ANTHROPIC_API_KEY,
-  baseURL: process.env.AI_INTEGRATIONS_ANTHROPIC_BASE_URL,
+  apiKey: process.env.CLAUDE_API_KEY,
 });
 
 export async function registerRoutes(
@@ -177,7 +176,7 @@ export async function registerRoutes(
       };
 
       const message = await anthropic.messages.create({
-        model: "claude-sonnet-4-5",
+        model: "claude-3-haiku-20240307",
         max_tokens: 2048,
         messages: [
           {
@@ -201,7 +200,7 @@ export async function registerRoutes(
       const { content } = req.body;
 
       const message = await anthropic.messages.create({
-        model: "claude-sonnet-4-5",
+        model: "claude-3-haiku-20240307",
         max_tokens: 2048,
         messages: [
           {
@@ -225,7 +224,7 @@ export async function registerRoutes(
       const { content } = req.body;
 
       const message = await anthropic.messages.create({
-        model: "claude-sonnet-4-5",
+        model: "claude-3-haiku-20240307",
         max_tokens: 1024,
         messages: [
           {
@@ -249,7 +248,7 @@ export async function registerRoutes(
       const { content } = req.body;
 
       const message = await anthropic.messages.create({
-        model: "claude-sonnet-4-5",
+        model: "claude-3-haiku-20240307",
         max_tokens: 2048,
         messages: [
           {

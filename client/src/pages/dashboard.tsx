@@ -6,10 +6,11 @@ import SourceFeed from "@/components/source-feed";
 import Workshop from "@/components/workshop";
 import Preview from "@/components/preview";
 import Trash from "@/components/trash";
-import { playApproveSound, playRejectSound, playExportSound } from "@/lib/sounds";
-import { Trash2, Volume2, VolumeX, Keyboard } from "lucide-react";
+import { playApproveSound, playRejectSound } from "@/lib/sounds";
+import { Trash2, Volume2, VolumeX, Keyboard, Undo2, Redo2 } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 
 export default function Dashboard() {
   const {
@@ -26,6 +27,12 @@ export default function Dashboard() {
     isAiLoading,
     setProfilePhoto,
     setPlatformLoading,
+    pushHistory,
+    undo,
+    redo,
+    canUndo,
+    canRedo,
+    triggerExport,
   } = useHopperStore();
 
   const { toast } = useToast();
@@ -37,26 +44,46 @@ export default function Dashboard() {
       d.platform === activeTab &&
       (d.status === "draft" || d.status === "approved"),
   );
-  const approvedDraft = drafts.find(
-    (d) =>
-      d.sourcePostId === selectedPost?.id &&
-      d.platform === activeTab &&
-      d.status === "approved",
-  );
 
   const TABS: PlatformTab[] = ["linkedin", "twitter", "instagram", "newsletter", "quote"];
 
 
-  useHotkeys("l", () => useHopperStore.getState().setActiveTab("linkedin"), { preventDefault: true });
-  useHotkeys("x", () => useHopperStore.getState().setActiveTab("twitter"), { preventDefault: true });
-  useHotkeys("i", () => useHopperStore.getState().setActiveTab("instagram"), { preventDefault: true });
-  useHotkeys("n", () => useHopperStore.getState().setActiveTab("newsletter"), { preventDefault: true });
-  useHotkeys("q", () => useHopperStore.getState().setActiveTab("quote"), { preventDefault: true });
+  const ignoreWhenTyping = (e: KeyboardEvent) => {
+    const tag = (e.target as HTMLElement)?.tagName;
+    return tag === "TEXTAREA" || tag === "INPUT";
+  };
+
+  useHotkeys("l", () => useHopperStore.getState().setActiveTab("linkedin"), { preventDefault: true, ignoreEventWhen: ignoreWhenTyping });
+  useHotkeys("x", () => useHopperStore.getState().setActiveTab("twitter"), { preventDefault: true, ignoreEventWhen: ignoreWhenTyping });
+  useHotkeys("i", () => useHopperStore.getState().setActiveTab("instagram"), { preventDefault: true, ignoreEventWhen: ignoreWhenTyping });
+  useHotkeys("n", () => useHopperStore.getState().setActiveTab("newsletter"), { preventDefault: true, ignoreEventWhen: ignoreWhenTyping });
+  useHotkeys("q", () => useHopperStore.getState().setActiveTab("quote"), { preventDefault: true, ignoreEventWhen: ignoreWhenTyping });
+
+  useHotkeys(
+    "mod+z",
+    () => {
+      if (!canUndo) return;
+      undo();
+    },
+    { preventDefault: true, enableOnFormTags: true },
+    [canUndo, undo],
+  );
+
+  useHotkeys(
+    "mod+shift+z",
+    () => {
+      if (!canRedo) return;
+      redo();
+    },
+    { preventDefault: true, enableOnFormTags: true },
+    [canRedo, redo],
+  );
 
   useHotkeys(
     "g",
     async () => {
       if (!selectedPost || isAiLoading) return;
+      pushHistory();
       setAiLoading(true);
 
       try {
@@ -97,8 +124,8 @@ export default function Dashboard() {
         setAiLoading(false);
       }
     },
-    { preventDefault: true, enabled: !isAiLoading && !!selectedPost },
-    [selectedPost, activeTab, activeDraft, isAiLoading],
+    { preventDefault: true, enabled: !isAiLoading && !!selectedPost, ignoreEventWhen: ignoreWhenTyping },
+    [selectedPost, activeTab, activeDraft, isAiLoading, pushHistory],
   );
 
   // On mount: load from cache only — no API calls
@@ -160,27 +187,29 @@ export default function Dashboard() {
     setPlatformLoading(platform ?? null, false);
   }, [setPlatformLoading, setProfilePhoto, setSourcePosts, setDrafts]);
 
-  useHotkeys("shift+r", refreshFeed, { preventDefault: true });
+  useHotkeys("shift+r", refreshFeed, { preventDefault: true, ignoreEventWhen: ignoreWhenTyping });
 
 
   useHotkeys(
     "a",
     async () => {
       if (!activeDraft?.id) return;
+      pushHistory();
       await db.drafts.update(activeDraft.id, { status: "approved" });
       if (soundEnabled) playApproveSound();
       toast({ title: "Draft approved" });
       const allDrafts = await db.drafts.toArray();
       setDrafts(allDrafts);
     },
-    { preventDefault: true, enabled: !!activeDraft },
-    [activeDraft, soundEnabled],
+    { preventDefault: true, enabled: !!activeDraft, ignoreEventWhen: ignoreWhenTyping },
+    [activeDraft, soundEnabled, pushHistory],
   );
 
   useHotkeys(
     "r",
     async () => {
       if (!activeDraft?.id) return;
+      pushHistory();
       await db.trash.add({
         draftId: activeDraft.id,
         sourcePostId: activeDraft.sourcePostId,
@@ -196,33 +225,23 @@ export default function Dashboard() {
       const allDrafts = await db.drafts.toArray();
       setDrafts(allDrafts);
     },
-    { preventDefault: true, enabled: !!activeDraft },
-    [activeDraft, soundEnabled, sourcePosts],
+    { preventDefault: true, enabled: !!activeDraft, ignoreEventWhen: ignoreWhenTyping },
+    [activeDraft, soundEnabled, sourcePosts, pushHistory],
   );
 
   useHotkeys(
     "mod+enter",
-    async () => {
-      const draftToExport = approvedDraft;
-      if (!draftToExport) return;
-      const content = draftToExport.content;
-      if (activeTab === "linkedin") {
-        const formatted = content.replace(/\n\n/g, "\n\u200B\n");
-        await navigator.clipboard.writeText(formatted);
-      } else {
-        await navigator.clipboard.writeText(content);
-      }
-      if (soundEnabled) playExportSound();
-      toast({ title: "Exported to clipboard" });
+    () => {
+      useHopperStore.getState().triggerExport?.();
     },
-    { preventDefault: true, enabled: !!approvedDraft },
-    [approvedDraft, activeTab, soundEnabled],
+    { preventDefault: true, enableOnFormTags: true },
   );
 
   useHotkeys(
     "p",
     async () => {
       if (!activeDraft || isAiLoading) return;
+      pushHistory();
       setAiLoading(true);
       try {
         const res = await apiRequest("POST", "/api/ai/punchier", {
@@ -241,8 +260,8 @@ export default function Dashboard() {
         setAiLoading(false);
       }
     },
-    { preventDefault: true, enabled: !!activeDraft && !isAiLoading },
-    [activeDraft, isAiLoading],
+    { preventDefault: true, enabled: !!activeDraft && !isAiLoading, ignoreEventWhen: ignoreWhenTyping },
+    [activeDraft, isAiLoading, pushHistory],
   );
 
   useHotkeys(
@@ -262,7 +281,7 @@ export default function Dashboard() {
         setAiLoading(false);
       }
     },
-    { preventDefault: true, enabled: !!activeDraft && !isAiLoading },
+    { preventDefault: true, enabled: !!activeDraft && !isAiLoading, ignoreEventWhen: ignoreWhenTyping },
     [activeDraft, isAiLoading],
   );
 
@@ -270,6 +289,7 @@ export default function Dashboard() {
     "s",
     async () => {
       if (!activeDraft || isAiLoading) return;
+      pushHistory();
       setAiLoading(true);
       try {
         const res = await apiRequest("POST", "/api/ai/shaan", {
@@ -288,8 +308,8 @@ export default function Dashboard() {
         setAiLoading(false);
       }
     },
-    { preventDefault: true, enabled: !!activeDraft && !isAiLoading },
-    [activeDraft, isAiLoading],
+    { preventDefault: true, enabled: !!activeDraft && !isAiLoading, ignoreEventWhen: ignoreWhenTyping },
+    [activeDraft, isAiLoading, pushHistory],
   );
 
   return (
@@ -304,6 +324,28 @@ export default function Dashboard() {
           </span>
         </div>
         <div className="flex items-center gap-2">
+          <div className="flex items-center">
+            <button
+              data-testid="button-undo"
+              onClick={() => undo()}
+              disabled={!canUndo}
+              className="inline-flex items-center justify-center h-7 w-7 text-[#999] bg-[#FAFAFA] border border-[#E5E5E5] border-r-0 transition-colors hover-elevate disabled:opacity-30 disabled:cursor-not-allowed disabled:shadow-none"
+              style={{ borderRadius: "3px 0 0 3px" }}
+              title="Undo (⌘Z)"
+            >
+              <Undo2 className="w-3.5 h-3.5" />
+            </button>
+            <button
+              data-testid="button-redo"
+              onClick={() => redo()}
+              disabled={!canRedo}
+              className="inline-flex items-center justify-center h-7 w-7 text-[#999] bg-[#FAFAFA] border border-[#E5E5E5] transition-colors hover-elevate disabled:opacity-30 disabled:cursor-not-allowed disabled:shadow-none"
+              style={{ borderRadius: "0 3px 3px 0" }}
+              title="Redo (⌘⇧Z)"
+            >
+              <Redo2 className="w-3.5 h-3.5" />
+            </button>
+          </div>
           <button
             data-testid="button-shortcuts-help"
             className="inline-flex items-center gap-1.5 h-7 px-2.5 text-[11px] font-medium text-[#999] bg-[#FAFAFA] border border-[#E5E5E5] transition-colors hover-elevate"
@@ -337,17 +379,19 @@ export default function Dashboard() {
         </div>
       </header>
 
-      <div className="flex-1 flex min-h-0">
-        <div className="w-[280px] border-r border-[#E5E5E5] flex-shrink-0">
+      <ResizablePanelGroup direction="horizontal" className="flex-1 min-h-0">
+        <ResizablePanel defaultSize={22} minSize={15} maxSize={40}>
           <SourceFeed onRefresh={refreshFeed} />
-        </div>
-        <div className="flex-1 min-w-0">
+        </ResizablePanel>
+        <ResizableHandle className="w-px bg-[#E5E5E5] hover:bg-[#111827] transition-colors duration-150" />
+        <ResizablePanel defaultSize={38} minSize={25}>
           <Workshop />
-        </div>
-        <div className="w-[380px] border-l border-[#E5E5E5] flex-shrink-0">
+        </ResizablePanel>
+        <ResizableHandle className="w-px bg-[#E5E5E5] hover:bg-[#111827] transition-colors duration-150" />
+        <ResizablePanel defaultSize={40} minSize={25} maxSize={55}>
           <Preview />
-        </div>
-      </div>
+        </ResizablePanel>
+      </ResizablePanelGroup>
 
       <Trash />
     </div>
