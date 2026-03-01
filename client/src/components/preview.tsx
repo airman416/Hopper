@@ -1262,7 +1262,7 @@ export default function Preview() {
               onClick={handleDownloadImage}
               disabled={isExporting}
               className="inline-flex items-center gap-1.5 h-7 px-2.5 text-[11px] font-medium text-white border transition-colors disabled:opacity-50"
-              style={{ borderRadius: "3px", backgroundColor: "#FF4F00", borderColor: "#FF4F00" }}
+              style={{ borderRadius: "3px", backgroundColor: "hsl(var(--primary))", borderColor: "hsl(var(--primary))" }}
             >
               {isExporting ? <Loader2 className="w-3 h-3 animate-spin" /> : <Download className="w-3 h-3" />}
               Export

@@ -561,8 +561,8 @@ export default function Workshop() {
               className="inline-flex items-center gap-1.5 h-7 px-4 text-[12px] font-semibold text-white border transition-colors"
               style={{
                 borderRadius: "3px",
-                backgroundColor: "#FF4F00",
-                borderColor: "#FF4F00",
+                backgroundColor: "hsl(var(--primary))",
+                borderColor: "hsl(var(--primary))",
               }}
             >
               <Download className="w-3 h-3" />
