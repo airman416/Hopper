@@ -18,6 +18,7 @@ import { toPng } from "html-to-image";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { useToast } from "@/hooks/use-toast";
+import { proxyImageUrl, fetchImageAsDataUrl } from "@/lib/api";
 
 const FONTS = [
   "Inter",
@@ -157,26 +158,11 @@ async function drawSlideToBlob(
 }
 
 function proxyPhotoUrl(url: string | null): string | null {
-  if (!url) return null;
-  // Relative paths (e.g. /ig-profile.jpg) are served by the app; don't proxy them
-  if (url.startsWith("/")) return url;
-  return `/api/proxy/image?url=${encodeURIComponent(url)}`;
+  return proxyImageUrl(url);
 }
 
 async function imageUrlToBase64(url: string): Promise<string | null> {
-  try {
-    const proxied = url.startsWith("/") ? url : `/api/proxy/image?url=${encodeURIComponent(url)}`;
-    const response = await fetch(proxied);
-    const blob = await response.blob();
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result as string);
-      reader.onerror = () => resolve(null);
-      reader.readAsDataURL(blob);
-    });
-  } catch {
-    return null;
-  }
+  return fetchImageAsDataUrl(url);
 }
 
 function formatContentWithLinks(text: string, linkColor: string) {
@@ -285,7 +271,7 @@ function MockTwitterCard({
           <div style={{ marginTop: "12px" }}>
             {mediaUrls.length === 1 ? (
               <img
-                src={`/api/proxy/image?url=${encodeURIComponent(mediaUrls[0])}`}
+                src={proxyImageUrl(mediaUrls[0]) ?? ""}
                 alt=""
                 style={{
                   width: "100%",
@@ -310,7 +296,7 @@ function MockTwitterCard({
                 {mediaUrls.slice(0, 4).map((url, i) => (
                   <img
                     key={i}
-                    src={`/api/proxy/image?url=${encodeURIComponent(url)}`}
+                    src={proxyImageUrl(url) ?? ""}
                     alt=""
                     style={{
                       width: "100%",
@@ -456,7 +442,7 @@ function MockLinkedInCard({
         <div style={{ padding: "0 16px 12px" }}>
           {mediaUrls.length === 1 ? (
             <img
-              src={`/api/proxy/image?url=${encodeURIComponent(mediaUrls[0])}`}
+              src={proxyImageUrl(mediaUrls[0]) ?? ""}
               alt=""
               style={{
                 width: "100%",
@@ -481,7 +467,7 @@ function MockLinkedInCard({
               {mediaUrls.slice(0, 4).map((url, i) => (
                 <img
                   key={i}
-                  src={`/api/proxy/image?url=${encodeURIComponent(url)}`}
+                  src={proxyImageUrl(url) ?? ""}
                   alt=""
                   style={{
                     width: "100%",
@@ -1157,7 +1143,7 @@ export default function Preview() {
               <div className="rounded-lg overflow-hidden border border-[#E5E5E5]">
                 {mediaUrls.length === 1 ? (
                   <img
-                    src={`/api/proxy/image?url=${encodeURIComponent(mediaUrls[0])}`}
+                    src={proxyImageUrl(mediaUrls[0]) ?? ""}
                     alt=""
                     className="w-full block object-cover max-h-[400px]"
                   />
@@ -1173,7 +1159,7 @@ export default function Preview() {
                     {mediaUrls.slice(0, 4).map((url, i) => (
                       <img
                         key={i}
-                        src={`/api/proxy/image?url=${encodeURIComponent(url)}`}
+                        src={proxyImageUrl(url) ?? ""}
                         alt=""
                         className="w-full h-full object-cover block"
                         style={{

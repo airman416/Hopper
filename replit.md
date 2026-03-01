@@ -4,15 +4,15 @@
 A high-performance content repurposing tool that ingests live social media posts (X, LinkedIn, Instagram) via Apify and LinkdAPI APIs, then uses Claude AI to rewrite them for different platforms (LinkedIn, Twitter/X, Instagram Carousel, Newsletter, Quote). Features an Asset Generation Engine for image export.
 
 ## Architecture
-- **Frontend**: React + Vite + Tailwind CSS + Zustand (state) + Dexie.js (IndexedDB local storage)
-- **Backend**: Express.js - proxy for Anthropic AI + social media API calls (Apify, LinkdAPI)
-- **AI**: Anthropic Claude via Replit AI Integrations (env vars: AI_INTEGRATIONS_ANTHROPIC_API_KEY, AI_INTEGRATIONS_ANTHROPIC_BASE_URL)
-- **Storage**: Client-side IndexedDB via Dexie.js (no PostgreSQL used)
-- **APIs**: APIFY_API_KEY (X + Instagram scraping), LINKEDAPI_API_KEY (LinkedIn posts)
+- **Frontend-only**: React + Vite + Tailwind CSS + Zustand (state) + Dexie.js (IndexedDB)
+- **Client-side requests**: All API calls run in the browser via CORS proxy (corsproxy.io) and image proxy (wsrv.nl)
+- **AI**: Anthropic Claude — direct fetch from client (user adds API key in Settings)
+- **Storage**: IndexedDB (Dexie.js) + localStorage (API keys, feed cache 5min TTL)
+- **APIs**: Add keys in Settings (or VITE_* env at build). Apify (X + IG), LinkdAPI (LinkedIn), Claude (AI)
 
 ## Key Features
 - Three-column dashboard (Source Feed, Workshop, Preview/Asset Engine)
-- Live feed ingestion from X, LinkedIn, Instagram via backend proxy routes
+- Live feed ingestion from X, LinkedIn, Instagram via client-side fetch + CORS proxy
 - Keyboard-first navigation (J/K navigate, A approve, R reject, P punchier, H hater, S shaan, Cmd+Enter export)
 - Flesch-Kincaid readability scoring + "Anti-AI" human score
 - AI micro-tools: Make Punchier, Hater Simulator, Shaan Puri toggle
@@ -34,12 +34,10 @@ client/src/
   components/preview.tsx     - Column 3: Asset Generation Engine with export controls
   components/trash.tsx       - Modal for rejected drafts (renamed from swipe-file)
   lib/db.ts                  - Dexie.js database + live feed ingestion + mock fallback
+  lib/api.ts                 - Client-side API: feeds (Apify, LinkdAPI), AI (Anthropic), image proxy, caching
   lib/store.ts               - Zustand state (profilePhoto, asset settings, feed loading)
   lib/readability.ts         - Flesch-Kincaid + Anti-AI scoring
   lib/sounds.ts              - Web Audio API sound effects
-server/
-  routes.ts                  - AI proxy endpoints (/api/ai/*) + feed proxy (/api/feed/twitter, /api/feed/linkedin, /api/feed/instagram)
-  storage.ts                 - Empty (no server storage needed)
 shared/
   schema.ts                  - Zod schemas for data types
 ```

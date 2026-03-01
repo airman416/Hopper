@@ -1,7 +1,7 @@
 import { useEffect, useCallback } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useHopperStore, type PlatformTab } from "@/lib/store";
-import { db, seedMockData, loadLiveFeed, type Draft } from "@/lib/db";
+import { db, loadLiveFeed, type Draft } from "@/lib/db";
 import SourceFeed from "@/components/source-feed";
 import Workshop from "@/components/workshop";
 import Preview from "@/components/preview";
@@ -9,7 +9,7 @@ import Trash from "@/components/trash";
 import Settings from "@/components/settings";
 import { playApproveSound, playRejectSound } from "@/lib/sounds";
 import { Trash2, Volume2, VolumeX, Keyboard, Undo2, Redo2, Settings as SettingsIcon } from "lucide-react";
-import { apiRequest } from "@/lib/queryClient";
+import { aiGenerate, aiPunchier, aiHater, aiShaan } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 
@@ -89,12 +89,11 @@ export default function Dashboard() {
       setAiLoading(true);
 
       try {
-        const res = await apiRequest("POST", "/api/ai/generate", {
-          content: activeDraft?.content || selectedPost.content,
-          platform: activeTab,
-          sourceContent: selectedPost.content,
-        });
-        const data = await res.json();
+        const data = await aiGenerate(
+          activeDraft?.content || selectedPost.content,
+          activeTab,
+          selectedPost.content
+        );
 
         const newDraft: Draft = {
           sourcePostId: selectedPost.id!,
@@ -132,8 +131,6 @@ export default function Dashboard() {
 
   // On mount: load from cache only — no API calls
   const loadFromCache = useCallback(async () => {
-    // Seed mock data only for platforms with zero posts (first-run experience)
-    await seedMockData();
     const posts = await db.sourcePosts.orderBy("timestamp").reverse().toArray();
     setSourcePosts(posts);
     const allDrafts = await db.drafts.toArray();
@@ -149,7 +146,7 @@ export default function Dashboard() {
     setPlatformLoading(platform ?? null, true);
 
     try {
-      const { posts: livePosts, profilePhoto } = await loadLiveFeed(platform);
+      const { posts: livePosts, profilePhoto } = await loadLiveFeed(platform, true);
 
       if (livePosts.length > 0) {
         if (platform) {
@@ -171,12 +168,13 @@ export default function Dashboard() {
           setProfilePhoto(profilePhoto);
         }
       }
-
-      // Seed mock data for any platform that still has no posts
-      await seedMockData(platform ? [platform] : ["twitter", "linkedin", "instagram"]);
     } catch (e) {
-      console.error("Live feed failed, using mock data:", e);
-      await seedMockData(platform ? [platform] : ["twitter", "linkedin", "instagram"]);
+      console.error("Live feed failed:", e);
+      toast({
+        title: "Feed refresh failed",
+        description: e instanceof Error ? e.message : "Could not load posts. Check Settings for API keys.",
+        variant: "destructive",
+      });
     }
 
     const posts = await db.sourcePosts
@@ -189,7 +187,7 @@ export default function Dashboard() {
     setPlatformLoading(platform ?? null, false);
   }, [setPlatformLoading, setProfilePhoto, setSourcePosts, setDrafts]);
 
-  useHotkeys("shift+r", refreshFeed, { preventDefault: true, ignoreEventWhen: ignoreWhenTyping });
+  useHotkeys("shift+r", () => refreshFeed(), { preventDefault: true, ignoreEventWhen: ignoreWhenTyping });
 
 
   useHotkeys(
@@ -246,10 +244,7 @@ export default function Dashboard() {
       pushHistory();
       setAiLoading(true);
       try {
-        const res = await apiRequest("POST", "/api/ai/punchier", {
-          content: activeDraft.content,
-        });
-        const data = await res.json();
+        const data = await aiPunchier(activeDraft.content);
         if (activeDraft.id) {
           await db.drafts.update(activeDraft.id, {
             content: data.content,
@@ -272,10 +267,7 @@ export default function Dashboard() {
       if (!activeDraft || isAiLoading) return;
       setAiLoading(true);
       try {
-        const res = await apiRequest("POST", "/api/ai/hater", {
-          content: activeDraft.content,
-        });
-        const data = await res.json();
+        const data = await aiHater(activeDraft.content);
         useHopperStore.getState().setHaterTooltip(data.content);
         setTimeout(() => useHopperStore.getState().setHaterTooltip(null), 12000);
       } catch {
@@ -294,10 +286,7 @@ export default function Dashboard() {
       pushHistory();
       setAiLoading(true);
       try {
-        const res = await apiRequest("POST", "/api/ai/shaan", {
-          content: activeDraft.content,
-        });
-        const data = await res.json();
+        const data = await aiShaan(activeDraft.content);
         if (activeDraft.id) {
           await db.drafts.update(activeDraft.id, {
             content: data.content,

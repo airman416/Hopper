@@ -1,4 +1,5 @@
 import { useHopperStore } from "@/lib/store";
+import { proxyImageUrl } from "@/lib/api";
 import type { SourcePost } from "@/lib/db";
 import { formatDistanceToNow } from "date-fns";
 import { ChevronDown, ChevronRight, Loader2, RefreshCw } from "lucide-react";
@@ -54,7 +55,7 @@ function PostCard({
             const photo = post.profilePhoto || platformDefaultPhotos[post.platform] || null;
             return photo ? (
               <img
-                src={photo.startsWith("/") ? photo : `/api/proxy/image?url=${encodeURIComponent(photo)}`}
+                src={proxyImageUrl(photo) ?? photo}
                 alt={post.author}
                 className="w-4 h-4 rounded-full object-cover flex-shrink-0"
               />
@@ -275,13 +276,13 @@ export default function SourceFeed({ onRefresh }: { onRefresh?: (platform?: "twi
         </div>
       </div>
       <div className="flex-1 overflow-y-auto p-3 space-y-2">
-        {sourcePosts.length === 0 && !Object.values(feedLoadingPlatforms).some(Boolean) ? (
-          <div className="flex items-center justify-center h-32 text-[13px] text-[#999]">
-            No posts loaded
-          </div>
-        ) : (
-          <div className="space-y-2">
-            {PLATFORMS.map((platform) => {
+        {sourcePosts.length === 0 && !Object.values(feedLoadingPlatforms).some(Boolean) && (
+          <p className="text-[12px] text-[#999] mb-2 px-2">
+            No posts loaded. Use the refresh button next to each platform to fetch posts.
+          </p>
+        )}
+        <div className="space-y-2">
+          {PLATFORMS.map((platform) => {
               const posts = groupedPosts[platform] || [];
               const isLoading = (feedLoadingPlatforms[platform] ?? false) && posts.length === 0;
               
@@ -360,8 +361,7 @@ export default function SourceFeed({ onRefresh }: { onRefresh?: (platform?: "twi
                 </div>
               );
             })}
-          </div>
-        )}
+        </div>
       </div>
       <div className="px-4 py-2 border-t border-[#E5E5E5] bg-white">
         <div className="flex items-center justify-between">

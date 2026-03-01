@@ -1,4 +1,9 @@
 import Dexie, { type Table } from "dexie";
+import {
+  fetchTwitterFeed,
+  fetchLinkedInFeed,
+  fetchInstagramFeed,
+} from "./api";
 
 export interface SourcePost {
   id?: number;
@@ -90,7 +95,10 @@ class HopperDB extends Dexie {
 
 export const db = new HopperDB();
 
-export async function loadLiveFeed(platform?: "twitter" | "linkedin" | "instagram"): Promise<{
+export async function loadLiveFeed(
+  platform?: "twitter" | "linkedin" | "instagram",
+  bypassCache = false
+): Promise<{
   posts: SourcePost[];
   profilePhoto: string | null;
 }> {
@@ -99,11 +107,9 @@ export async function loadLiveFeed(platform?: "twitter" | "linkedin" | "instagra
 
   if (!platform || platform === "twitter") {
     try {
-      const twitterRes = await fetch("/api/feed/twitter");
-      if (twitterRes.ok) {
-        const tweets = await twitterRes.json();
-        if (Array.isArray(tweets)) {
-          for (const tweet of tweets.slice(0, 10)) {
+      const tweets = await fetchTwitterFeed(bypassCache);
+      if (Array.isArray(tweets)) {
+        for (const tweet of tweets.slice(0, 10)) {
             const rawText = tweet.full_text || tweet.text || tweet.tweet_text || "";
             if (!rawText) continue;
             const photo = tweet.author?.profilePicture || tweet.author_profile_image_url || tweet.profile_image_url || tweet.user?.profile_image_url_https;
@@ -146,7 +152,6 @@ export async function loadLiveFeed(platform?: "twitter" | "linkedin" | "instagra
               },
               mediaUrls: mediaUrls.length > 0 ? mediaUrls : undefined,
             });
-          }
         }
       }
     } catch (e) {
@@ -156,11 +161,9 @@ export async function loadLiveFeed(platform?: "twitter" | "linkedin" | "instagra
 
   if (!platform || platform === "linkedin") {
     try {
-      const linkedinRes = await fetch("/api/feed/linkedin");
-      if (linkedinRes.ok) {
-        const data = await linkedinRes.json();
-        // Response shape: { success, data: { cursor, posts: [...] } }
-        const posts = Array.isArray(data) ? data : (data.data?.posts || data.posts || []);
+      const data = await fetchLinkedInFeed(bypassCache);
+      // Response shape: { success, data: { cursor, posts: [...] } }
+      const posts = Array.isArray(data) ? data : (data.data?.posts || data.posts || []);
         for (const post of posts) {
           const text = post.text || post.commentary || post.content || "";
           if (!text) continue;
@@ -191,7 +194,6 @@ export async function loadLiveFeed(platform?: "twitter" | "linkedin" | "instagra
             mediaUrls: mediaUrls.length > 0 ? mediaUrls : undefined,
           });
         }
-      }
     } catch (e) {
       console.error("LinkedIn feed error:", e);
     }
@@ -199,10 +201,8 @@ export async function loadLiveFeed(platform?: "twitter" | "linkedin" | "instagra
 
   if (!platform || platform === "instagram") {
     try {
-      const igRes = await fetch("/api/feed/instagram");
-      if (igRes.ok) {
-        const igPosts = await igRes.json();
-        if (Array.isArray(igPosts)) {
+      const igPosts = await fetchInstagramFeed(bypassCache);
+      if (Array.isArray(igPosts)) {
           for (const post of igPosts.slice(0, 10)) {
             const text = post.caption || post.text || "";
             if (!text) continue;
@@ -235,7 +235,6 @@ export async function loadLiveFeed(platform?: "twitter" | "linkedin" | "instagra
                 shares: 0,
               },
             });
-          }
         }
       }
     } catch (e) {
@@ -248,77 +247,4 @@ export async function loadLiveFeed(platform?: "twitter" | "linkedin" | "instagra
   );
 
   return { posts: allPosts, profilePhoto };
-}
-
-export async function seedMockData(platforms?: Array<"twitter" | "linkedin" | "instagram">) {
-  const targetPlatforms = platforms ?? ["twitter", "linkedin", "instagram"];
-  const existingByPlatform = await Promise.all(
-    targetPlatforms.map(async (p) => ({
-      platform: p,
-      count: await db.sourcePosts.where("platform").equals(p).count(),
-    }))
-  );
-  const platformsToSeed = existingByPlatform.filter((e) => e.count === 0).map((e) => e.platform);
-  if (platformsToSeed.length === 0) return;
-
-  const now = new Date();
-  const posts: SourcePost[] = [
-    {
-      platform: "twitter",
-      content: "The best founders I know don't pitch their product.\n\nThey describe the problem so clearly that the listener sells themselves on the solution.\n\nStop selling. Start storytelling.",
-      author: "Sam Parr",
-      authorHandle: "thesamparr",
-      profilePhoto: "/x-profile.jpg",
-      timestamp: new Date(now.getTime() - 1000 * 60 * 60 * 2).toISOString(),
-      metrics: { likes: 2847, comments: 143, shares: 892 },
-    },
-    {
-      platform: "linkedin",
-      content: "I spent 6 months building a feature nobody asked for.\n\nThe result? Zero adoption.\n\nThen I spent 2 weeks talking to customers. Built exactly what they described in their own words.\n\nResult: 40% adoption in the first week.\n\nThe lesson isn't \"talk to customers.\" Everyone says that.\n\nThe real lesson: Your job isn't to be creative. Your job is to be a translator.\n\nTranslate pain into product. That's it.",
-      author: "Sam Parr",
-      authorHandle: "thesamparr",
-      profilePhoto: "/linkedin-profile.jpeg",
-      timestamp: new Date(now.getTime() - 1000 * 60 * 60 * 24).toISOString(),
-      metrics: { likes: 12840, comments: 567, shares: 2100 },
-    },
-    {
-      platform: "twitter",
-      content: "Unpopular opinion: Most SaaS pricing pages are optimized for the company, not the customer.\n\nIf I have to schedule a call to learn your price, I'm already looking at your competitor.",
-      author: "Sam Parr",
-      authorHandle: "thesamparr",
-      profilePhoto: "/x-profile.jpg",
-      timestamp: new Date(now.getTime() - 1000 * 60 * 60 * 24 * 2).toISOString(),
-      metrics: { likes: 5621, comments: 387, shares: 1243 },
-    },
-    {
-      platform: "linkedin",
-      content: "The 3 skills that made me a better leader than any MBA:\n\n1. Writing clearly - if you can't write it, you can't think it\n2. Saying no - the best strategy is knowing what you won't do\n3. Hiring slow - one great person beats three good ones\n\nNone of these were taught in school. All of them were learned through expensive mistakes.",
-      author: "Sam Parr",
-      authorHandle: "thesamparr",
-      profilePhoto: "/linkedin-profile.jpeg",
-      timestamp: new Date(now.getTime() - 1000 * 60 * 60 * 24 * 3).toISOString(),
-      metrics: { likes: 8934, comments: 423, shares: 1567 },
-    },
-    {
-      platform: "twitter",
-      content: "Your startup doesn't have a marketing problem.\n\nIt has a clarity problem.\n\nIf a 12-year-old can't explain what you do after visiting your homepage, rewrite it.",
-      author: "Sam Parr",
-      authorHandle: "thesamparr",
-      profilePhoto: "/x-profile.jpg",
-      timestamp: new Date(now.getTime() - 1000 * 60 * 60 * 24 * 5).toISOString(),
-      metrics: { likes: 9102, comments: 412, shares: 2890 },
-    },
-    {
-      platform: "instagram",
-      content: "Build in public they said.\n\nSo I shared my revenue numbers, my failures, my process.\n\nThe result wasn't more customers. It was better customers.\n\nPeople who already trusted the way I think before they ever bought.",
-      author: "Sam Parr",
-      authorHandle: "thesamparr",
-      profilePhoto: "/ig-profile.jpg",
-      timestamp: new Date(now.getTime() - 1000 * 60 * 60 * 24 * 7).toISOString(),
-      metrics: { likes: 4231, comments: 198, shares: 876 },
-    },
-  ];
-
-  const postsToSeed = posts.filter((p) => platformsToSeed.includes(p.platform));
-  await db.sourcePosts.bulkAdd(postsToSeed);
 }

@@ -1,33 +1,10 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
-import { getClaudeApiKey } from "./apiKey";
 
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
     const text = (await res.text()) || res.statusText;
     throw new Error(`${res.status}: ${text}`);
   }
-}
-
-export async function apiRequest(
-  method: string,
-  url: string,
-  data?: unknown | undefined,
-): Promise<Response> {
-  const headers: Record<string, string> = data ? { "Content-Type": "application/json" } : {};
-  const apiKey = getClaudeApiKey();
-  if (apiKey && url.includes("/api/ai/")) {
-    headers["X-Claude-Api-Key"] = apiKey;
-  }
-
-  const res = await fetch(url, {
-    method,
-    headers,
-    body: data ? JSON.stringify(data) : undefined,
-    credentials: "include",
-  });
-
-  await throwIfResNotOk(res);
-  return res;
 }
 
 type UnauthorizedBehavior = "returnNull" | "throw";

@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import { useHopperStore } from "@/lib/store";
 import { setClaudeApiKey, deleteClaudeApiKey, hasClaudeApiKey } from "@/lib/apiKey";
+import {
+  setApifyKey,
+  setLinkedApiKey,
+  getApifyKey,
+  getLinkedApiKey,
+} from "@/lib/api";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Input } from "@/components/ui/input";
@@ -9,6 +15,8 @@ import { useToast } from "@/hooks/use-toast";
 export default function Settings() {
   const { showSettings, setShowSettings } = useHopperStore();
   const [apiKeyInput, setApiKeyInput] = useState("");
+  const [apifyInput, setApifyInput] = useState("");
+  const [linkedInput, setLinkedInput] = useState("");
   const [hasKey, setHasKey] = useState(false);
   const { toast } = useToast();
 
@@ -73,6 +81,72 @@ export default function Settings() {
           </div>
 
           <div className="px-5 py-4 space-y-4">
+            <div>
+              <label className="text-[12px] font-medium text-[#666] block mb-1.5">
+                Apify API Key
+              </label>
+              <p className="text-[11px] text-[#999] mb-2">
+                For Twitter & Instagram feed. Stored locally.
+              </p>
+              <div className="flex gap-2">
+                <Input
+                  type="password"
+                  placeholder="apify_api_..."
+                  value={apifyInput}
+                  onChange={(e) => setApifyInput(e.target.value)}
+                  className="flex-1 font-mono text-[13px]"
+                />
+                <button
+                  onClick={() => {
+                    if (apifyInput.trim()) {
+                      setApifyKey(apifyInput.trim());
+                      setApifyInput("");
+                      toast({ title: "Apify key saved" });
+                    }
+                  }}
+                  className="h-9 px-3 text-[11px] font-medium text-white bg-[#111827] hover:bg-[#1f2937] border border-[#111827]"
+                  style={{ borderRadius: "3px" }}
+                >
+                  Save
+                </button>
+              </div>
+              {getApifyKey() && (
+                <p className="text-[11px] text-green-600 mt-1">Configured</p>
+              )}
+            </div>
+            <div>
+              <label className="text-[12px] font-medium text-[#666] block mb-1.5">
+                LinkdAPI Key
+              </label>
+              <p className="text-[11px] text-[#999] mb-2">
+                For LinkedIn feed. Stored locally.
+              </p>
+              <div className="flex gap-2">
+                <Input
+                  type="password"
+                  placeholder="li-..."
+                  value={linkedInput}
+                  onChange={(e) => setLinkedInput(e.target.value)}
+                  className="flex-1 font-mono text-[13px]"
+                />
+                <button
+                  onClick={() => {
+                    if (linkedInput.trim()) {
+                      setLinkedApiKey(linkedInput.trim());
+                      setLinkedInput("");
+                      toast({ title: "LinkdAPI key saved" });
+                    }
+                  }}
+                  className="h-9 px-3 text-[11px] font-medium text-white bg-[#111827] hover:bg-[#1f2937] border border-[#111827]"
+                  style={{ borderRadius: "3px" }}
+                >
+                  Save
+                </button>
+              </div>
+              {getLinkedApiKey() && (
+                <p className="text-[11px] text-green-600 mt-1">Configured</p>
+              )}
+            </div>
             <div>
               <label className="text-[12px] font-medium text-[#666] block mb-1.5">
                 Claude API Key

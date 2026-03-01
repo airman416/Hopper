@@ -8,7 +8,7 @@ import {
   getReadabilityBg,
 } from "@/lib/readability";
 import { playRejectSound } from "@/lib/sounds";
-import { apiRequest } from "@/lib/queryClient";
+import { aiGenerate, aiPunchier, aiHater, aiShaan } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -110,12 +110,11 @@ export default function Workshop() {
     setAiLoading(true);
 
     try {
-      const res = await apiRequest("POST", "/api/ai/generate", {
-        content: draftContent || selectedPost.content,
-        platform: activeTab,
-        sourceContent: selectedPost.content,
-      });
-      const data = await res.json();
+      const data = await aiGenerate(
+        draftContent || selectedPost.content,
+        activeTab,
+        selectedPost.content
+      );
 
       const newDraft: Draft = {
         sourcePostId: selectedPost.id!,
@@ -153,10 +152,7 @@ export default function Workshop() {
     pushHistory();
     setAiLoading(true);
     try {
-      const res = await apiRequest("POST", "/api/ai/punchier", {
-        content: draftContent,
-      });
-      const data = await res.json();
+      const data = await aiPunchier(draftContent);
       if (activeDraft?.id) {
         await db.drafts.update(activeDraft.id, {
           content: data.content,
@@ -179,10 +175,7 @@ export default function Workshop() {
     if (!draftContent || isAiLoading) return;
     setAiLoading(true);
     try {
-      const res = await apiRequest("POST", "/api/ai/hater", {
-        content: draftContent,
-      });
-      const data = await res.json();
+      const data = await aiHater(draftContent);
       setHaterTooltip(data.content);
       setTimeout(() => setHaterTooltip(null), 12000);
     } catch (error: any) {
@@ -202,10 +195,7 @@ export default function Workshop() {
     toggleShaanMode();
     setAiLoading(true);
     try {
-      const res = await apiRequest("POST", "/api/ai/shaan", {
-        content: draftContent,
-      });
-      const data = await res.json();
+      const data = await aiShaan(draftContent);
       if (activeDraft?.id) {
         await db.drafts.update(activeDraft.id, {
           content: data.content,
