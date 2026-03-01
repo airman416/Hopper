@@ -748,17 +748,26 @@ export default function Preview() {
 
   const isAssetMode = activeTab === "quote" || activeTab === "instagram";
 
-  // For mockups: prefer source post photo, fall back to profile photo
+  // For mockups: prefer source post photo, fall back to profile photo.
+  // LinkedIn: always use locally saved profile picture (no external API fetch).
+  const LINKEDIN_LOCAL_PROFILE = "/linkedin-profile.jpeg";
   const effectivePhoto = showMockup
-    ? (selectedPost?.profilePhoto || profilePhoto || null)
+    ? (activeTab === "linkedin"
+        ? LINKEDIN_LOCAL_PROFILE
+        : (selectedPost?.profilePhoto || profilePhoto || null))
     : (selectedPost?.profilePhoto || profilePhoto || null);
 
   useEffect(() => {
     if (showMockup && effectivePhoto && effectivePhoto !== lastConvertedPhoto) {
       setLastConvertedPhoto(effectivePhoto);
-      imageUrlToBase64(effectivePhoto).then((base64) => {
-        setMockupProfileBase64(base64);
-      });
+      // Local paths (e.g. /linkedin-profile.jpeg) can be used directly as img src — no fetch
+      if (effectivePhoto.startsWith("/") || effectivePhoto.startsWith("data:")) {
+        setMockupProfileBase64(effectivePhoto);
+      } else {
+        imageUrlToBase64(effectivePhoto).then((base64) => {
+          setMockupProfileBase64(base64);
+        });
+      }
     } else if (!showMockup || !effectivePhoto) {
       if (mockupProfileBase64) {
         setMockupProfileBase64(null);
