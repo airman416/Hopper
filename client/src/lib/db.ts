@@ -24,6 +24,7 @@ export interface SourcePost {
   mediaUrls?: string[];
   isThread?: boolean;
   threadContent?: string[];
+  weight_score?: number;
 }
 
 export interface Draft {
@@ -46,10 +47,26 @@ export interface TrashEntry {
   originalContent: string;
 }
 
+export interface ApprovedVaultEntry {
+  id?: number;
+  platform_format: string;
+  final_text: string;
+  timestamp: string;
+}
+
+export interface RejectedVaultEntry {
+  id?: number;
+  rejected_text: string;
+  reason: string;
+  timestamp: string;
+}
+
 class HopperDB extends Dexie {
   sourcePosts!: Table<SourcePost>;
   drafts!: Table<Draft>;
   trash!: Table<TrashEntry>;
+  approved_vault!: Table<ApprovedVaultEntry>;
+  rejected_vault!: Table<RejectedVaultEntry>;
 
   constructor() {
     super("HopperDB");
@@ -86,6 +103,25 @@ class HopperDB extends Dexie {
         if (!post.profilePhoto && platformPhotos[post.platform]) {
           await tx.table("sourcePosts").update(post.id, {
             profilePhoto: platformPhotos[post.platform],
+          });
+        }
+      }
+    });
+
+    // Version 4: Add Approved_Vault, Rejected_Vault; add weight_score to existing posts
+    this.version(4).stores({
+      sourcePosts: "++id, platform, timestamp",
+      drafts: "++id, sourcePostId, platform, status, createdAt",
+      trash: "++id, draftId, sourcePostId, platform, rejectedAt",
+      approved_vault: "++id, platform_format, timestamp",
+      rejected_vault: "++id, timestamp",
+    }).upgrade(async (tx) => {
+      // Set default weight_score of 1000 on all existing source posts
+      const posts = await tx.table("sourcePosts").toArray();
+      for (const post of posts) {
+        if (post.weight_score === undefined) {
+          await tx.table("sourcePosts").update(post.id, {
+            weight_score: 1000,
           });
         }
       }

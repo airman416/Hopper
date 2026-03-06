@@ -8,10 +8,25 @@ import Preview from "@/components/preview";
 import Trash from "@/components/trash";
 import Settings from "@/components/settings";
 import { playApproveSound, playRejectSound } from "@/lib/sounds";
-import { Trash2, Volume2, VolumeX, Keyboard, Undo2, Redo2, Settings as SettingsIcon } from "lucide-react";
-import { aiGenerate, aiPunchier, aiHater, aiShaan } from "@/lib/api";
+import {
+  Trash2,
+  Volume2,
+  VolumeX,
+  Keyboard,
+  Undo2,
+  Redo2,
+  Settings as SettingsIcon,
+  ChevronDown,
+} from "lucide-react";
+import { aiPunchier, aiHater, aiShaan, runGeneration } from "@/lib/api";
+import { initOramaIndex } from "@/lib/oramaSearch";
 import { useToast } from "@/hooks/use-toast";
-import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
+import {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from "@/components/ui/resizable";
+import type { ModelChoice } from "@/lib/agenticPipeline";
 
 export default function Dashboard() {
   const {
@@ -35,6 +50,8 @@ export default function Dashboard() {
     canUndo,
     canRedo,
     triggerExport,
+    selectedModel,
+    setSelectedModel,
   } = useHopperStore();
 
   const { toast } = useToast();
@@ -47,19 +64,44 @@ export default function Dashboard() {
       (d.status === "draft" || d.status === "approved"),
   );
 
-  const TABS: PlatformTab[] = ["linkedin", "twitter", "instagram", "newsletter", "quote"];
-
+  const TABS: PlatformTab[] = [
+    "linkedin",
+    "twitter",
+    "instagram",
+    "newsletter",
+    "quote",
+  ];
 
   const ignoreWhenTyping = (e: KeyboardEvent) => {
     const tag = (e.target as HTMLElement)?.tagName;
     return tag === "TEXTAREA" || tag === "INPUT";
   };
 
-  useHotkeys("l", () => useHopperStore.getState().setActiveTab("linkedin"), { preventDefault: true, ignoreEventWhen: ignoreWhenTyping });
-  useHotkeys("x", () => useHopperStore.getState().setActiveTab("twitter"), { preventDefault: true, ignoreEventWhen: ignoreWhenTyping });
-  useHotkeys("i", () => useHopperStore.getState().setActiveTab("instagram"), { preventDefault: true, ignoreEventWhen: ignoreWhenTyping });
-  useHotkeys("n", () => useHopperStore.getState().setActiveTab("newsletter"), { preventDefault: true, ignoreEventWhen: ignoreWhenTyping });
-  useHotkeys("q", () => useHopperStore.getState().setActiveTab("quote"), { preventDefault: true, ignoreEventWhen: ignoreWhenTyping });
+  useHotkeys(
+    "l",
+    () => useHopperStore.getState().setActiveTab("linkedin"),
+    { preventDefault: true, ignoreEventWhen: ignoreWhenTyping },
+  );
+  useHotkeys(
+    "x",
+    () => useHopperStore.getState().setActiveTab("twitter"),
+    { preventDefault: true, ignoreEventWhen: ignoreWhenTyping },
+  );
+  useHotkeys(
+    "i",
+    () => useHopperStore.getState().setActiveTab("instagram"),
+    { preventDefault: true, ignoreEventWhen: ignoreWhenTyping },
+  );
+  useHotkeys(
+    "n",
+    () => useHopperStore.getState().setActiveTab("newsletter"),
+    { preventDefault: true, ignoreEventWhen: ignoreWhenTyping },
+  );
+  useHotkeys(
+    "q",
+    () => useHopperStore.getState().setActiveTab("quote"),
+    { preventDefault: true, ignoreEventWhen: ignoreWhenTyping },
+  );
 
   useHotkeys(
     "mod+z",
@@ -81,6 +123,7 @@ export default function Dashboard() {
     [canRedo, redo],
   );
 
+  // ── G: Generate (single-step, model-routed) ──
   useHotkeys(
     "g",
     async () => {
@@ -89,16 +132,21 @@ export default function Dashboard() {
       setAiLoading(true);
 
       try {
-        const data = await aiGenerate(
-          activeDraft?.content || selectedPost.content,
+        const currentModel = useHopperStore.getState().selectedModel;
+        const result = await runGeneration(
+          selectedPost.content,
           activeTab,
-          selectedPost.content
+          currentModel,
         );
+
+        useHopperStore
+          .getState()
+          .setLastContextPostIds(result.contextPostIds);
 
         const newDraft: Draft = {
           sourcePostId: selectedPost.id!,
           platform: activeTab,
-          content: data.content,
+          content: result.content,
           status: "draft",
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
@@ -106,12 +154,14 @@ export default function Dashboard() {
 
         if (activeDraft?.id) {
           await db.drafts.update(activeDraft.id, {
-            content: data.content,
+            content: result.content,
             updatedAt: new Date().toISOString(),
           });
-          useHopperStore.getState().updateDraft(activeDraft.id, data.content);
+          useHopperStore
+            .getState()
+            .updateDraft(activeDraft.id, result.content);
         } else {
-          const id = await db.drafts.add(newDraft);
+          await db.drafts.add(newDraft);
           const allDrafts = await db.drafts.toArray();
           setDrafts(allDrafts);
         }
@@ -125,58 +175,16 @@ export default function Dashboard() {
         setAiLoading(false);
       }
     },
-    { preventDefault: true, enabled: !isAiLoading && !!selectedPost, ignoreEventWhen: ignoreWhenTyping },
+    {
+      preventDefault: true,
+      enabled: !isAiLoading && !!selectedPost,
+      ignoreEventWhen: ignoreWhenTyping,
+    },
     [selectedPost, activeTab, activeDraft, isAiLoading, pushHistory],
   );
 
   // On mount: load from cache only — no API calls
   const loadFromCache = useCallback(async () => {
-    const posts = await db.sourcePosts.orderBy("timestamp").reverse().toArray();
-    setSourcePosts(posts);
-    const allDrafts = await db.drafts.toArray();
-    setDrafts(allDrafts);
-  }, [setSourcePosts, setDrafts]);
-
-  useEffect(() => {
-    loadFromCache();
-  }, [loadFromCache]);
-
-  // Explicit refresh: hits the API for the given platform (or all), dedupes, and saves to DB
-  const refreshFeed = useCallback(async (platform?: "twitter" | "linkedin" | "instagram") => {
-    setPlatformLoading(platform ?? null, true);
-
-    try {
-      const { posts: livePosts, profilePhoto } = await loadLiveFeed(platform, true);
-
-      if (livePosts.length > 0) {
-        if (platform) {
-          // Replace all posts for this platform so stale posts are evicted
-          await db.sourcePosts.where("platform").equals(platform).delete();
-          await db.sourcePosts.bulkAdd(livePosts);
-        } else {
-          const existingPosts = await db.sourcePosts.toArray();
-          const existingContentSet = new Set(existingPosts.map((p) => p.content.slice(0, 100)));
-          const newPosts = livePosts.filter(
-            (p) => !existingContentSet.has(p.content.slice(0, 100)),
-          );
-          if (newPosts.length > 0) {
-            await db.sourcePosts.bulkAdd(newPosts);
-          }
-        }
-
-        if (profilePhoto) {
-          setProfilePhoto(profilePhoto);
-        }
-      }
-    } catch (e) {
-      console.error("Live feed failed:", e);
-      toast({
-        title: "Feed refresh failed",
-        description: e instanceof Error ? e.message : "Could not load posts. Check Settings for API keys.",
-        variant: "destructive",
-      });
-    }
-
     const posts = await db.sourcePosts
       .orderBy("timestamp")
       .reverse()
@@ -184,32 +192,121 @@ export default function Dashboard() {
     setSourcePosts(posts);
     const allDrafts = await db.drafts.toArray();
     setDrafts(allDrafts);
-    setPlatformLoading(platform ?? null, false);
-  }, [setPlatformLoading, setProfilePhoto, setSourcePosts, setDrafts]);
+  }, [setSourcePosts, setDrafts]);
 
-  useHotkeys("shift+r", () => refreshFeed(), { preventDefault: true, ignoreEventWhen: ignoreWhenTyping });
+  useEffect(() => {
+    loadFromCache().then(() => {
+      // Initialize the Orama RAG index after loading cached posts
+      initOramaIndex().catch(console.error);
+    });
+  }, [loadFromCache]);
 
+  // Explicit refresh: hits the API for the given platform (or all), dedupes, and saves to DB
+  const refreshFeed = useCallback(
+    async (platform?: "twitter" | "linkedin" | "instagram") => {
+      setPlatformLoading(platform ?? null, true);
 
+      try {
+        const { posts: livePosts, profilePhoto } = await loadLiveFeed(
+          platform,
+          true,
+        );
+
+        if (livePosts.length > 0) {
+          if (platform) {
+            await db.sourcePosts
+              .where("platform")
+              .equals(platform)
+              .delete();
+            await db.sourcePosts.bulkAdd(livePosts);
+          } else {
+            const existingPosts = await db.sourcePosts.toArray();
+            const existingContentSet = new Set(
+              existingPosts.map((p) => p.content.slice(0, 100)),
+            );
+            const newPosts = livePosts.filter(
+              (p) => !existingContentSet.has(p.content.slice(0, 100)),
+            );
+            if (newPosts.length > 0) {
+              await db.sourcePosts.bulkAdd(newPosts);
+            }
+          }
+
+          if (profilePhoto) {
+            setProfilePhoto(profilePhoto);
+          }
+        }
+      } catch (e) {
+        console.error("Live feed failed:", e);
+        toast({
+          title: "Feed refresh failed",
+          description:
+            e instanceof Error
+              ? e.message
+              : "Could not load posts. Check Settings for API keys.",
+          variant: "destructive",
+        });
+      }
+
+      const posts = await db.sourcePosts
+        .orderBy("timestamp")
+        .reverse()
+        .toArray();
+      setSourcePosts(posts);
+      const allDrafts = await db.drafts.toArray();
+      setDrafts(allDrafts);
+      setPlatformLoading(platform ?? null, false);
+    },
+    [setPlatformLoading, setProfilePhoto, setSourcePosts, setDrafts],
+  );
+
+  useHotkeys(
+    "shift+r",
+    () => refreshFeed(),
+    { preventDefault: true, ignoreEventWhen: ignoreWhenTyping },
+  );
+
+  // ── A: Approve — save to vault (no weight_score updates) ──
   useHotkeys(
     "a",
     async () => {
       if (!activeDraft?.id) return;
       pushHistory();
+
+      await db.approved_vault.add({
+        platform_format: activeTab,
+        final_text: activeDraft.content,
+        timestamp: new Date().toISOString(),
+      });
+
       await db.drafts.update(activeDraft.id, { status: "approved" });
       if (soundEnabled) playApproveSound();
-      toast({ title: "Draft approved" });
+      toast({ title: "Draft approved & saved to vault" });
       const allDrafts = await db.drafts.toArray();
       setDrafts(allDrafts);
     },
-    { preventDefault: true, enabled: !!activeDraft, ignoreEventWhen: ignoreWhenTyping },
-    [activeDraft, soundEnabled, pushHistory],
+    {
+      preventDefault: true,
+      enabled: !!activeDraft,
+      ignoreEventWhen: ignoreWhenTyping,
+    },
+    [activeDraft, activeTab, soundEnabled, pushHistory],
   );
 
+  // ── R: Reject — clear from UI, save raw text to rejected_vault ──
   useHotkeys(
     "r",
     async () => {
       if (!activeDraft?.id) return;
       pushHistory();
+
+      // Save raw text to rejected_vault for analytics
+      await db.rejected_vault.add({
+        rejected_text: activeDraft.content,
+        reason: "rejected",
+        timestamp: new Date().toISOString(),
+      });
+
       await db.trash.add({
         draftId: activeDraft.id,
         sourcePostId: activeDraft.sourcePostId,
@@ -220,12 +317,17 @@ export default function Dashboard() {
           sourcePosts.find((p) => p.id === activeDraft.sourcePostId)
             ?.content || "",
       });
+
       await db.drafts.update(activeDraft.id, { status: "rejected" });
       if (soundEnabled) playRejectSound();
       const allDrafts = await db.drafts.toArray();
       setDrafts(allDrafts);
     },
-    { preventDefault: true, enabled: !!activeDraft, ignoreEventWhen: ignoreWhenTyping },
+    {
+      preventDefault: true,
+      enabled: !!activeDraft,
+      ignoreEventWhen: ignoreWhenTyping,
+    },
     [activeDraft, soundEnabled, sourcePosts, pushHistory],
   );
 
@@ -250,14 +352,20 @@ export default function Dashboard() {
             content: data.content,
             updatedAt: new Date().toISOString(),
           });
-          useHopperStore.getState().updateDraft(activeDraft.id, data.content);
+          useHopperStore
+            .getState()
+            .updateDraft(activeDraft.id, data.content);
         }
       } catch {
       } finally {
         setAiLoading(false);
       }
     },
-    { preventDefault: true, enabled: !!activeDraft && !isAiLoading, ignoreEventWhen: ignoreWhenTyping },
+    {
+      preventDefault: true,
+      enabled: !!activeDraft && !isAiLoading,
+      ignoreEventWhen: ignoreWhenTyping,
+    },
     [activeDraft, isAiLoading, pushHistory],
   );
 
@@ -269,13 +377,20 @@ export default function Dashboard() {
       try {
         const data = await aiHater(activeDraft.content);
         useHopperStore.getState().setHaterTooltip(data.content);
-        setTimeout(() => useHopperStore.getState().setHaterTooltip(null), 12000);
+        setTimeout(
+          () => useHopperStore.getState().setHaterTooltip(null),
+          12000,
+        );
       } catch {
       } finally {
         setAiLoading(false);
       }
     },
-    { preventDefault: true, enabled: !!activeDraft && !isAiLoading, ignoreEventWhen: ignoreWhenTyping },
+    {
+      preventDefault: true,
+      enabled: !!activeDraft && !isAiLoading,
+      ignoreEventWhen: ignoreWhenTyping,
+    },
     [activeDraft, isAiLoading],
   );
 
@@ -292,16 +407,27 @@ export default function Dashboard() {
             content: data.content,
             updatedAt: new Date().toISOString(),
           });
-          useHopperStore.getState().updateDraft(activeDraft.id, data.content);
+          useHopperStore
+            .getState()
+            .updateDraft(activeDraft.id, data.content);
         }
       } catch {
       } finally {
         setAiLoading(false);
       }
     },
-    { preventDefault: true, enabled: !!activeDraft && !isAiLoading, ignoreEventWhen: ignoreWhenTyping },
+    {
+      preventDefault: true,
+      enabled: !!activeDraft && !isAiLoading,
+      ignoreEventWhen: ignoreWhenTyping,
+    },
     [activeDraft, isAiLoading, pushHistory],
   );
+
+  const MODEL_OPTIONS: { value: ModelChoice; label: string }[] = [
+    { value: "claude", label: "Claude 3.5 Sonnet" },
+    { value: "sam-llama", label: "Sam-Llama-3 (Fine-tuned)" },
+  ];
 
   return (
     <div className="h-screen flex flex-col bg-[#FAFAFA]">
@@ -310,6 +436,26 @@ export default function Dashboard() {
           <h1 className="text-[15px] font-bold text-[#111827] tracking-tight">
             Content Engine
           </h1>
+
+          {/* Model Selector Dropdown */}
+          <div className="relative">
+            <select
+              data-testid="model-selector"
+              value={selectedModel}
+              onChange={(e) =>
+                setSelectedModel(e.target.value as ModelChoice)
+              }
+              className="appearance-none h-7 pl-2.5 pr-7 text-[11px] font-medium text-[#666] bg-[#FAFAFA] border border-[#E5E5E5] transition-colors hover:border-[#CCC] focus:outline-none focus:border-[#999] cursor-pointer"
+              style={{ borderRadius: "3px" }}
+            >
+              {MODEL_OPTIONS.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="absolute right-1.5 top-1/2 -translate-y-1/2 w-3 h-3 text-[#999] pointer-events-none" />
+          </div>
         </div>
         <div className="flex items-center gap-2">
           <div className="flex items-center">

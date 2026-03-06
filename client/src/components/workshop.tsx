@@ -7,8 +7,8 @@ import {
   getReadabilityColor,
   getReadabilityBg,
 } from "@/lib/readability";
-import { playRejectSound } from "@/lib/sounds";
-import { aiGenerate, aiPunchier, aiHater, aiShaan } from "@/lib/api";
+import { playRejectSound, playApproveSound } from "@/lib/sounds";
+import { aiPunchier, aiHater, aiShaan, runGeneration } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -21,6 +21,7 @@ import {
   Loader2,
   Sparkles,
   RefreshCw,
+  Check,
 } from "lucide-react";
 
 const TABS: { key: PlatformTab; label: string; shortcut: string }[] = [
@@ -49,6 +50,8 @@ export default function Workshop() {
     soundEnabled,
     pushHistory,
     triggerExport,
+    selectedModel,
+    setLastContextPostIds,
   } = useHopperStore();
 
   const { toast } = useToast();
@@ -104,22 +107,25 @@ export default function Workshop() {
     });
   }, [selectedPost?.id, activeTab, !!activeDraft]);
 
+  // ── SINGLE-STEP GENERATION (routed by model) ──
   const handleGenerateDraft = useCallback(async () => {
     if (!selectedPost || isAiLoading) return;
     pushHistory();
     setAiLoading(true);
 
     try {
-      const data = await aiGenerate(
-        draftContent || selectedPost.content,
+      const result = await runGeneration(
+        selectedPost.content,
         activeTab,
-        selectedPost.content
+        selectedModel,
       );
+
+      setLastContextPostIds(result.contextPostIds);
 
       const newDraft: Draft = {
         sourcePostId: selectedPost.id!,
         platform: activeTab,
-        content: data.content,
+        content: result.content,
         status: "draft",
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
@@ -127,12 +133,12 @@ export default function Workshop() {
 
       if (activeDraft?.id) {
         await db.drafts.update(activeDraft.id, {
-          content: data.content,
+          content: result.content,
           updatedAt: new Date().toISOString(),
         });
-        updateDraft(activeDraft.id, data.content);
+        updateDraft(activeDraft.id, result.content);
       } else {
-        const id = await db.drafts.add(newDraft);
+        await db.drafts.add(newDraft);
         const allDrafts = await db.drafts.toArray();
         setDrafts(allDrafts);
       }
@@ -145,7 +151,7 @@ export default function Workshop() {
     } finally {
       setAiLoading(false);
     }
-  }, [selectedPost, activeTab, activeDraft, draftContent, isAiLoading, pushHistory]);
+  }, [selectedPost, activeTab, activeDraft, selectedModel, isAiLoading, pushHistory]);
 
   const handlePunchier = useCallback(async () => {
     if (!draftContent || isAiLoading) return;
@@ -214,11 +220,40 @@ export default function Workshop() {
     }
   }, [draftContent, activeDraft, isAiLoading, pushHistory]);
 
+  // ── APPROVE — save to vault, no weight_score updates ──
+  const handleApprove = useCallback(async () => {
+    if (!activeDraft?.id) return;
+    pushHistory();
+
+    const finalText = draftContent;
+
+    await db.approved_vault.add({
+      platform_format: activeTab,
+      final_text: finalText,
+      timestamp: new Date().toISOString(),
+    });
+
+    await db.drafts.update(activeDraft.id, { status: "approved" });
+    if (soundEnabled) playApproveSound();
+    toast({ title: "Draft approved & saved to vault" });
+    const allDrafts = await db.drafts.toArray();
+    setDrafts(allDrafts);
+  }, [activeDraft, draftContent, activeTab, soundEnabled, pushHistory]);
+
+  // ── REJECT — clear from UI, save raw text to rejected_vault ──
   const handleReject = useCallback(async () => {
     if (!activeDraft?.id) return;
     pushHistory();
     setRejectedId(activeDraft.id);
 
+    // Save raw text to rejected_vault for future analytics
+    await db.rejected_vault.add({
+      rejected_text: draftContent,
+      reason: "rejected",
+      timestamp: new Date().toISOString(),
+    });
+
+    // Save to trash (existing behavior)
     await db.trash.add({
       draftId: activeDraft.id,
       sourcePostId: activeDraft.sourcePostId,
@@ -238,7 +273,7 @@ export default function Workshop() {
       const allDrafts = await db.drafts.toArray();
       setDrafts(allDrafts);
     }, 300);
-  }, [activeDraft, soundEnabled, sourcePosts, pushHistory]);
+  }, [activeDraft, draftContent, soundEnabled, sourcePosts, pushHistory]);
 
   const handleContentChange = useCallback(
     (value: string) => {
@@ -247,8 +282,6 @@ export default function Workshop() {
         pushHistory();
         shouldPushHistoryRef.current = false;
       }
-      // Update store synchronously so the textarea re-renders immediately.
-      // Delaying until after DB persist caused cursor to jump and duplicate typing.
       updateDraft(activeDraft.id, value);
       db.drafts.update(activeDraft.id, {
         content: value,
@@ -261,64 +294,64 @@ export default function Workshop() {
   return (
     <div className="h-full flex flex-col bg-white">
       {selectedPost && (
-      <div className="flex items-center justify-between h-[49px] border-b border-[#E5E5E5] px-1">
-        <div className="flex items-center h-full overflow-x-auto no-scrollbar flex-1 min-w-0 mr-2 group">
-          {TABS.map((tab) => (
-            <button
-              key={tab.key}
-              data-testid={`tab-${tab.key}`}
-              onClick={() => setActiveTab(tab.key)}
-              className={`h-full px-4 text-[13px] font-medium border-b-2 transition-colors whitespace-nowrap flex-shrink-0 inline-flex items-center gap-1.5 ${
-                activeTab === tab.key
-                  ? "border-[#111827] text-[#111827]"
-                  : "border-transparent text-[#999] hover:text-[#666]"
-              }`}
-            >
-              {tab.label}
-              <kbd className={`text-[9px] font-mono px-1 py-0.5 border rounded-sm transition-colors ${
-                activeTab === tab.key
-                  ? "text-[#111827] bg-[#F5F5F5] border-[#E5E5E5]"
-                  : "text-[#CCC] bg-[#FAFAFA] border-[#EBEBEB]"
-              }`}>
-                {tab.shortcut}
-              </kbd>
-            </button>
-          ))}
+        <div className="flex items-center justify-between h-[49px] border-b border-[#E5E5E5] px-1">
+          <div className="flex items-center h-full overflow-x-auto no-scrollbar flex-1 min-w-0 mr-2 group">
+            {TABS.map((tab) => (
+              <button
+                key={tab.key}
+                data-testid={`tab-${tab.key}`}
+                onClick={() => setActiveTab(tab.key)}
+                className={`h-full px-4 text-[13px] font-medium border-b-2 transition-colors whitespace-nowrap flex-shrink-0 inline-flex items-center gap-1.5 ${activeTab === tab.key
+                    ? "border-[#111827] text-[#111827]"
+                    : "border-transparent text-[#999] hover:text-[#666]"
+                  }`}
+              >
+                {tab.label}
+                <kbd
+                  className={`text-[9px] font-mono px-1 py-0.5 border rounded-sm transition-colors ${activeTab === tab.key
+                      ? "text-[#111827] bg-[#F5F5F5] border-[#E5E5E5]"
+                      : "text-[#CCC] bg-[#FAFAFA] border-[#EBEBEB]"
+                    }`}
+                >
+                  {tab.shortcut}
+                </kbd>
+              </button>
+            ))}
+          </div>
+          <div className="flex items-center gap-2 pr-3">
+            {!activeDraft && (
+              <button
+                data-testid="button-generate"
+                onClick={handleGenerateDraft}
+                disabled={isAiLoading}
+                className="inline-flex items-center gap-1.5 h-7 px-3 text-[12px] font-medium text-white bg-[#111827] border border-[#111827] hover:bg-[#1f2937] transition-colors disabled:opacity-50"
+                style={{ borderRadius: "3px" }}
+              >
+                {isAiLoading ? (
+                  <Loader2 className="w-3 h-3 animate-spin" />
+                ) : (
+                  <Sparkles className="w-3 h-3" />
+                )}
+                Generate
+                <kbd className="ml-1 text-[9px] font-mono text-white/70 bg-white/20 px-1 py-0.5 border border-white/20 rounded-sm">
+                  G
+                </kbd>
+              </button>
+            )}
+            {activeDraft && (
+              <button
+                data-testid="button-regenerate"
+                onClick={handleGenerateDraft}
+                disabled={isAiLoading}
+                className="inline-flex items-center gap-1.5 h-7 px-2 text-[12px] font-medium text-[#666] bg-white border border-[#E5E5E5] transition-colors disabled:opacity-50 hover-elevate"
+                style={{ borderRadius: "3px" }}
+                title="Regenerate (G)"
+              >
+                <RefreshCw className="w-3 h-3" />
+              </button>
+            )}
+          </div>
         </div>
-        <div className="flex items-center gap-2 pr-3">
-          {!activeDraft && (
-            <button
-              data-testid="button-generate"
-              onClick={handleGenerateDraft}
-              disabled={isAiLoading}
-              className="inline-flex items-center gap-1.5 h-7 px-3 text-[12px] font-medium text-white bg-[#111827] border border-[#111827] hover:bg-[#1f2937] transition-colors disabled:opacity-50"
-              style={{ borderRadius: "3px" }}
-            >
-              {isAiLoading ? (
-                <Loader2 className="w-3 h-3 animate-spin" />
-              ) : (
-                <Sparkles className="w-3 h-3" />
-              )}
-              Generate
-              <kbd className="ml-1 text-[9px] font-mono text-white/70 bg-white/20 px-1 py-0.5 border border-white/20 rounded-sm">
-                G
-              </kbd>
-            </button>
-          )}
-          {activeDraft && (
-            <button
-              data-testid="button-regenerate"
-              onClick={handleGenerateDraft}
-              disabled={isAiLoading}
-              className="inline-flex items-center gap-1.5 h-7 px-2 text-[12px] font-medium text-[#666] bg-white border border-[#E5E5E5] transition-colors disabled:opacity-50 hover-elevate"
-              style={{ borderRadius: "3px" }}
-              title="Regenerate (G)"
-            >
-              <RefreshCw className="w-3 h-3" />
-            </button>
-          )}
-        </div>
-      </div>
       )}
 
       {activeDraft && (
@@ -337,13 +370,12 @@ export default function Workshop() {
           </div>
 
           <div
-            className={`inline-flex items-center gap-1.5 px-2 py-1 border text-[11px] font-mono ${
-              vibeCheck.score >= 80
+            className={`inline-flex items-center gap-1.5 px-2 py-1 border text-[11px] font-mono ${vibeCheck.score >= 80
                 ? "bg-green-50 border-green-200"
                 : vibeCheck.score >= 50
                   ? "bg-amber-50 border-amber-200"
                   : "bg-red-50 border-red-200"
-            }`}
+              }`}
             style={{ borderRadius: "3px" }}
             data-testid="badge-human-score"
           >
@@ -351,25 +383,26 @@ export default function Workshop() {
               Human
             </span>
             <span
-              className={`font-bold ${
-                vibeCheck.score >= 80
+              className={`font-bold ${vibeCheck.score >= 80
                   ? "text-green-700"
                   : vibeCheck.score >= 50
                     ? "text-amber-600"
                     : "text-red-600"
-              }`}
+                }`}
             >
               {vibeCheck.score}%
             </span>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 px-2 py-1 border border-[#E5E5E5] bg-white text-[11px] font-mono" style={{ borderRadius: "3px" }}>
+          <div
+            className="inline-flex items-center gap-1.5 px-2 py-1 border border-[#E5E5E5] bg-white text-[11px] font-mono"
+            style={{ borderRadius: "3px" }}
+          >
             <span className="text-[#999] font-sans text-[10px] uppercase tracking-wider">
               Words
             </span>
             <span className="font-bold text-[#111827]">{wordCount}</span>
           </div>
-
         </div>
       )}
 
@@ -406,7 +439,8 @@ export default function Workshop() {
                 ) : (
                   <Sparkles className="w-4 h-4" />
                 )}
-                Generate {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Draft
+                Generate {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}{" "}
+                Draft
               </button>
             </motion.div>
           ) : rejectedId === activeDraft.id ? (
@@ -435,7 +469,9 @@ export default function Workshop() {
                 ref={textareaRef}
                 data-testid="textarea-draft"
                 value={draftContent}
-                onFocus={() => { shouldPushHistoryRef.current = true; }}
+                onFocus={() => {
+                  shouldPushHistoryRef.current = true;
+                }}
                 onChange={(e) => handleContentChange(e.target.value)}
                 className="w-full flex-1 resize-none bg-transparent text-[14px] leading-[1.7] text-[#111827] focus:outline-none font-sans placeholder:text-[#CCC]"
                 placeholder="Start writing..."
@@ -513,11 +549,10 @@ export default function Workshop() {
               data-testid="button-shaan"
               onClick={handleShaanRewrite}
               disabled={isAiLoading || !draftContent}
-              className={`inline-flex items-center justify-center gap-1.5 w-24 h-7 px-3 text-[12px] font-medium border transition-colors disabled:opacity-40 ${
-                shaanMode
+              className={`inline-flex items-center justify-center gap-1.5 w-24 h-7 px-3 text-[12px] font-medium border transition-colors disabled:opacity-40 ${shaanMode
                   ? "text-[#FF4F00] bg-orange-50 border-orange-200"
                   : "text-[#111827] bg-white border-[#E5E5E5] hover-elevate"
-              }`}
+                }`}
               style={{ borderRadius: "3px" }}
             >
               {shaanMode ? (
@@ -541,18 +576,33 @@ export default function Workshop() {
 
           <div className="flex items-center gap-2">
             {!isSameToSame && (
-              <button
-                data-testid="button-reject"
-                onClick={handleReject}
-                className="inline-flex items-center justify-center gap-1.5 w-24 h-7 px-3 text-[12px] font-medium text-[#999] bg-white border border-[#E5E5E5] transition-colors hover-elevate"
-                style={{ borderRadius: "3px" }}
-              >
-                <X className="w-3 h-3" />
-                Reject
-                <kbd className="ml-1 text-[9px] font-mono text-[#999] bg-[#F5F5F5] px-1 py-0.5 border border-[#E5E5E5] rounded-sm">
-                  R
-                </kbd>
-              </button>
+              <>
+                <button
+                  data-testid="button-approve"
+                  onClick={handleApprove}
+                  className="inline-flex items-center justify-center gap-1.5 w-24 h-7 px-3 text-[12px] font-medium text-green-700 bg-green-50 border border-green-200 transition-colors hover:bg-green-100 hover-elevate"
+                  style={{ borderRadius: "3px" }}
+                >
+                  <Check className="w-3 h-3" />
+                  Approve
+                  <kbd className="ml-1 text-[9px] font-mono text-green-500 bg-green-100 px-1 py-0.5 border border-green-200 rounded-sm">
+                    A
+                  </kbd>
+                </button>
+
+                <button
+                  data-testid="button-reject"
+                  onClick={handleReject}
+                  className="inline-flex items-center justify-center gap-1.5 w-24 h-7 px-3 text-[12px] font-medium text-[#999] bg-white border border-[#E5E5E5] transition-colors hover-elevate"
+                  style={{ borderRadius: "3px" }}
+                >
+                  <X className="w-3 h-3" />
+                  Reject
+                  <kbd className="ml-1 text-[9px] font-mono text-[#999] bg-[#F5F5F5] px-1 py-0.5 border border-[#E5E5E5] rounded-sm">
+                    R
+                  </kbd>
+                </button>
+              </>
             )}
 
             <button

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import type { SourcePost, Draft } from "./db";
+import type { ModelChoice } from "./agenticPipeline";
 
 export type PlatformTab = "linkedin" | "twitter" | "instagram" | "newsletter" | "quote";
 
@@ -79,6 +80,14 @@ interface HopperState {
 
   triggerExport: (() => void) | null;
   setTriggerExport: (fn: (() => void) | null) => void;
+
+  /** Selected AI model for generation */
+  selectedModel: ModelChoice;
+  setSelectedModel: (model: ModelChoice) => void;
+
+  /** IDs of the historical posts used as RAG context in the last generation */
+  lastContextPostIds: number[];
+  setLastContextPostIds: (ids: number[]) => void;
 }
 
 export const useHopperStore = create<HopperState>((set, get) => ({
@@ -212,4 +221,10 @@ export const useHopperStore = create<HopperState>((set, get) => ({
 
   triggerExport: null,
   setTriggerExport: (fn) => set({ triggerExport: fn }),
+
+  selectedModel: "claude",
+  setSelectedModel: (model) => set({ selectedModel: model }),
+
+  lastContextPostIds: [],
+  setLastContextPostIds: (ids) => set({ lastContextPostIds: ids }),
 }));

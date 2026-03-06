@@ -178,3 +178,7 @@ export async function aiHater(content: string): Promise<{ content: string }> {
 export async function aiShaan(content: string): Promise<{ content: string }> {
   return netlifyAiFetch("ai-shaan", { content });
 }
+
+// Re-export the generation pipeline for use in components
+export { runGeneration } from "./agenticPipeline";
+export type { ModelChoice } from "./agenticPipeline";
