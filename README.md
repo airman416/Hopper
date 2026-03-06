@@ -1,5 +1,7 @@
 # Content Engine
 
+![Content Engine demo](demo.png)
+
 Content Engine helps you **repurpose** your existing social media posts across different platforms—it does not create new posts from scratch. Load posts you've already published on X (Twitter), LinkedIn, or Instagram, then use AI to adapt them into new formats: LinkedIn posts, tweets, Instagram carousels, newsletter sections, or punchy quotes. Export polished images ready to share.
 
 ---
