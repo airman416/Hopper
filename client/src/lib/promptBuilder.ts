@@ -157,7 +157,14 @@ ${platform === "quote" ? `QUOTE RULES:
 - Extract the single most powerful quotable idea. One punchy standalone sentence under 30 words.
 - Apply the Syntax Rulebook: hyperspecificity, slang where natural.` : ""}
 ${platform === "instagram" ? `INSTAGRAM CAROUSEL FORMAT RULES:
-- Output ONLY the slide content. Do NOT write any intro like "Here is your carousel" or "Sure, here are the slides". Start directly with Slide 1 content.
+- Use as many words and phrases from the original post as possible. Preserve the author's exact wording where it works; only restructure for carousel format.
+- Output in TWO parts. First the caption, then the slides. Format exactly:
+  CAPTION:
+  [1-3 sentences for the Instagram caption. Punchy, can include CTA or hashtags. Use words from the source.]
+  
+  ---
+  [slides follow]
+- Do NOT write any intro. Start directly with CAPTION:
 - Separate each slide with a line containing only: ---
 - Each slide MUST have two parts separated by a blank line:
   HEADING: Title Case (capitalize each major word). Short, punchy title (1 line, 3-8 words)
@@ -165,9 +172,13 @@ ${platform === "instagram" ? `INSTAGRAM CAROUSEL FORMAT RULES:
   BODY: Sentence case. 2-3 short sentences expanding on the heading
 - Slide 1 = strong hook that makes people want to swipe
 - Last slide = clear CTA (follow, share, reply, etc.)
-- 5-10 slides total (output as many as needed to cover the topic)
+- Use as few slides as needed to cover the topic well (up to 10 max). Most topics need 4-7 slides. Do not pad to 10.
 
-Example of correct slide format:
+Example of correct format:
+CAPTION:
+Scraped 1,000+ founders for 18 months. Here's what they're actually reading.
+
+---
 Everyone Thinks Founders Read Business Books
 
 Scraped 1,000+ founders for 18 months. Turns out they're reading psychology and fiction instead.
@@ -184,7 +195,7 @@ The Data Doesn't Lie
         : "";
 
     const userMessage = platform === "instagram"
-        ? `Create an Instagram carousel based on the source text below.${architectContext}Output ONLY the slides in the exact format specified. No intro text, no remarks, no explanations. Start directly with the first slide heading. No em dashes (—).\n\nSource text:\n${sourceText}`
+        ? `Create an Instagram carousel based on the source text below.${architectContext}Use as many words from the source as possible. Output CAPTION: first, then ---, then the slides. No intro text, no remarks, no explanations. Start directly with CAPTION: No em dashes (—).\n\nSource text:\n${sourceText}`
         : `Write a ${platform} post based on the following source text.${architectContext}Return ONLY the final post text. No explanation. No preamble. No em dashes (—).\n\nSource text:\n${sourceText}`;
 
     return { systemBlocks, userMessage };
@@ -200,16 +211,22 @@ export interface LlamaPromptPayload {
 }
 
 const INSTAGRAM_FORMAT = `Format: Instagram carousel.
-- DO NOT write any intro, preamble, or remarks. Start directly with the first slide heading.
+- Use as many words and phrases from the original post as possible. Preserve the author's exact wording where it works.
+- Output in TWO parts. First the caption, then the slides. Start with CAPTION: followed by 1-3 sentences for the Instagram caption. Then a line with ---. Then the slides.
+- DO NOT write any intro, preamble, or remarks. Start directly with CAPTION:
 - NO EM DASHES (—). Never use an em dash.
 - Separate slides with a line containing only: ---
 - Each slide has TWO parts separated by a blank line:
   1. HEADING: short punchy title (3-8 words)
   2. BODY: 2-3 short sentences expanding on it
 - Slide 1 = hook that makes people swipe. Last slide = CTA.
-- 5-10 slides total (output as many as needed, up to 10).
+- Use as few slides as needed (up to 10 max). Most topics need 4-7. Do not pad to 10.
 
 Example:
+CAPTION:
+Punchy caption here. Can include CTA or hashtags.
+
+---
 Your hook heading here
 
 First body sentence. Second body sentence.

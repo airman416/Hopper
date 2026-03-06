@@ -4,7 +4,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const platformInstructions: Record<string, string> = {
   linkedin: `Rewrite this social media post for LinkedIn. Make it professional but conversational. Use short paragraphs. Add line breaks between paragraphs. Keep it punchy and value-driven. No hashtags. No emojis.`,
   twitter: `Rewrite this social media post for Twitter/X. Keep it under 280 characters if possible, or make it a concise thread-worthy post. Make it sharp, witty, and direct. No hashtags. No emojis.`,
-  instagram: `Rewrite this social media post for an Instagram carousel. Break it into 5-7 slide-worthy chunks, separated by ---. First slide should be a hook. Last slide should be a CTA. Keep each chunk to 2-3 short sentences max.`,
+  instagram: `Rewrite this social media post for an Instagram carousel. Output CAPTION: first (1-3 sentences for the IG caption), then ---, then the slides. Use as many words from the original as possible. Use as few slides as needed (up to 10 max). Most topics need 4-7. Separate slides with ---. First slide = hook. Last slide = CTA. Keep each chunk to 2-3 short sentences max.`,
   newsletter: `Rewrite this social media post as a newsletter section. Expand on the ideas with more depth and examples. Use a conversational tone like you're writing to a friend. Add a compelling subject line at the top prefixed with "Subject: ".`,
   quote: `Extract the single most powerful, quotable sentence or idea from this post. If there isn't one clear sentence, distill the core idea into one punchy, standalone quote. Keep it under 30 words. Return ONLY the quote text, nothing else.`,
 };

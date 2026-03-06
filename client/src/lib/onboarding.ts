@@ -263,6 +263,15 @@ export function startOnboarding(options?: {
     nextBtnText: "Next",
     prevBtnText: "Back",
     doneBtnText: "Done",
+    onHighlightStarted: (_element, _step, opts) => {
+      // In incognito, fonts/resources load slower (no cache), so layout may not be ready
+      // when driver.js first calculates the overlay. Refresh after layout settles.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          opts.driver.refresh();
+        });
+      });
+    },
     onDestroyed: async () => {
       await setOnboardingComplete(true);
       options?.onComplete?.();

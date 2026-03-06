@@ -39,6 +39,21 @@ const DIMENSIONS: { key: "1080x1080" | "1080x1350" | "1080x1920"; label: string;
 const PADDING_MAP = { sm: 32, md: 64, lg: 128, xl: 256 } as const;
 const PADDING_PREVIEW_MAP = { sm: 16, md: 32, lg: 48, xl: 64 } as const;
 
+/** Parse Instagram carousel content into caption and slides. Handles legacy format (no caption). */
+function parseInstagramContent(content: string): { caption: string; slides: string[] } {
+  const trimmed = content.trim();
+  if (trimmed.startsWith("CAPTION:")) {
+    const afterLabel = trimmed.slice("CAPTION:".length).trim();
+    const parts = afterLabel.split(/\n---\n/);
+    const caption = parts[0]?.trim() ?? "";
+    const slidesText = parts.slice(1).join("\n---\n").trim();
+    const slides = slidesText ? slidesText.split("---").map((s) => s.trim()).filter(Boolean) : [];
+    return { caption, slides };
+  }
+  const slides = trimmed.split("---").map((s) => s.trim()).filter(Boolean);
+  return { caption: "", slides };
+}
+
 // Hampton brand colors
 const HAMPTON_BG = "#EEECEA";
 const HAMPTON_TEXT = "#111111";
@@ -1153,7 +1168,7 @@ export default function Preview() {
     try {
       const hasSourceImages = (selectedPost?.mediaUrls ?? []).length > 0;
       if (activeTab === "instagram" && content.includes("---") && !hasSourceImages) {
-        const slides = content.split("---").map((s) => s.trim()).filter(Boolean);
+        const { slides } = parseInstagramContent(content);
         const zip = new JSZip();
         const dimConfig = DIMENSIONS.find((d) => d.key === assetDimension)!;
         const fontFamily = assetFont || "Inter";
@@ -1455,7 +1470,7 @@ export default function Preview() {
             )}
             {activeTab === "instagram" && (
               <MockInstagramCard
-                content={content}
+                content={content.startsWith("CAPTION:") ? parseInstagramContent(content).caption : content}
                 profileBase64={proxyPhotoUrl(selectedPost?.profilePhoto) ?? mockupProfileBase64}
                 showMetrics={mockupShowMetrics}
                 metrics={selectedPost?.metrics}
@@ -1486,7 +1501,7 @@ export default function Preview() {
     if (activeTab === "instagram") {
       const mediaUrls = selectedPost?.mediaUrls ?? [];
       const hasSourceImages = mediaUrls.length > 0;
-      const slides = content.split("---").map((s) => s.trim()).filter(Boolean);
+      const { caption, slides } = parseInstagramContent(content);
       slideRefs.current = [];
       // Use source profile picture, fall back to store profilePhoto, then saved default (same as LinkedIn/X)
       const instagramPhoto = selectedPost?.profilePhoto || profilePhoto || "/ig-profile.jpg";
@@ -1495,6 +1510,22 @@ export default function Preview() {
       const authorHandle = selectedPost?.authorHandle ?? "thesamparr";
       return (
         <div ref={previewRef} className="bg-white border border-[#E5E5E5] p-4 space-y-3" style={{ borderRadius: "3px" }}>
+          {caption && (
+            <div className="pb-3 border-b border-[#E5E5E5]">
+              <p className="text-[10px] font-mono text-[#999] uppercase tracking-wider mb-1.5">Caption</p>
+              <p className="text-[13px] leading-[1.5] text-[#111827] whitespace-pre-wrap">{caption}</p>
+              <button
+                type="button"
+                onClick={async () => {
+                  await navigator.clipboard.writeText(caption);
+                  toast({ title: "Caption copied" });
+                }}
+                className="mt-2 text-[11px] text-[#666] hover:text-[#111827]"
+              >
+                Copy caption
+              </button>
+            </div>
+          )}
           <div className="flex items-center gap-3 pb-2">
             {instagramPhotoUrl ? (
               <img
