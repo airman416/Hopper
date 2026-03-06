@@ -32,13 +32,14 @@ export function startOnboarding(options?: {
 
   const steps: DriveStep[] = [
     {
-      element: "[data-onboarding-welcome]",
+      element: () => null,
       popover: {
-        title: "Welcome to Content Engine",
+        title: "Welcome to Content Engine!",
         description:
           "Let's take a quick tour. You'll learn how to load posts, convert them to Instagram format, and download your images.",
-        side: "bottom",
-        align: "start",
+        side: "over",
+        align: "center",
+        popoverClass: "driver-popover-centered",
       },
     },
     {
@@ -238,13 +239,14 @@ export function startOnboarding(options?: {
       },
     },
     {
-      element: "body",
+      element: () => null,
       popover: {
         title: "You're all set!",
         description:
           "Go repurpose some content. Wishing you all the best!",
         side: "over",
         align: "center",
+        popoverClass: "driver-popover-centered",
       },
     },
   ];
@@ -254,7 +256,7 @@ export function startOnboarding(options?: {
     progressText: "{{current}} of {{total}}",
     steps,
     overlayColor: "#1C2B22",
-    overlayOpacity: 0.7,
+    overlayOpacity: 0.82,
     stagePadding: 12,
     stageRadius: 8,
     allowClose: true,
