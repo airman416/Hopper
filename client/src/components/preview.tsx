@@ -895,6 +895,7 @@ export default function Preview() {
     mockupProfileBase64,
     setMockupProfileBase64,
     setTriggerExport,
+    setOnboardingDidExport,
   } = useHopperStore();
 
   const { toast } = useToast();
@@ -1026,6 +1027,7 @@ export default function Preview() {
 
         const zipBlob = await zip.generateAsync({ type: "blob" });
         saveAs(zipBlob, getExportFilename("instagram-carousel", "zip"));
+        setOnboardingDidExport(true);
         toast({ title: "Downloaded", description: `${slides.length} slides saved as ZIP.` });
       } else {
         const node = previewRef.current;
@@ -1076,6 +1078,7 @@ export default function Preview() {
           link.click();
         }
 
+        setOnboardingDidExport(true);
         toast({ title: "Downloaded", description: "Image saved." });
       }
     } catch (err) {
@@ -1444,6 +1447,7 @@ export default function Preview() {
               </button>
               <button
                 data-testid="button-download-image"
+                data-onboarding-export
                 onClick={handleDownloadImage}
                 disabled={isExporting}
                 className="inline-flex items-center gap-1.5 h-7 px-2.5 text-[11px] font-medium text-white border transition-colors disabled:opacity-50"
@@ -1512,6 +1516,7 @@ export default function Preview() {
                     <button
                       key={dim.key}
                       data-testid={`button-dim-${dim.key}`}
+                      data-onboarding-dim-square={dim.key === "1080x1080" ? "" : undefined}
                       onClick={() => setAssetDimension(dim.key)}
                       className={`h-7 px-2.5 text-[11px] font-mono border transition-colors ${assetDimension === dim.key
                         ? "bg-[#111827] text-white border-[#111827]"

@@ -19,7 +19,9 @@ import {
   ChevronDown,
   Cpu,
   Check,
+  GraduationCap,
 } from "lucide-react";
+import { getOnboardingComplete, startOnboarding } from "@/lib/onboarding";
 import { aiPunchier, aiHater, aiShaan, runGeneration } from "@/lib/api";
 import { approveDraft } from "@/lib/draftActions";
 import { fetchOllamaModels } from "@/lib/agenticPipeline";
@@ -63,6 +65,18 @@ export default function Dashboard() {
   } = useHopperStore();
 
   const { toast } = useToast();
+
+  // ── Onboarding: show on first load, persist completion ──
+  const [onboardingChecked, setOnboardingChecked] = useState(false);
+  useEffect(() => {
+    if (onboardingChecked) return;
+    getOnboardingComplete().then((complete) => {
+      setOnboardingChecked(true);
+      if (!complete) {
+        setTimeout(() => startOnboarding(), 500);
+      }
+    });
+  }, [onboardingChecked]);
 
   // ── Ollama model discovery ──
   const [ollamaModels, setOllamaModels] = useState<string[]>([]);
@@ -242,6 +256,7 @@ export default function Dashboard() {
   // Explicit refresh: hits the API for the given platform (or all), dedupes, and saves to DB
   const refreshFeed = useCallback(
     async (platform?: "twitter" | "linkedin" | "instagram") => {
+      useHopperStore.getState().setOnboardingDidRefresh(true);
       setPlatformLoading(platform ?? null, true);
 
       try {
@@ -450,7 +465,7 @@ export default function Dashboard() {
     <div className="h-screen flex flex-col bg-[#FAFAFA]">
       <header className="flex items-center justify-between h-[49px] px-5 border-b border-[#E5E5E5] bg-white flex-shrink-0">
         <div className="flex items-center gap-3">
-          <h1 className="text-[15px] font-bold text-[#111827] tracking-tight">
+          <h1 className="text-[15px] font-bold text-[#111827] tracking-tight" data-onboarding-welcome>
             Content Engine
           </h1>
 
@@ -568,6 +583,15 @@ export default function Dashboard() {
             ) : (
               <VolumeX className="w-3.5 h-3.5" />
             )}
+          </button>
+          <button
+            data-testid="button-onboarding"
+            onClick={() => startOnboarding()}
+            className="inline-flex items-center justify-center h-7 w-7 text-[#999] bg-[#FAFAFA] border border-[#E5E5E5] transition-colors hover-elevate"
+            style={{ borderRadius: "3px" }}
+            title="Product tour"
+          >
+            <GraduationCap className="w-3.5 h-3.5" />
           </button>
           <button
             data-testid="button-settings"

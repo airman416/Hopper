@@ -89,7 +89,7 @@ function PostCard({
 }
 
 export default function SourceFeed({ onRefresh }: { onRefresh?: (platform?: "twitter" | "linkedin" | "instagram") => void }) {
-  const { sourcePosts, selectedPostIndex, setSelectedPostIndex, feedLoadingPlatforms, setActiveTab } =
+  const { sourcePosts, selectedPostIndex, setSelectedPostIndex, feedLoadingPlatforms, setActiveTab, setOnboardingPlatformExpanded } =
     useHopperStore();
   
   const [expandedPlatforms, setExpandedPlatforms] = useState<Record<string, boolean>>({});
@@ -243,10 +243,11 @@ export default function SourceFeed({ onRefresh }: { onRefresh?: (platform?: "twi
 
   const togglePlatform = (platform: string) => {
     setFocusedPlatform(null);
-    setExpandedPlatforms((prev) => ({
-      ...prev,
-      [platform]: !prev[platform],
-    }));
+    setExpandedPlatforms((prev) => {
+      const next = { ...prev, [platform]: !prev[platform] };
+      if (next[platform]) setOnboardingPlatformExpanded(true);
+      return next;
+    });
   };
 
   return (
@@ -275,7 +276,7 @@ export default function SourceFeed({ onRefresh }: { onRefresh?: (platform?: "twi
           </kbd>
         </div>
       </div>
-      <div className="flex-1 overflow-y-auto p-3 space-y-2">
+      <div className="flex-1 overflow-y-auto p-3 space-y-2" data-onboarding-posts>
         {sourcePosts.length === 0 && !Object.values(feedLoadingPlatforms).some(Boolean) && (
           <p className="text-[12px] text-[#999] mb-2 px-2">
             No posts loaded. Use the refresh button next to each platform to fetch posts.
@@ -323,6 +324,7 @@ export default function SourceFeed({ onRefresh }: { onRefresh?: (platform?: "twi
                       )}
                     </button>
                     <button
+                      data-onboarding-refresh={platform === "twitter" ? "" : undefined}
                       onClick={(e) => {
                         e.stopPropagation();
                         onRefresh?.(platform as "twitter" | "linkedin" | "instagram");

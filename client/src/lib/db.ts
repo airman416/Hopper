@@ -69,6 +69,11 @@ export interface HistoricalPost {
   weight_score: number;
 }
 
+export interface AppSetting {
+  key: string;
+  value: string | number | boolean;
+}
+
 class HopperDB extends Dexie {
   sourcePosts!: Table<SourcePost>;
   historical_posts!: Table<HistoricalPost>;
@@ -76,6 +81,7 @@ class HopperDB extends Dexie {
   trash!: Table<TrashEntry>;
   approved_vault!: Table<ApprovedVaultEntry>;
   rejected_vault!: Table<RejectedVaultEntry>;
+  app_settings!: Table<AppSetting>;
 
   constructor() {
     super("HopperDB");
@@ -143,6 +149,17 @@ class HopperDB extends Dexie {
       trash: "++id, draftId, sourcePostId, platform, rejectedAt",
       approved_vault: "++id, platform_format, timestamp",
       rejected_vault: "++id, timestamp",
+    });
+
+    // Version 6: Add app_settings for onboarding state
+    this.version(6).stores({
+      sourcePosts: "++id, platform, timestamp",
+      historical_posts: "++id",
+      drafts: "++id, sourcePostId, platform, status, createdAt",
+      trash: "++id, draftId, sourcePostId, platform, rejectedAt",
+      approved_vault: "++id, platform_format, timestamp",
+      rejected_vault: "++id, timestamp",
+      app_settings: "key",
     });
   }
 }

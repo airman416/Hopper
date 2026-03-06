@@ -24,7 +24,9 @@ import {
   Sparkles,
   RefreshCw,
   Check,
+  Info,
 } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 const TABS: { key: PlatformTab; label: string; shortcut: string }[] = [
   { key: "linkedin", label: "LinkedIn", shortcut: "L" },
@@ -314,16 +316,17 @@ export default function Workshop() {
   return (
     <div className="h-full flex flex-col bg-white">
       {selectedPost && (
-        <div className="flex items-center justify-between h-[49px] border-b border-[#E5E5E5] px-1">
+        <div className="flex items-center justify-between h-[49px] border-b border-[#E5E5E5] px-1" data-onboarding-formats>
           <div className="flex items-center h-full overflow-x-auto no-scrollbar flex-1 min-w-0 mr-2 group">
             {TABS.map((tab) => (
               <button
                 key={tab.key}
                 data-testid={`tab-${tab.key}`}
+                data-onboarding-tab-instagram={tab.key === "instagram" ? "" : undefined}
                 onClick={() => setActiveTab(tab.key)}
-                className={`h-full px-4 text-[13px] font-medium border-b-2 transition-colors whitespace-nowrap flex-shrink-0 inline-flex items-center gap-1.5 ${activeTab === tab.key
-                  ? "border-[#111827] text-[#111827]"
-                  : "border-transparent text-[#999] hover:text-[#666]"
+                className={`h-full px-4 text-[13px] font-medium transition-colors whitespace-nowrap flex-shrink-0 inline-flex items-center gap-1.5 ${activeTab === tab.key
+                  ? "text-[#111827] shadow-[inset_0_-2px_0_0_#1C2B22]"
+                  : "text-[#999] hover:text-[#666]"
                   }`}
               >
                 {tab.label}
@@ -342,6 +345,7 @@ export default function Workshop() {
             {!activeDraft && (
               <button
                 data-testid="button-generate"
+                data-onboarding-generate
                 onClick={handleGenerateDraft}
                 disabled={isAiLoading}
                 className="inline-flex items-center gap-1.5 h-7 px-3 text-[12px] font-medium text-white bg-[#111827] border border-[#111827] hover:bg-[#1f2937] transition-colors disabled:opacity-50"
@@ -376,18 +380,30 @@ export default function Workshop() {
 
       {activeDraft && (
         <div className="flex items-center gap-3 px-4 py-2 border-b border-[#E5E5E5] bg-[#FAFAFA]">
-          <div
-            className={`inline-flex items-center gap-1.5 px-2 py-1 border text-[11px] font-mono ${getReadabilityBg(fkScore)}`}
-            style={{ borderRadius: "3px" }}
-            data-testid="badge-flesch-kincaid"
-          >
-            <span className="text-[#999] font-sans text-[10px] uppercase tracking-wider">
-              F-K Score
-            </span>
-            <span className={`font-bold ${getReadabilityColor(fkScore)}`}>
-              {fkScore.toFixed(1)}
-            </span>
-          </div>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div
+                className={`inline-flex items-center gap-1.5 px-2 py-1 border text-[11px] font-mono cursor-help ${getReadabilityBg(fkScore)}`}
+                style={{ borderRadius: "3px" }}
+                data-testid="badge-flesch-kincaid"
+                data-onboarding-fk-score
+              >
+                <span className="text-[#999] font-sans text-[10px] uppercase tracking-wider">
+                  F-K Score
+                </span>
+                <span className={`font-bold ${getReadabilityColor(fkScore)}`}>
+                  {fkScore.toFixed(1)}
+                </span>
+                <Info className="w-3 h-3 text-[#999] ml-0.5" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent side="bottom" className="max-w-[220px]">
+              <p className="font-medium">Flesch-Kincaid grade level</p>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Reading difficulty — lower = easier to read. Target: 7 or below (8th grade).
+              </p>
+            </TooltipContent>
+          </Tooltip>
 
           <div
             className={`inline-flex items-center gap-1.5 px-2 py-1 border text-[11px] font-mono ${vibeCheck.score >= 80
@@ -533,7 +549,7 @@ export default function Workshop() {
       </div>
 
       {activeDraft && (
-        <div className="flex flex-wrap items-center justify-between gap-y-2 px-4 py-2.5 border-t border-[#E5E5E5] bg-[#FAFAFA]">
+        <div className="flex flex-wrap items-center justify-between gap-y-2 px-4 py-2.5 border-t border-[#E5E5E5] bg-[#FAFAFA]" data-onboarding-what-else>
           <div className="flex flex-wrap items-center gap-2">
             <button
               data-testid="button-punchier"
@@ -597,8 +613,9 @@ export default function Workshop() {
           <div className="flex items-center gap-2">
             {!isSameToSame && (
               <>
-                <button
-                  data-testid="button-approve"
+                <div className="flex items-center gap-1" data-onboarding-approve-reject>
+                  <button
+                    data-testid="button-approve"
                   onClick={handleApprove}
                   className="inline-flex items-center justify-center gap-1.5 w-24 h-7 px-3 text-[12px] font-medium text-green-700 bg-green-50 border border-green-200 transition-colors hover:bg-green-100 hover-elevate"
                   style={{ borderRadius: "3px" }}
@@ -628,6 +645,7 @@ export default function Workshop() {
                     onSelect={handleRejectReasonSelect}
                     onClose={closeRejectPopover}
                   />
+                </div>
                 </div>
               </>
             )}

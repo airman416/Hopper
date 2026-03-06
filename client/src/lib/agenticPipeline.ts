@@ -69,19 +69,16 @@ export async function runGeneration(
 
 /**
  * Step 1 — Architect: Identify core insight and choose Sam Parr framework.
+ * Uses Netlify function; API key comes from CLAUDE_API_KEY env var (no client-side key needed).
  */
 async function runArchitect(sourceText: string): Promise<ArchitectResult> {
     const apiKey = getClaudeApiKey();
-    if (!apiKey) {
-        throw new Error("Claude API key required. Add one in Settings.");
-    }
+    const headers: Record<string, string> = { "Content-Type": "application/json" };
+    if (apiKey) headers["x-claude-api-key"] = apiKey;
 
     const res = await fetch("/.netlify/functions/ai-architect", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "x-claude-api-key": apiKey,
-        },
+        headers,
         body: JSON.stringify({ sourceText }),
     });
 
@@ -104,19 +101,15 @@ async function generateWithClaude(
     contextPostIds: number[],
 ): Promise<GenerationResult> {
     const apiKey = getClaudeApiKey();
-    if (!apiKey) {
-        throw new Error("Claude API key required. Add one in Settings.");
-    }
+    const headers: Record<string, string> = { "Content-Type": "application/json" };
+    if (apiKey) headers["x-claude-api-key"] = apiKey;
 
     const architectResult = await runArchitect(sourceText);
     const prompt = await buildClaudePrompt(sourceText, platform, ragResults, architectResult);
 
     const res = await fetch("/.netlify/functions/ai-writer", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "x-claude-api-key": apiKey,
-        },
+        headers,
         body: JSON.stringify({
             systemBlocks: prompt.systemBlocks,
             userMessage: prompt.userMessage,
@@ -151,9 +144,8 @@ async function generateWithOllamaThenHaiku(
     ollamaModel: string,
 ): Promise<GenerationResult> {
     const apiKey = getClaudeApiKey();
-    if (!apiKey) {
-        throw new Error("Claude API key required for formatting. Add one in Settings.");
-    }
+    const headers: Record<string, string> = { "Content-Type": "application/json" };
+    if (apiKey) headers["x-claude-api-key"] = apiKey;
 
     // ── Step 1: Ollama — voice generation ──
     const base = getOllamaUrl();
@@ -193,10 +185,7 @@ async function generateWithOllamaThenHaiku(
 
     const haikuRes = await fetch("/.netlify/functions/ai-writer", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "x-claude-api-key": apiKey,
-        },
+        headers,
         body: JSON.stringify({
             model: "claude-haiku-4-5-20251001",
             systemBlocks: haikuPrompt.systemBlocks,

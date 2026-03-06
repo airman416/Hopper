@@ -41,7 +41,7 @@ const handler: Handler = async (event) => {
         return {
             statusCode: 400,
             headers: { ...corsHeaders, "Content-Type": "application/json" },
-            body: JSON.stringify({ error: "Claude API key required." }),
+            body: JSON.stringify({ error: "Claude API key required. Set CLAUDE_API_KEY in Netlify env vars." }),
         };
     }
 

@@ -89,6 +89,14 @@ interface HopperState {
   lastContextPostIds: number[];
   setLastContextPostIds: (ids: number[]) => void;
 
+  /** Onboarding: track if user completed required actions */
+  onboardingDidRefresh: boolean;
+  setOnboardingDidRefresh: (v: boolean) => void;
+  onboardingPlatformExpanded: boolean;
+  setOnboardingPlatformExpanded: (v: boolean) => void;
+  onboardingDidExport: boolean;
+  setOnboardingDidExport: (v: boolean) => void;
+
   /** Reject reason popover — when set, show popover before completing reject */
   pendingReject: {
     draftId: number;
@@ -242,6 +250,13 @@ export const useHopperStore = create<HopperState>((set, get) => ({
 
   lastContextPostIds: [],
   setLastContextPostIds: (ids) => set({ lastContextPostIds: ids }),
+
+  onboardingDidRefresh: false,
+  setOnboardingDidRefresh: (v) => set({ onboardingDidRefresh: v }),
+  onboardingPlatformExpanded: false,
+  setOnboardingPlatformExpanded: (v) => set({ onboardingPlatformExpanded: v }),
+  onboardingDidExport: false,
+  setOnboardingDidExport: (v) => set({ onboardingDidExport: v }),
 
   pendingReject: null,
   openRejectPopover: (draft) =>
