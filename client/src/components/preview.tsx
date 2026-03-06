@@ -18,7 +18,7 @@ import { toPng } from "html-to-image";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { useToast } from "@/hooks/use-toast";
-import { proxyImageUrl, fetchImageAsDataUrl } from "@/lib/api";
+import { proxyImageUrl } from "@/lib/api";
 
 const FONTS = [
   "Inter",
@@ -236,10 +236,6 @@ function proxyPhotoUrl(url: string | null): string | null {
   return proxyImageUrl(url);
 }
 
-async function imageUrlToBase64(url: string): Promise<string | null> {
-  return fetchImageAsDataUrl(url);
-}
-
 function formatContentWithLinks(text: string, linkColor: string) {
   const parts = text.split(/(https?:\/\/[^\s]+|#\w+|@\w+)/g);
   return parts.map((part, i) => {
@@ -426,6 +422,187 @@ function MockTwitterCard({
         </>
       )}
       {!showMetrics && <div style={{ height: "16px" }} />}
+    </div>
+  );
+}
+
+function MockInstagramCard({
+  content,
+  profileBase64,
+  showMetrics,
+  metrics,
+  mediaUrls,
+  author,
+  authorHandle,
+}: {
+  content: string;
+  profileBase64: string | null;
+  showMetrics: boolean;
+  metrics?: { likes?: number; comments?: number };
+  mediaUrls?: string[];
+  author?: string;
+  authorHandle?: string;
+}) {
+  const displayName = author ?? "Sam Parr";
+  const handle = authorHandle ?? "thesamparr";
+  const displayLikes = metrics?.likes ?? 0;
+  const displayComments = metrics?.comments ?? 0;
+
+  const primaryImage = mediaUrls?.[0];
+  const hasMedia = mediaUrls && mediaUrls.length > 0;
+
+  return (
+    <div
+      style={{
+        backgroundColor: "#FFFFFF",
+        borderRadius: 0,
+        boxShadow: "0 20px 40px -10px rgba(0,0,0,0.1)",
+        overflow: "hidden",
+        width: "100%",
+        maxWidth: "468px",
+        fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      }}
+    >
+      {/* Header: profile pic, username, more */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          padding: "14px 16px",
+          gap: "12px",
+        }}
+      >
+        {profileBase64 ? (
+          <img
+            src={profileBase64}
+            alt=""
+            style={{ width: "32px", height: "32px", borderRadius: "50%", objectFit: "cover", flexShrink: 0 }}
+          />
+        ) : (
+          <div
+            style={{
+              width: "32px",
+              height: "32px",
+              borderRadius: "50%",
+              backgroundColor: "#DBDBDB",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
+            }}
+          >
+            <User style={{ width: "16px", height: "16px", color: "#8E8E8E" }} />
+          </div>
+        )}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <span style={{ fontSize: "14px", fontWeight: 600, color: "#262626" }}>{displayName}</span>
+        </div>
+        <svg viewBox="0 0 24 24" width="24" height="24" style={{ color: "#262626", flexShrink: 0, cursor: "pointer" }}>
+          <circle cx="12" cy="6" r="1.5" fill="currentColor" />
+          <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+          <circle cx="12" cy="18" r="1.5" fill="currentColor" />
+        </svg>
+      </div>
+
+      {/* Image area */}
+      {hasMedia ? (
+        mediaUrls!.length === 1 ? (
+          <div style={{ aspectRatio: "1", backgroundColor: "#000" }}>
+            <img
+              src={proxyImageUrl(primaryImage!) ?? ""}
+              alt=""
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: mediaUrls!.length === 2 ? "1fr 1fr" : mediaUrls!.length === 3 ? "2fr 1fr" : "1fr 1fr",
+              gridTemplateRows: mediaUrls!.length >= 3 ? "1fr 1fr" : "1fr",
+              gap: "2px",
+              aspectRatio: "1",
+              backgroundColor: "#000",
+            }}
+          >
+            {mediaUrls!.slice(0, 4).map((url, i) => (
+              <img
+                key={i}
+                src={proxyImageUrl(url) ?? ""}
+                alt=""
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                  gridColumn: mediaUrls!.length === 3 && i === 0 ? "1" : "auto",
+                  gridRow: mediaUrls!.length === 3 && i === 0 ? "1 / 3" : "auto",
+                }}
+              />
+            ))}
+          </div>
+        )
+      ) : (
+        <div
+          style={{
+            aspectRatio: "1",
+            backgroundColor: "#FAFAFA",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <span style={{ fontSize: "14px", color: "#8E8E8E" }}>No image</span>
+        </div>
+      )}
+
+      {/* Action bar */}
+      <div
+        style={{
+          padding: "6px 16px 8px",
+          display: "flex",
+          alignItems: "center",
+          gap: "16px",
+        }}
+      >
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#262626" strokeWidth="2">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+        </svg>
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#262626" strokeWidth="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#262626" strokeWidth="2">
+          <line x1="22" y1="2" x2="11" y2="13" />
+          <polygon points="22 2 15 22 11 13 2 9 22 2" />
+        </svg>
+        <div style={{ flex: 1 }} />
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#262626" strokeWidth="2">
+          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+        </svg>
+      </div>
+
+      {showMetrics && (displayLikes > 0 || displayComments > 0) && (
+        <div style={{ padding: "0 16px 8px", fontSize: "14px", color: "#262626" }}>
+          {displayLikes > 0 && (
+            <span style={{ fontWeight: 600 }}>{displayLikes.toLocaleString()} {displayLikes === 1 ? "like" : "likes"}</span>
+          )}
+          {displayLikes > 0 && displayComments > 0 && " · "}
+          {displayComments > 0 && (
+            <span>View all {displayComments.toLocaleString()} {displayComments === 1 ? "comment" : "comments"}</span>
+          )}
+        </div>
+      )}
+
+      {/* Caption */}
+      <div style={{ padding: "0 16px 12px", fontSize: "14px", lineHeight: 1.5, color: "#262626" }}>
+        <span style={{ fontWeight: 600, marginRight: "6px" }}>{handle}</span>
+        <span style={{ whiteSpace: "pre-wrap" }}>{content}</span>
+      </div>
     </div>
   );
 }
@@ -902,7 +1079,6 @@ export default function Preview() {
   const previewRef = useRef<HTMLDivElement>(null);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [isExporting, setIsExporting] = useState(false);
-  const [lastConvertedPhoto, setLastConvertedPhoto] = useState<string | null>(null);
 
   useEffect(() => {
     loadGoogleFont(assetFont);
@@ -918,37 +1094,28 @@ export default function Preview() {
 
   const content = activeDraft?.content || "";
 
-  // Show platform mockup whenever exporting to LinkedIn or X, regardless of source (consistency)
-  const showMockup = (activeTab === "linkedin" || activeTab === "twitter") && !!content;
+  // Show platform mockup: LinkedIn/X always; Instagram only when source is Instagram (same-to-same)
+  const showMockup =
+    ((activeTab === "linkedin" || activeTab === "twitter") && !!content) ||
+    (activeTab === "instagram" && selectedPost?.platform === "instagram" && !!content);
 
-  const isAssetMode = activeTab === "quote" || activeTab === "instagram";
+  const isAssetMode = activeTab === "quote" || (activeTab === "instagram" && !showMockup);
 
-  // For mockups: prefer source post photo, fall back to profile photo.
-  // LinkedIn: always use locally saved profile picture (no external API fetch).
-  const LINKEDIN_LOCAL_PROFILE = "/linkedin-profile.jpeg";
-  const effectivePhoto = showMockup
-    ? (activeTab === "linkedin"
-      ? LINKEDIN_LOCAL_PROFILE
-      : (selectedPost?.profilePhoto || profilePhoto || null))
-    : (selectedPost?.profilePhoto || profilePhoto || null);
+  // Mockups use local profile photos (no fetch). Instagram uses ig-profile when source is IG.
+  const MOCKUP_PROFILE_BY_TAB: Record<string, string> = {
+    linkedin: "/linkedin-profile.jpeg",
+    twitter: "/x-profile.jpg",
+    instagram: "/ig-profile.jpg",
+  };
+  const mockupProfile = showMockup ? MOCKUP_PROFILE_BY_TAB[activeTab] ?? null : null;
 
   useEffect(() => {
-    if (showMockup && effectivePhoto && effectivePhoto !== lastConvertedPhoto) {
-      setLastConvertedPhoto(effectivePhoto);
-      // Local paths (e.g. /linkedin-profile.jpeg) can be used directly as img src — no fetch
-      if (effectivePhoto.startsWith("/") || effectivePhoto.startsWith("data:")) {
-        setMockupProfileBase64(effectivePhoto);
-      } else {
-        imageUrlToBase64(effectivePhoto).then((base64) => {
-          setMockupProfileBase64(base64);
-        });
-      }
-    } else if (!showMockup || !effectivePhoto) {
-      if (mockupProfileBase64) {
-        setMockupProfileBase64(null);
-      }
+    if (mockupProfile) {
+      setMockupProfileBase64(mockupProfile);
+    } else {
+      setMockupProfileBase64(null);
     }
-  }, [showMockup, effectivePhoto, lastConvertedPhoto]);
+  }, [mockupProfile]);
 
   const platformLabels: Record<string, { icon: any; label: string }> = {
     linkedin: { icon: SiLinkedin, label: "LinkedIn" },
@@ -1284,6 +1451,17 @@ export default function Preview() {
                 showMetrics={mockupShowMetrics}
                 metrics={selectedPost?.metrics}
                 mediaUrls={selectedPost?.mediaUrls}
+              />
+            )}
+            {activeTab === "instagram" && (
+              <MockInstagramCard
+                content={content}
+                profileBase64={proxyPhotoUrl(selectedPost?.profilePhoto) ?? mockupProfileBase64}
+                showMetrics={mockupShowMetrics}
+                metrics={selectedPost?.metrics}
+                mediaUrls={selectedPost?.mediaUrls}
+                author={selectedPost?.author}
+                authorHandle={selectedPost?.authorHandle}
               />
             )}
           </div>

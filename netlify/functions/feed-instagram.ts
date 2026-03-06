@@ -12,13 +12,7 @@ function getApiKey(event: { headers?: Record<string, string | undefined> }): str
 }
 
 const INSTAGRAM_BODY = {
-  addParentData: false,
-  directUrls: ["https://www.instagram.com/thesamparr"],
-  onlyPostsNewerThan: "2026-01-01",
-  resultsLimit: 10,
-  resultsType: "posts",
-  searchLimit: 1,
-  searchType: "hashtag",
+  usernames: ["thesamparr"],
 };
 
 const handler: Handler = async (event) => {
@@ -36,12 +30,12 @@ const handler: Handler = async (event) => {
   }
 
   try {
-    const url = `https://api.apify.com/v2/acts/apify~instagram-scraper/run-sync-get-dataset-items?token=${token}&timeout=60&memory=512`;
+    const url = `https://api.apify.com/v2/acts/apify~instagram-profile-scraper/run-sync-get-dataset-items?token=${token}&timeout=45&memory=512`;
     const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(INSTAGRAM_BODY),
-      signal: AbortSignal.timeout(90_000),
+      signal: AbortSignal.timeout(35_000),
     });
 
     if (!res.ok) {
@@ -50,10 +44,27 @@ const handler: Handler = async (event) => {
     }
 
     const data = await res.json();
+    const profiles = Array.isArray(data) ? data : [];
+    const allPosts = profiles.flatMap((p) =>
+      (p?.latestPosts ?? []).map((post) => ({
+        ...post,
+        ownerUsername: p?.username ?? post?.ownerUsername,
+        ownerFullName: p?.fullName ?? post?.ownerFullName,
+        ownerProfilePicUrl: p?.profilePicUrl ?? post?.ownerProfilePicUrl,
+      }))
+    );
+    const cutoff = new Date("2026-01-01").getTime();
+    const filtered = allPosts.filter((p) => (p?.timestamp ? new Date(p.timestamp).getTime() : 0) >= cutoff);
+    const sorted = [...filtered].sort((a, b) => {
+      const ta = a?.timestamp ? new Date(a.timestamp).getTime() : 0;
+      const tb = b?.timestamp ? new Date(b.timestamp).getTime() : 0;
+      return tb - ta; // newest first
+    });
+    const posts = sorted.slice(0, 3);
     return {
       statusCode: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(posts),
     };
   } catch (error: unknown) {
     console.error("Instagram feed error:", error);
