@@ -1,6 +1,6 @@
 # Content Engine
 
-Content Engine helps you repurpose your social media posts across different platforms. Load posts from X (Twitter), LinkedIn, or Instagram, then use AI to adapt them into new formats—LinkedIn posts, tweets, Instagram carousels, newsletter sections, or punchy quotes. Export polished images ready to share.
+Content Engine helps you **repurpose** your existing social media posts across different platforms—it does not create new posts from scratch. Load posts you've already published on X (Twitter), LinkedIn, or Instagram, then use AI to adapt them into new formats: LinkedIn posts, tweets, Instagram carousels, newsletter sections, or punchy quotes. Export polished images ready to share.
 
 ---
 
@@ -23,7 +23,7 @@ Switch between five output formats with tabs or keyboard shortcuts:
 | **Quote** | Q | Single punchy quotable sentence |
 
 ### AI Generation
-- **Generate** creates a new draft in your chosen format, tailored to your voice
+- **Generate** adapts the selected post into your chosen format, tailored to your voice
 - **Punchier** (P) — makes the draft tighter and more impactful
 - **Hater** (H) — generates a cynical opposing reply (great for stress-testing ideas)
 - **Shaan** (S) — rewrites in Shaan Puri’s conversational style
@@ -52,19 +52,26 @@ Switch between five output formats with tabs or keyboard shortcuts:
 
 ---
 
+## Limitations
+
+- **Repurposing only** — Content Engine does not create new posts from scratch. You must load existing posts you've already published, then adapt them to other formats.
+- **Feed limits** — Refresh fetches your 10 most recent posts from X and LinkedIn, and 3 most recent from Instagram.
+
+---
+
 ## Getting Started
 
 ### What You Need
 - **Node.js** (v18 or newer)
 - A **Claude API key** (from [Anthropic](https://console.anthropic.com/))
-- Optional: **Apify** and **LinkdAPI** keys for loading posts from X, LinkedIn, and Instagram
+- **Apify** and **LinkdAPI** keys for loading posts from X, LinkedIn, and Instagram (provided in the deployed version; required when self-hosting)
 
 ### Quick Setup
 
 1. **Clone the repo**
    ```bash
-   git clone https://github.com/airman416/Hopper.git
-   cd Hopper
+   git clone https://github.com/airman416/Content-Engine.git
+   cd Content-Engine
    ```
 
 2. **Install dependencies**
@@ -75,7 +82,7 @@ Switch between five output formats with tabs or keyboard shortcuts:
 3. **Add your API keys**
    - Copy `.env.example` to `.env`
    - Add your `CLAUDE_API_KEY` (required for AI)
-   - Add `APIFY_API_KEY` and `LINKEDAPI_API_KEY` if you want to load posts from X, LinkedIn, and Instagram
+   - Add `APIFY_API_KEY` and `LINKEDAPI_API_KEY` when self-hosting (required for loading posts; the deployed version includes these)
 
 4. **Run the app**
    ```bash
@@ -100,7 +107,7 @@ Switch between five output formats with tabs or keyboard shortcuts:
 | **Apify** | [Apify](https://apify.com/) | X and Instagram feeds |
 | **LinkdAPI** | [LinkdAPI](https://linkdapi.com/) | LinkedIn feed |
 
-You can add keys in **Settings** (stored in your browser) or in `.env` for server-side use.
+Apify and LinkdAPI keys are provided in the deployed version. When self-hosting, add all keys in **Settings** (stored in your browser) or in `.env` for server-side use.
 
 ---
 

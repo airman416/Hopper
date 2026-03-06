@@ -502,7 +502,8 @@ export default function Dashboard() {
                       }`}
                   >
                     {selectedModel === "claude" ? <Check className="w-3 h-3 text-[#111827]" /> : <span className="w-3" />}
-                    Claude
+                    <span className="truncate flex-1">Claude</span>
+                    <span className="text-[9px] text-[#BBB] font-normal shrink-0">Sonnet 4</span>
                   </button>
 
                   <div className="border-t border-[#F0F0F0] my-1" />
@@ -606,7 +607,7 @@ export default function Dashboard() {
       </header>
 
       <ResizablePanelGroup direction="horizontal" className="flex-1 min-h-0">
-        <ResizablePanel defaultSize={22} minSize={15} maxSize={40}>
+        <ResizablePanel defaultSize={12} minSize={12} maxSize={35}>
           <SourceFeed onRefresh={refreshFeed} />
         </ResizablePanel>
         <ResizableHandle className="w-px bg-[#E5E5E5] hover:bg-[#111827] transition-colors duration-150" />
