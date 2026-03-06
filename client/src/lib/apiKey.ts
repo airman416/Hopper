@@ -1,7 +1,7 @@
 const STORAGE_KEY = "claude_api_key";
 
 export function getClaudeApiKey(): string | null {
-  return localStorage.getItem(STORAGE_KEY);
+  return localStorage.getItem(STORAGE_KEY) || import.meta.env.VITE_CLAUDE_API_KEY || null;
 }
 
 export function setClaudeApiKey(key: string): void {

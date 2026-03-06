@@ -6,9 +6,9 @@ const IMAGE_PROXY = "https://wsrv.nl";
 const FEED_CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
 const FEED_CACHE_PREFIX = "hopper_feed_";
 
-// --- API keys: localStorage (Settings) only — never baked into build (Netlify functions use env vars) ---
+// --- API keys: localStorage (Settings) first, then .env fallback ---
 export function getClaudeApiKey(): string | null {
-  return localStorage.getItem("claude_api_key") || null;
+  return localStorage.getItem("claude_api_key") || import.meta.env.VITE_CLAUDE_API_KEY || null;
 }
 
 export function getApifyKey(): string | null {
