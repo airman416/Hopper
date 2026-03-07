@@ -1167,7 +1167,9 @@ export default function Preview() {
 
     try {
       const hasSourceImages = (selectedPost?.mediaUrls ?? []).length > 0;
-      if (activeTab === "instagram" && content.includes("---") && !hasSourceImages) {
+      const { slides: instagramSlides } = parseInstagramContent(content);
+      const hasCarouselSlides = activeTab === "instagram" && content.includes("---") && instagramSlides.length > 0;
+      if (hasCarouselSlides) {
         const { slides } = parseInstagramContent(content);
         const zip = new JSZip();
         const dimConfig = DIMENSIONS.find((d) => d.key === assetDimension)!;
@@ -1193,8 +1195,8 @@ export default function Preview() {
           await document.fonts.load(`700 ${dimConfig.w / 12}px "${fontFamily}"`);
         }
 
-        for (let i = 0; i < slides.length; i++) {
-          const blob = await drawSlideToBlob(slides[i], i, slides.length, {
+        for (let i = 0; i < instagramSlides.length; i++) {
+          const blob = await drawSlideToBlob(instagramSlides[i], i, instagramSlides.length, {
             width: dimConfig.w,
             height: dimConfig.h,
             bgColor: assetBgColor,
@@ -1210,7 +1212,7 @@ export default function Preview() {
         const zipBlob = await zip.generateAsync({ type: "blob" });
         saveAs(zipBlob, getExportFilename("instagram-carousel", "zip"));
         setOnboardingDidExport(true);
-        toast({ title: "Downloaded", description: `${slides.length} slides saved as ZIP.` });
+        toast({ title: "Downloaded", description: `${instagramSlides.length} slides saved as ZIP.` });
       } else {
         const node = previewRef.current;
         if (!node) return;
@@ -1499,8 +1501,6 @@ export default function Preview() {
     }
 
     if (activeTab === "instagram") {
-      const mediaUrls = selectedPost?.mediaUrls ?? [];
-      const hasSourceImages = mediaUrls.length > 0;
       const { caption, slides } = parseInstagramContent(content);
       slideRefs.current = [];
       // Use source profile picture, fall back to store profilePhoto, then saved default (same as LinkedIn/X)
@@ -1543,44 +1543,7 @@ export default function Preview() {
               <p className="text-[11px] text-[#666]">@{authorHandle}</p>
             </div>
           </div>
-          {hasSourceImages ? (
-            <>
-              <div className="rounded-lg overflow-hidden border border-[#E5E5E5]">
-                {mediaUrls.length === 1 ? (
-                  <img
-                    src={proxyImageUrl(mediaUrls[0]) ?? ""}
-                    alt=""
-                    className="w-full block object-cover max-h-[400px]"
-                  />
-                ) : (
-                  <div
-                    className="grid gap-0.5"
-                    style={{
-                      gridTemplateColumns: mediaUrls.length === 2 ? "1fr 1fr" : mediaUrls.length === 3 ? "2fr 1fr" : "1fr 1fr",
-                      gridTemplateRows: mediaUrls.length >= 3 ? "1fr 1fr" : "1fr",
-                      height: "280px",
-                    }}
-                  >
-                    {mediaUrls.slice(0, 4).map((url, i) => (
-                      <img
-                        key={i}
-                        src={proxyImageUrl(url) ?? ""}
-                        alt=""
-                        className="w-full h-full object-cover block"
-                        style={{
-                          gridColumn: mediaUrls.length === 3 && i === 0 ? "1" : "auto",
-                          gridRow: mediaUrls.length === 3 && i === 0 ? "1 / 3" : "auto",
-                        }}
-                      />
-                    ))}
-                  </div>
-                )}
-              </div>
-              {content && (
-                <p className="text-[13px] leading-[1.5] text-[#111827] whitespace-pre-wrap">{content}</p>
-              )}
-            </>
-          ) : (
+          {slides.length > 0 ? (
             <>
               {slides.map((slide, i) => (
                 <CarouselSlideCard
@@ -1598,6 +1561,8 @@ export default function Preview() {
                 />
               ))}
             </>
+          ) : (
+            <p className="text-[13px] leading-[1.5] text-[#111827] whitespace-pre-wrap">{content}</p>
           )}
         </div>
       );
